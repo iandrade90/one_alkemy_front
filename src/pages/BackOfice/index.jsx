@@ -1,11 +1,11 @@
 import React from 'react';
-import { NavBackOfice } from "../../features/LayoutBackOfice";
+import { NavBackOfice } from "../../components";
 
 const BackOfice=()=>{
     return (
-        <div className='row justify-content-between' style={{borderTop:"1px solid rgb(249,250,251)"}}>
+        <div className='row justify-content-between' style={{borderTop:"1px solid rgb(249,250,251)",marginTop:"3.5rem"}}>
             <div className='d-none d-md-block col-md-4 col-lg-3 col-xl-2 p-4 vh-100' style={{fontFamily:"sans-serif", marginTop:"-3.6rem",backgroundColor:"rgb(79,70,229)", zIndex:"3",color:"rgb(249,250,251,.8)"}}>
-                <h4 className='fw-bolder mb-5 text-start ps-3 text-white'> X Somos más</h4>
+                <h4 className='fw-bolder mb-5 text-start ps-3 text-white'> Somos +</h4>
                 <NavBackOfice/>
             </div>
           <div className='col-md-8  col-lg-9 col-xl-10 bg-light'>

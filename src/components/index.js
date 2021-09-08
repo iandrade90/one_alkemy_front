@@ -1,6 +1,11 @@
 import Forms from "./Forms";
 import LayoutBackofice from './LayoutBackOfice';
+import { NavBackOfice } from "./LayoutBackOfice";
+import Spinner from "./Spinner";
+
 export { 
     Forms ,
-    LayoutBackofice
+    LayoutBackofice,
+    NavBackOfice,
+    Spinner
 };
