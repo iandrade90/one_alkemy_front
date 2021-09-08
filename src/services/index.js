@@ -1,5 +1,10 @@
 import axios from "axios";
 
+// const CancelToken = axios.CancelToken;
+// const source = CancelToken.source();
+//https://axios-http.com/docs/cancellation   documentación de la implementación
+
+
 const getAllService = async (path , cancelToken )=> {
 
     const userToken = localStorage.getItem("token_id");
