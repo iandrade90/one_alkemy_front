@@ -31,7 +31,7 @@ const postService = async (path , body , cancelToken )=> {
     const response = await axios
         .post(`${process.env.REACT_APP_SERVERBASEPATH}/${path}`, {
             cancelToken: cancelToken?.token,
-            body:JSON.stringify(body),
+            body,
             headers:{
                 authorization : userToken ? userToken : "" 
             }
