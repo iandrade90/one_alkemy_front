@@ -11,8 +11,13 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-redux": "^7.1.3",
+<<<<<<< HEAD
     "react-scripts": "3.4.3",
     "yup": "^0.32.9"
+=======
+    "react-router-dom": "^5.2.1",
+    "react-scripts": "3.4.3"
+>>>>>>> 2814bd3fd87eac7c15d146fafa0fba39ad9ff378
   },
   "scripts": {
     "start": "react-scripts start",
