@@ -1,0 +1,87 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+@import url("../../index.css");
+
+/* GENERAL STYLES */
+
+body {
+  background-color: var(--color-blue-200);
+}
+
+.h-screen {
+  min-height: 100vh;
+}
+
+.logo {
+  width: 13rem;
+}
+
+.top-form h2 {
+  margin-top: 0.75rem;
+  color: var(--color-gray-800);
+  font-weight: 600;
+  font-size: var(--text-3xl);
+}
+
+.bottom-form {
+  background-color: var(--color-white);
+  padding: 1.5rem 0;
+}
+
+.form-group label {
+  color: var(--color-gray-700);
+  font-weight: 500;
+}
+
+.custom-checkbox label {
+  color: var(--color-gray-700);
+  font-weight: 500;
+  font-size: var(--text-base);
+}
+
+.forgot-password {
+  color: var(--color-blue-700);
+  font-weight: 500;
+  font-size: var(--text-base);
+}
+
+.forgot-password:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.btn.login {
+  background-color: var(--color-blue-700);
+  color: var(--color-white);
+}
+
+.btn.login:hover {
+  background-color: var(--color-blue-600);
+}
+
+.input-error {
+  border: 1px solid rgba(239, 68, 68, 0.5);
+  background-color: rgba(254, 226, 226, 0.7) !important;
+}
+
+.correct {
+  background-color: var(--color-blue-200);
+}
+
+.error-message {
+  display: flex;
+  gap: 4px;
+  margin-top: 2px;
+}
+
+.error-message svg {
+  color: rgba(239, 68, 68, 1);
+  width: 1rem;
+}
+.error-message span {
+  color: rgba(239, 68, 68, 1);
+  font-size: var(--text-sm);
+}
+
+.form-group input:not(:placeholder-shown) {
+  background-color: var(--color-blue-200);
+}
