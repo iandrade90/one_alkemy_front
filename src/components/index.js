@@ -1,5 +1,5 @@
-import Spinner from "./Spinner";
+import LoaderSpinner from "./LoaderSpinner";
 
 export { 
-    Spinner
+    LoaderSpinner
 };
