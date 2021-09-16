@@ -13,9 +13,8 @@ const Spinner =(props)=>{
             <Loader
                 type='TailSpin'
                 color="#00BFFF"
-                height={props.height ? props.position.height : 100}
-                width={props.width ? props.position.width : 100}
-            // timeout={3000} //3 secs
+                height={props.height ? props.height : 100}
+                width={props.width ? props.width : 100}
             />      
         </div> 
     )
