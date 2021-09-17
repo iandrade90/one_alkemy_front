@@ -1,5 +1,4 @@
 import LoaderSpinner from "./LoaderSpinner";
+import Header from "./Header";
 
-export { 
-    LoaderSpinner
-};
+export { LoaderSpinner, Header };
