@@ -1,4 +1,4 @@
 import LoaderSpinner from "./LoaderSpinner";
-import Header from "./Header";
+import Alert from "./Alert";
 
-export { LoaderSpinner, Header };
+export { LoaderSpinner, Alert };
