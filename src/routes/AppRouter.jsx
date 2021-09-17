@@ -6,8 +6,8 @@ const AppRouter = () => {
     <Router>
       <Switch>
         <Route exact path='/'/>
-        <Route exact path='/register'></Route>
-        <Route exact path='/login'></Route>
+        <Route exact path='/register'/>
+        <Route exact path='/login'/>
         <Route exact path='/backoffice'/>
       </Switch>
     </Router>
