@@ -1,17 +1,15 @@
 import axios from "axios";
+import config from '../config'
 
-//config access token
  axios
  .defaults
  .headers['Authorization'] = localStorage.getItem("token_id")
  ?`Bearer ${localStorage.getItem("token_id")}` 
  :'';
 
-
 const getAllService = async (path , cancelToken )=> {
-
     const response = await axios
-        .get(`${process.env.REACT_APP_BASE_PATH_SERVER}${path}`, {
+        .get(`${config.base_server_path}${path}`, {
             cancelToken: cancelToken?.token,
         });
     return response;
@@ -20,7 +18,7 @@ const getAllService = async (path , cancelToken )=> {
 const postService = async (path , body , cancelToken )=> {
     const response = await axios
         .post(
-            `${process.env.REACT_APP_BASE_PATH_SERVER}${path}`, {
+            `${config.base_server_path}${path}`, {
                 cancelToken: cancelToken?.token
             },
             body,
