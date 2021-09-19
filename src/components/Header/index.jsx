@@ -42,10 +42,9 @@ const Header = () => {
   return (
     <nav className='navbar navbar-expand-lg navbar-light shadow-sm'>
       <div className='container-fluid flex align-items-center py-1'>
-        {/* //? Una vez que este implementado el Router se debera cambiar TODAS las etiquetas 'a' por Link */}
-        <a to='/'>
+        <Link to='/'>
           <img src={publicInfo && publicInfo.logo} className='logo' alt='' />
-        </a>
+        </Link>
         <button
           className='navbar-toggler'
           type='button'
@@ -61,12 +60,16 @@ const Header = () => {
           id='navbarSupportedContent'>
           <ul className='navbar-nav me-auto text-md ms-2 mb-2 mb-lg-0'>
             <li className='nav-item rounded ps-2 ps-lg-0 mb-1 me-lg-4 mb-lg-0 header-link active'>
-              <a className='nav-link'>Inicio</a>
+              <Link to='/' className='nav-link'>
+                Inicio
+              </Link>
             </li>
             {publicInfo &&
               publicInfo.links.map(link => (
                 <li className='nav-item rounded-3 ps-2 ps-lg-0 mb-1 mb-lg-0 me-lg-3 '>
-                  <a className='nav-link'>{link.name}</a>
+                  <Link to='' className='nav-link'>
+                    {link.name}
+                  </Link>
                 </li>
               ))}
 
@@ -78,8 +81,12 @@ const Header = () => {
           <div>
             {!user ? (
               <div className='d-flex align-items-center gap-2'>
-                <a className='button secondary-btn flex-grow-1'>Registrarse</a>
-                <a className='button primary-btn flex-grow-1'>Iniciar Sesión</a>
+                <Link to='' className='button secondary-btn flex-grow-1'>
+                  Registrarse
+                </Link>
+                <Link to='' className='button primary-btn flex-grow-1'>
+                  Iniciar Sesión
+                </Link>
               </div>
             ) : (
               <div className=' d-flex align-items-center justify-content-between profile-menu'>
@@ -98,33 +105,33 @@ const Header = () => {
                     className='dropdown-menu dropdown-menu-end'
                     aria-labelledby='dropdownMenuLink'>
                     <li>
-                      <a
+                      <Link
                         className='dropdown-item d-flex align-items-center h-100'
-                        href='/backoffice/profile'>
+                        to='/backoffice/profile'>
                         <HiUser className='me-2 h-100 text-secondary' />
                         Mi perfil
-                      </a>
+                      </Link>
                     </li>
                     <li>
-                      <a className='dropdown-item' href='#'>
+                      <Link className='dropdown-item' to='/'>
                         <HiCog className='me-2 h-100 text-secondary' />
                         Configuraciones
-                      </a>
+                      </Link>
                     </li>
                     {isAdmin && (
                       <li>
-                        <a className='dropdown-item' href='/backoffice'>
+                        <Link className='dropdown-item' to='/backoffice'>
                           <HiClipboardList className='me-2 h-100 text-secondary' />
                           Ir a Backoffice
-                        </a>
+                        </Link>
                       </li>
                     )}
 
                     <li>
-                      <a className='dropdown-item' href='#'>
+                      <Link className='dropdown-item' hrefto='/login'>
                         <HiOutlineLogout className='me-2 h-100 text-secondary' />
                         Cerrar sesión
-                      </a>
+                      </Link>
                     </li>
                   </ul>
                 </div>
@@ -134,9 +141,9 @@ const Header = () => {
                       <img src='https://i.pravatar.cc/250?img=3' alt='' />
                     </button>
                     <div className='d-lg-none d-flex flex-column ms-2 user-details justify-content-center'>
-                      <a className='user-name' href='/backoffice/profile'>
+                      <Link className='user-name' to='/backoffice/profile'>
                         Octavio Peralta
-                      </a>
+                      </Link>
                       <span className='user-email'>
                         octaviojperalta99@gmail.com
                       </span>
@@ -144,16 +151,16 @@ const Header = () => {
                   </div>
                   <div className='mobile-buttons'>
                     {isAdmin && (
-                      <a href='/backoffice/'>
+                      <Link to='/backoffice/'>
                         <HiClipboardList className=' icon me-2 h-100 text-secondary' />
-                      </a>
+                      </Link>
                     )}
                     <a href='/'>
                       <HiCog className=' icon me-2 h-100 text-secondary' />
                     </a>
-                    <a href='/'>
+                    <Link href='/login'>
                       <HiOutlineLogout className=' icon me-2 h-100 text-secondary' />
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>
