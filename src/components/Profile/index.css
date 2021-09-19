@@ -1,0 +1,49 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: content-box;
+    --size-1875: 1.875em; 
+    --smokeWhite: rgba(245, 245, 245);
+    --brightWhite: rgb(253, 254, 255);
+}
+
+.fontSize-1 {
+    font-size: var(--size-1875);
+}
+
+.smokeWhite{
+    color: var(--smokeWhite);
+}
+
+.brightWhite{
+    color: var(--brightWhite);
+}
+
+.h150{
+    height: 9.375em;
+}
+
+.w150{
+    width: 9.375em;
+}
+
+.w50vw{
+    width: 50vw;
+}
+
+@media screen and (max-width: 750px){
+    .screen750px{
+        width: 100vw;
+        height: 100vh;
+    }
+}
+
+@media screen and (max-width: 365px) {
+    .margin365px{
+        margin-bottom: 15px;
+    }
+
+    .fontResp{
+        font-size: 24px;
+    }
+}

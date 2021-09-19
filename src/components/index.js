@@ -1,5 +1,11 @@
 import LoaderSpinner from "./LoaderSpinner";
-import Alert from "./Alert";
 import Footer from "./Footer";
+import Alert from "./Alert";
+import Information from './Profile/Info';
 
-export { LoaderSpinner, Alert, Footer };
+export { 
+    LoaderSpinner,
+    Information,
+    Alert,
+    Footer
+};
