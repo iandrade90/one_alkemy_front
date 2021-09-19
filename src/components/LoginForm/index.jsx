@@ -31,7 +31,7 @@ const LoginForm = () => {
           <h2>Inicia sesión con tu cuenta</h2>
         </div>
         {/* BOTTOM */}
-        <div className='bottom-form px-5 mt-3 shadow rounded'>
+        <div className='bottom-form px-5 mt-1 mt-md-3 shadow rounded'>
           <form onSubmit={formik.handleSubmit}>
             <div className='form-group form-g'>
               <label htmlFor='email'>Email</label>
