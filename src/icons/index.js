@@ -1,5 +1,8 @@
-import { AiOutlineUser } from 'react-icons/ai';
+import {
+  HiUser,
+  HiCog,
+  HiClipboardList,
+  HiOutlineLogout,
+} from "react-icons/hi";
 
-export {
-    AiOutlineUser
-}
+export { HiUser, HiCog, HiClipboardList, HiOutlineLogout };
