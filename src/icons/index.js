@@ -3,6 +3,7 @@ import {
   HiCog,
   HiClipboardList,
   HiOutlineLogout,
+  HiExclamationCircle,
 } from "react-icons/hi";
 
-export { HiUser, HiCog, HiClipboardList, HiOutlineLogout };
+export { HiUser, HiCog, HiClipboardList, HiOutlineLogout, HiExclamationCircle };
