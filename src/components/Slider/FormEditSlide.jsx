@@ -68,7 +68,6 @@ function FormEditSlide() {
                                         {(fieldArrayProps) => (formik.values.slides.map((slide, i) => {
                                             const slideErrors = (formik.errors.slides?.length && formik.errors.slides[i]) || {};
                                             const slideTouched = (formik.touched.slides?.length && formik.touched.slides[i]) || {};
-                                            let slideImage =  [];
                                             
                                             return (
                                                 <div key={i} className="list-group  ">
