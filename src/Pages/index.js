@@ -1,5 +1,7 @@
 import Profile from './Profile';
+import BackOffice from "./BackOfice";
 
-export {
+export{
+    BackOffice,
     Profile
 }
