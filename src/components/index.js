@@ -1,5 +1,7 @@
 import LoaderSpinner from "./LoaderSpinner";
+import FormEditSlide from "./Slider/FormEditSlide";
 
-export { 
+export {
+    FormEditSlide,
     LoaderSpinner
 };
