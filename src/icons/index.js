@@ -6,6 +6,12 @@ import {BsNewspaper} from 'react-icons/bs'
 import {TiThListOutline} from 'react-icons/ti';
 import {IoMdPeople} from 'react-icons/io'
 import {VscChecklist} from 'react-icons/vsc'
+import {
+  HiUser,
+  HiCog,
+  HiClipboardList,
+  HiOutlineLogout,
+} from "react-icons/hi";
 
 
   export {
@@ -19,5 +25,11 @@ import {VscChecklist} from 'react-icons/vsc'
     ImImages,
     IoMdPeople,
     VscChecklist,
-    GoGrabber
+    GoGrabber,
+    HiUser,
+    HiCog, 
+    HiClipboardList, 
+    HiOutlineLogout
   }
+
+
