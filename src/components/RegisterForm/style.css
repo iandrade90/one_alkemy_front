@@ -1,0 +1,16 @@
+.widthRegisterForm {
+  width: 75%;
+}
+
+.font-error {
+  font-size: 0.8rem;
+}
+
+@media screen and (min-width: 992px) {
+  .widthRegisterForm {
+    width: 50%;
+  }
+  .font-error {
+    font-size: 0.9rem;
+  }
+}
