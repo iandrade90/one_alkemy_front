@@ -4,7 +4,7 @@ import Sidebar from "./Sidebar";
 
 import { GoGrabber } from "../../icons";
 
-const BackofficeNavigation = ({ children }) => {
+export default function BackofficeNavigation({ children }){
   const [isOpen, setIsOpen] = useState(false);
 
   //? En un futuro el usuario estara almacenado en un estado global y va a poder ser consultado en cualquier componente
@@ -53,5 +53,3 @@ const BackofficeNavigation = ({ children }) => {
     </div>
   );
 };
-
-export default BackofficeNavigation

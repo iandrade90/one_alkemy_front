@@ -2,6 +2,8 @@ import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { formSchema } from "./validations";
 import "./style.css";
+import { postService } from "../../services";
+import showAlert from '../Alert'
 
 const RegisterForm = () => {
   return (
@@ -17,14 +19,18 @@ const RegisterForm = () => {
       validationSchema={formSchema}
       onSubmit={(values, { resetForm }) => {
         resetForm();
-
+        
         //Almacenado de los datos del usuario en espera del servicio de peticiones HTTP
         const userData = {
-          name: values.name,
+          firstName: values.name,
           lastName: values.lastName,
           email: values.email,
           password: values.password,
         };
+        postService('auth/register', userData)
+          .then(response => {
+ 
+        })
       }}
     >
       {({ errors }) => (
