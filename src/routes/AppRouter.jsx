@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { News } from "../pages";
 
 const AppRouter = () => {
   return (
@@ -8,7 +9,8 @@ const AppRouter = () => {
         <Route exact path='/'/>
         <Route exact path='/register'/>
         <Route exact path='/login'/>
-        <Route exact path='/backoffice'/>
+        <Route exact path='/backoffice' />
+        <Route exact path='/novedades' component={News}/>
       </Switch>
     </Router>
   );

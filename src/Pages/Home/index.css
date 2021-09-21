@@ -15,21 +15,21 @@
 
 .parallax1 {
     top: 50%;
-    background-image: url('./parallax1.png');
+    /* background-image: url('../'); */
     z-index:3;
     transition: all .3s;
 }
 
 .parallax2 {
     top: 55%;
-    background-image: url('./parallax2.png');
+    /* background-image: url('./parallax2.png'); */
     z-index:2;
     transition: all .5s;
 }
 
 .parallax3 {
     top: 60%;
-    background-image: url('./parallax3.png');
+    /* background-image: url('./parallax3.png'); */
     z-index:1;
     transition: all .7s;
 }

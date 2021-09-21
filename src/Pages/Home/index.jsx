@@ -5,24 +5,29 @@ const Home = () => {
 
     const data = [
         {
+            
+            
             image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPvcoc5qgyMC8oK5J9D31yN1V-avGCAAycCg&usqp=CAU",
             title: "lorem Ipsum dolor sit amet",
             content: "Suspendisse potenti. Nunc aliquet posuere ipsum eu posuere. Sed convallis nec eros in sagittis.",
             category: "Test",
         },
         {
+            
             image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPvcoc5qgyMC8oK5J9D31yN1V-avGCAAycCg&usqp=CAU",
             title: "lorem Ipsum dolor sit amet",
             content: "Suspendisse potenti. Nunc aliquet posuere ipsum eu posuere. Sed convallis nec eros in sagittis.",
             category: "Test",
         },
         {
+            
             image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPvcoc5qgyMC8oK5J9D31yN1V-avGCAAycCg&usqp=CAU",
             title: "lorem Ipsum dolor sit amet",
             content: "Suspendisse potenti. Nunc aliquet posuere ipsum eu posuere. Sed convallis nec eros in sagittis.",
             category: "Test",
         },
         {
+            
             image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPvcoc5qgyMC8oK5J9D31yN1V-avGCAAycCg&usqp=CAU",
             title: "lorem Ipsum dolor sit amet",
             content: "Suspendisse potenti. Nunc aliquet posuere ipsum eu posuere. Sed convallis nec eros in sagittis.",
