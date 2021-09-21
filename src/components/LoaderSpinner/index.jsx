@@ -7,18 +7,17 @@ const position = {
 }
 
 //Por defecto su tamaño es 100 * 100 al mandar un obj de config se permite modificar tamaño y posición.
-const Spinner =(props)=>{
+const LoaderSpinner =(props)=>{
     return(
        <div style={props.position ? props.position : position }>
             <Loader
                 type='TailSpin'
-                color="#00BFFF"
-                height={props.height ? props.position.height : 100}
-                width={props.width ? props.position.width : 100}
-            // timeout={3000} //3 secs
+                color={props?.color || "#00BFFF"}
+                height={props.height ? props.height : 100}
+                width={props.width ? props.width : 100}
             />      
         </div> 
     )
 }
 
-export default Spinner;
+export default LoaderSpinner;

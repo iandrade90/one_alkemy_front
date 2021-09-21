@@ -1,11 +1,14 @@
-import Forms from "./Forms";
-import LayoutBackofice from './LayoutBackOfice';
-import { NavBackOfice } from "./LayoutBackOfice";
-import Spinner from "./Spinner";
+import LoaderSpinner from "./LoaderSpinner";
+import  {BackofficeNavigation} from "./BackOficeNavigation";
+import Footer from "./Footer";
+import Alert from "./Alert";
+import Information from './Profile/Info';
+
 
 export { 
-    Forms ,
-    LayoutBackofice,
-    NavBackOfice,
-    Spinner
+    LoaderSpinner,
+    Information,
+    Alert,
+    BackofficeNavigation,
+    Footer
 };

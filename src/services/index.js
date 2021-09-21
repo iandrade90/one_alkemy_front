@@ -1,56 +1,29 @@
 import axios from "axios";
+import config from '../config'
 
-// const CancelToken = axios.CancelToken;
-// const source = CancelToken.source();
-//https://axios-http.com/docs/cancellation   documentación de la implementación
-
+ axios
+ .defaults
+ .headers['Authorization'] = localStorage.getItem("token_id")
+ ?`Bearer ${localStorage.getItem("token_id")}` 
+ :'';
 
 const getAllService = async (path , cancelToken )=> {
-
-    const userToken = localStorage.getItem("token_id");
-    
     const response = await axios
-        .get(`${process.env.REACT_APP_SERVERBASEPATH}/${path}`, {
+        .get(`${config.base_server_path}${path}`, {
             cancelToken: cancelToken?.token,
-            headers:{
-                authorization : userToken ? userToken : "" 
-            }
-        })
-        .catch(function (thrown) {
-            if (axios.isCancel(thrown)) {
-                return thrown.message;
-            } else {
-                return  thrown.message;
-            };
         });
-    return {
-        response
-    }
+    return response;
 };
 
-
 const postService = async (path , body , cancelToken )=> {
-
-    const userToken = localStorage.getItem("token_id");
-
     const response = await axios
-        .post(`${process.env.REACT_APP_SERVERBASEPATH}/${path}`, {
-            cancelToken: cancelToken?.token,
+        .post(
+            `${config.base_server_path}${path}`, {
+                cancelToken: cancelToken?.token
+            },
             body,
-            headers:{
-                authorization : userToken ? userToken : "" 
-            }
-        })
-        .catch(function (thrown) {
-            if (axios.isCancel(thrown)) {
-                return thrown.message;
-            } else {
-                return  thrown.message;
-            };
-        });
-    return {
-        response,
-    }
+        )  
+    return response;
 }
 
 export {

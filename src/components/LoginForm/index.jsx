@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import "./style.css";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { HiExclamationCircle as DangerIcon } from "../../icons";
 
-function Login() {
+const LoginForm = () => {
   const [data, setData] = useState({});
   const formik = useFormik({
     initialValues: { email: "", password: "" },
@@ -30,9 +31,9 @@ function Login() {
           <h2>Inicia sesión con tu cuenta</h2>
         </div>
         {/* BOTTOM */}
-        <div className='bottom-form px-5 mt-3 shadow rounded'>
+        <div className='bottom-form px-5 mt-1 mt-md-3 shadow rounded'>
           <form onSubmit={formik.handleSubmit}>
-            <div className='form-group'>
+            <div className='form-group form-g'>
               <label htmlFor='email'>Email</label>
               <input
                 type='text'
@@ -54,7 +55,7 @@ function Login() {
                 </div>
               ) : null}
             </div>
-            <div className='form-group mt-4'>
+            <div className='form-group form-g mt-4'>
               <label for='password'>Contraseña</label>
               <input
                 placeholder=' '
@@ -78,7 +79,7 @@ function Login() {
             </div>
 
             <div className='mt-4 d-flex justify-content-between'>
-              <div className='custom-control custom-checkbox d-flex align-items-center'>
+              <div className='custom-control custom-checkb d-flex align-items-center'>
                 <input
                   type='checkbox'
                   className='custom-control-input'
@@ -103,23 +104,6 @@ function Login() {
       </div>
     </div>
   );
-}
-
-export default Login;
-
-const DangerIcon = () => {
-  return (
-    <svg
-      xmlns='http://www.w3.org/2000/svg'
-      fill='none'
-      viewBox='0 0 24 24'
-      stroke='currentColor'>
-      <path
-        strokeLinecap='round'
-        strokeLinejoin='round'
-        strokeWidth={2}
-        d='M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z'
-      />
-    </svg>
-  );
 };
+
+export default LoginForm;

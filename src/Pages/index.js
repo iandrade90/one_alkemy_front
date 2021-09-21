@@ -1,6 +1,7 @@
-import BackOfice from "./BackOfice";
+import Profile from './Profile';
+import BackOffice from "./BackOfice";
 
-
-export {
-    BackOfice
+export{
+    BackOffice,
+    Profile
 }
