@@ -7,11 +7,11 @@ import { GoGrabber } from "../../icons";
 const BackofficeNavigation = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false);
 
-  //? En un futuro el usuario estara almacenado en un estado global y va a poder ser consultado en cualquier componente
+  //? En un futuro este estado sera implementado mediante Redux, por ahora se lleva a cabo con un useState
   const [user, setUser] = useState({
     userName: "Octavio Peralta",
     userImage: "https://i.pravatar.cc/100?img=12",
-    isAdmin: true,
+    isAdmin: false,
   });
 
   const closeSidebar = () => {
@@ -32,7 +32,7 @@ const BackofficeNavigation = ({ children }) => {
         className={`sidebar-overlay ${isOpen ? "d-block" : "d-none"}`}
         onClick={closeSidebar}></button>
       {/* CONTENT */}
-      <div className='flex-grow-1 d-flex flex-column'>
+      <div className='flex-grow-1 d-flex flex-column '>
         {/* HEADER */}
         <div
           id='header'
@@ -48,10 +48,11 @@ const BackofficeNavigation = ({ children }) => {
         {/* MAIN CONTENT */}
         <div className='flex-grow-1 main-content overflow-auto d-flex flex-column position-relative'>
           {children}
+          Contenido
         </div>
       </div>
     </div>
   );
 };
 
-export default BackofficeNavigation
+export default BackofficeNavigation;

@@ -34,7 +34,7 @@ const Sidebar = ({ user, isOpen, closeSidebar }) => {
   return (
     <div
       id='sidebar'
-      className={`bottom-0 top-0 flex-shrink-0 ${
+      className={`bottom-0 top-0 flex-shrink-0 d-flex ${
         isOpen ? "translate-x-0" : "-translate-x-full"
       } shadow-lg`}>
       <div className='sidebar-content d-flex flex-column justify-content-between'>
@@ -62,11 +62,8 @@ const Sidebar = ({ user, isOpen, closeSidebar }) => {
             <img src={user.userImage} alt='' />
             <div className='d-flex flex-column'>
               <span className='username'>{user.userName}</span>
-              <p>
-                User role:{" "}
-                <span className='user-role'>
-                  {user.isAdmin ? "ADMIN" : "STANDARD"}
-                </span>
+              <p className='user-role'>
+                User role: <span>{user.isAdmin ? "ADMIN" : "STANDARD"}</span>
               </p>
             </div>
           </div>
