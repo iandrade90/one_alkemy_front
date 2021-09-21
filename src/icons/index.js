@@ -11,6 +11,7 @@ import {
   HiCog,
   HiClipboardList,
   HiOutlineLogout,
+  HiExclamationCircle,
 } from "react-icons/hi";
 
 
@@ -29,7 +30,8 @@ import {
     HiUser,
     HiCog, 
     HiClipboardList, 
-    HiOutlineLogout
+    HiOutlineLogout,
+    HiExclamationCircle
   }
 
 
