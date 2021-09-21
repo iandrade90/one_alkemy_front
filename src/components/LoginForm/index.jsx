@@ -3,9 +3,12 @@ import "./style.css";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { HiExclamationCircle as DangerIcon } from "../../icons";
+import { postService } from "../../services";
+import { useHistory } from "react-router";
 
 const LoginForm = () => {
   const [data, setData] = useState({});
+  let history = useHistory();
   const formik = useFormik({
     initialValues: { email: "", password: "" },
     validationSchema: Yup.object({
@@ -17,9 +20,15 @@ const LoginForm = () => {
         .required("Requerido"),
     }),
     onSubmit: values => {
-      alert(JSON.stringify(values, null, 2));
-      setData(values);
+      postService('auth/login', values)
+        .then(response => {
+          console.log(response)
+          // en el response llega la data: email, id, roleId y token, conectar con redux para el almacenamiento globlal
+          history.push('/')
+        })
+      .catch(error => console.log(error))
     },
+
   });
 
   return (
