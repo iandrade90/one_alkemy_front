@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
+import { BackOffice } from "../pages";
 const AppRouter = () => {
   return (
     <Router>
@@ -8,7 +9,7 @@ const AppRouter = () => {
         <Route exact path='/'/>
         <Route exact path='/register'/>
         <Route exact path='/login'/>
-        <Route exact path='/backoffice'/>
+        <Route exact path='/backoffice' component ={BackOffice}/>
       </Switch>
     </Router>
   );
