@@ -2,38 +2,6 @@
     background-color: #8dcaff;
 }
 
-.parallax {
-    position: relative;
-}
-
-.parallax1, .parallax2, .parallax3 {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    background-position: center;
-}
-
-.parallax1 {
-    top: 50%;
-    background-image: url('./parallax1.png');
-    z-index:3;
-    transition: all .3s;
-}
-
-.parallax2 {
-    top: 55%;
-    background-image: url('./parallax2.png');
-    z-index:2;
-    transition: all .5s;
-}
-
-.parallax3 {
-    top: 60%;
-    background-image: url('./parallax3.png');
-    z-index:1;
-    transition: all .7s;
-}
-
 .news-home {
     z-index: 4;
 }
