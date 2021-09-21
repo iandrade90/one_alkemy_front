@@ -10,8 +10,7 @@ const AppRouter = () => {
         <Route exact path='/' component={Home}/>
         <Route exact path='/register'/>
         <Route exact path='/login'/>
-        <Route exact path='/backoffice'/>
-        
+        <Route exact path='/backoffice' component ={BackOffice}/>
         <Route exact path='/news/:id' component={NewsDetail} />
       </Switch>
     </Router>

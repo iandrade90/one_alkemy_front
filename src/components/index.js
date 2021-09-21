@@ -7,6 +7,7 @@ import BackofficeNavigation from "./BackOficeNavigation";
 import Footer from "./Footer";
 import Slider from "./Slider";
 import RegisterForm from "./RegisterForm";
+import NewsDetail from "./NewsDetail";
 
 export {
   FormEditSlide,
@@ -17,5 +18,6 @@ export {
   BackofficeNavigation,
   Footer,
   RegisterForm,
-  Slider
+  Slider,
+  NewsDetail
 };
