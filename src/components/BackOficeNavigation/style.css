@@ -187,6 +187,7 @@
 
 .main-content {
   padding: 2rem 2rem 0.5rem 2rem;
+  overflow: auto;
 }
 
 .section-title {
@@ -197,7 +198,7 @@
 }
 
 .section-content {
-  margin-top: 1.5rem;
+  margin: 1.25rem 0;
   background-color: var(--color-gray-100);
   border-radius: var(--borderRadius);
   padding: 0.5rem 1rem;

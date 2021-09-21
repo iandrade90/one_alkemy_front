@@ -7,11 +7,12 @@ import { GoGrabber } from "../../icons";
 const BackofficeNavigation = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false);
 
+  
   //? En un futuro este estado sera implementado mediante Redux, por ahora se lleva a cabo con un useState
   const [user, setUser] = useState({
     userName: "Octavio Peralta",
     userImage: "https://i.pravatar.cc/100?img=12",
-    isAdmin: false,
+    isAdmin: true,
   });
 
   const closeSidebar = () => {
@@ -46,9 +47,8 @@ const BackofficeNavigation = ({ children }) => {
         </div>
 
         {/* MAIN CONTENT */}
-        <div className='flex-grow-1 main-content overflow-auto d-flex flex-column position-relative'>
+        <div className='main-content d-flex flex-column position-relative'>
           {children}
-          Contenido
         </div>
       </div>
     </div>
