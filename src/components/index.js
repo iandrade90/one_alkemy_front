@@ -5,6 +5,7 @@ import EditNameOrganization from "./Organization/EditNameOrganization";
 import LoaderSpinner from "./LoaderSpinner";
 import BackofficeNavigation from "./BackOficeNavigation";
 import Footer from "./Footer";
+import Slider from "./Slider";
 import RegisterForm from "./RegisterForm";
 
 export {
@@ -16,4 +17,5 @@ export {
   BackofficeNavigation,
   Footer,
   RegisterForm,
+  Slider
 };
