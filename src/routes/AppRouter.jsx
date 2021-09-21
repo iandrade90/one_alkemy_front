@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import NewsDetail from "../components/NewsDetail";
+import {NewsDetail} from "../components/index";
 import {Home} from "../Pages/index"
 
 const AppRouter = () => {
@@ -11,6 +11,7 @@ const AppRouter = () => {
         <Route exact path='/register'/>
         <Route exact path='/login'/>
         <Route exact path='/backoffice'/>
+        
         <Route exact path='/news/:id' component={NewsDetail} />
       </Switch>
     </Router>
