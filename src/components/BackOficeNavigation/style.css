@@ -19,12 +19,13 @@
   transition: transform 0.5s ease-in-out;
   position: absolute;
   z-index: 99999;
+  font-family: "Open Sans";
 }
 
 .sidebar-overlay {
   position: fixed;
   width: 100vw;
-  cursor: crosshair;
+  cursor: default !important;
   z-index: 10;
   height: 100vh;
   right: 0;
@@ -52,7 +53,9 @@
 }
 
 .sidebar-content .logo img {
-  width: 10rem;
+  width: 11rem;
+  height: auto;
+  justify-self: center;
 }
 
 .sidebar-content .links {
@@ -116,6 +119,11 @@
 .profile-section .username {
   font-size: var(--text-base);
   color: var(--color-gray-200);
+}
+
+.profile-section .user-role {
+  font-size: var(--text-sm);
+  color: var(--color-gray-400);
 }
 
 .profile-section p {
