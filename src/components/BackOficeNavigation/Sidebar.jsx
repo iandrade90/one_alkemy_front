@@ -18,19 +18,28 @@ import {
 const adminList = [
   { title: "Novedades", icon: BsNewspaper, path: "/backoffice/news" },
   { title: "Actvidades", icon: VscChecklist, path: "/backoffice/activities" },
-  { title: "Categorias", icon: TiThListOutline, path: "/backoffice/categories" },
-  { title: "Testimonios", icon: BiMessageSquareDetail, path: "/backoffice/testimonios" },
+  {
+    title: "Categorias",
+    icon: TiThListOutline,
+    path: "/backoffice/categories",
+  },
+  {
+    title: "Testimonios",
+    icon: BiMessageSquareDetail,
+    path: "/backoffice/testimonios",
+  },
   { title: "Organizacion", icon: ImTree, path: "/backoffice/organizacion" },
   { title: "Slides", icon: ImImages, path: "/backoffice/slides" },
   { title: "Usuarios", icon: FiUsers, path: "/backoffice/usuarios" },
   { title: "Miembros", icon: IoMdPeople, path: "/backoffice/miembros" },
-  { title: "Mi perfil", icon: IoMdPeople, path: "/backoffice/perfil" },
+  { title: "Mi perfil", icon: IoMdPeople, path: "/backoffice/profile" },
 ];
-const standardList = [{ title: "Mi perfil", icon: IoMdPeople, path: "/perfil" }];
+const standardList = [
+  { title: "Mi perfil", icon: IoMdPeople, path: "/perfil" },
+];
 
 const Sidebar = ({ user, isOpen, closeSidebar }) => {
   const items = user.isAdmin ? adminList : standardList;
-
 
   return (
     <div
@@ -38,7 +47,7 @@ const Sidebar = ({ user, isOpen, closeSidebar }) => {
       className={`bottom-0 top-0 flex-shrink-0 d-flex ${
         isOpen ? "translate-x-0" : "-translate-x-full"
       } shadow-lg`}>
-      <div className='sidebar-content d-flex flex-column justify-content-between'>
+      <div className='sidebar-content'>
         <div className='flex flex-column'>
           <button className='close-button d-md-none' onClick={closeSidebar}>
             <GoX className='icon' />
@@ -58,7 +67,8 @@ const Sidebar = ({ user, isOpen, closeSidebar }) => {
             ))}
           </div>
         </div>
-        <div className='profile-section justify-content-between align-items-center'>
+
+        <div className='profile-section'>
           <div className='d-flex align-items-center'>
             <img src={user.userImage} alt='' />
             <div className='d-flex flex-column'>

@@ -1,27 +1,28 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    font-family: 'Poppins', sans-serif;
-    background-color: aliceblue;
+  font-family: "Poppins", sans-serif;
+  background-color: aliceblue;
+  background-color: red;
 }
 
 .wrapper {
-    padding: 30px 50px;
-    border: 1px solid #ddd;
-    border-radius: 15px;
-    margin: 10px auto;
-    max-width: 600px
+  padding: 30px 50px;
+  border: 1px solid #ddd;
+  border-radius: 15px;
+  margin: 10px auto;
+  max-width: 600px;
 }
 
 .h4 {
-    letter-spacing: -1px;
-    font-weight: 400
+  letter-spacing: -1px;
+  font-weight: 400;
 }
 
 /* .img {
@@ -46,15 +47,15 @@ body {
 } */
 
 .label {
-    margin-bottom: 0;
-    font-size: 14px;
-    font-weight: 500;
-    color: #777;
-    padding-left: 3px
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: 500;
+  color: #777;
+  padding-left: 3px;
 }
 
 .form-control {
-    border-radius: 10px
+  border-radius: 10px;
 }
 
 /* .input[placeholder] {
@@ -62,8 +63,8 @@ body {
 } */
 
 .form-control:focus {
-    box-shadow: none;
-    border: 1.5px solid #0779e4
+  box-shadow: none;
+  border: 1.5px solid #0779e4;
 }
 
 /* select {
@@ -80,17 +81,17 @@ select:focus {
 } */
 
 .button {
-    background-color: #fff;
-    color: #0779e4
+  background-color: #fff;
+  color: #0779e4;
 }
 
 .button:hover {
-    background-color: #0779e4;
-    color: #fff
+  background-color: #0779e4;
+  color: #fff;
 }
 
 .btn-primary {
-    background-color: #0779e4
+  background-color: #0779e4;
 }
 
 /* .danger {
@@ -104,12 +105,12 @@ select:focus {
     color: #fff
 } */
 
-@media(max-width:576px) {
-    .wrapper {
-        padding: 25px 20px
-    }
+@media (max-width: 576px) {
+  .wrapper {
+    padding: 25px 20px;
+  }
 
-    #deactivate {
-        line-height: 18px
-    }
+  #deactivate {
+    line-height: 18px;
+  }
 }

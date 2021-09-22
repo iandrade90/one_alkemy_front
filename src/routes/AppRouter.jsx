@@ -4,14 +4,15 @@ import { RegisterForm } from "../components";
 import LoginForm from "../components/LoginForm";
 
 import { BackOffice, ContactPage } from "../Pages";
+import Home from '../Pages/Home/index'
 const AppRouter = () => {
   return (
     <Router>
       <Switch>
-        <Route exact path="/" />
+        <Route exact path="/" component={Home}/>
         <Route exact path="/register" component={RegisterForm} />
         <Route exact path="/login" component={LoginForm} />
-        <Route exact path="/backoffice" component={BackOffice} />
+        <Route path="/backoffice" component={BackOffice} />
         <Route exact path="/contact" component={ContactPage} />
       </Switch>
     </Router>

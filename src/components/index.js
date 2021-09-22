@@ -5,8 +5,6 @@ import EditNameOrganization from "./Organization/EditNameOrganization";
 import LoaderSpinner from "./LoaderSpinner";
 import BackofficeNavigation from "./BackOficeNavigation";
 import Footer from "./Footer";
-import Alert from "./Alert";
-import Information from './Profile/Info';
 import UserForm from './UserForm';
 import Slider from "./Slider";
 import RegisterForm from "./RegisterForm";

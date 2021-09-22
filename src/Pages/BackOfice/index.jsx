@@ -2,6 +2,7 @@ import React from "react";
 import { Switch, Route } from "react-router-dom";
 import { BackofficeNavigation } from "../../components";
 import { Activities } from "../../components/Activities";
+import { Profile } from "../index";
 
 const BackOffice = () => {
   return (
@@ -13,6 +14,14 @@ const BackOffice = () => {
           </div>
           <div className='section-content flex-grow-1 vh-100 overflow-auto'>
             <Activities />
+          </div>
+        </Route>
+        <Route path='/backoffice/profile'>
+          <div className='section-title'>
+            <h2>Perfil de Iván</h2>
+          </div>
+          <div className='section-content flex-grow-1 vh-100 overflow-auto'>
+            <Profile />
           </div>
         </Route>
       </Switch>

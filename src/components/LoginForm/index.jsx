@@ -36,7 +36,7 @@ const LoginForm = () => {
       <div className=''>
         {/* TOP */}
         <div className='d-flex flex-column align-items-center top-form px-5 text-center '>
-          <img src='./assets/logo.png' alt='' className='logo' />
+          <img src='./assets/logo.png' alt='' className='navbar-logo' />
           <h2>Inicia sesión con tu cuenta</h2>
         </div>
         {/* BOTTOM */}
