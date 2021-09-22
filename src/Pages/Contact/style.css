@@ -3,6 +3,10 @@
   max-width: 1920px;
 }
 
+.contactContainer * {
+  box-sizing: border-box !important;
+}
+
 @media screen and (min-width: 992px) {
   .contactContainer footer {
     position: absolute;
