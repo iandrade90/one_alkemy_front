@@ -16,25 +16,26 @@ import {
 } from "../../icons";
 
 const adminList = [
-  { title: "Novedades", icon: BsNewspaper, to: "/backoffice/news" },
-  { title: "Actvidades", icon: VscChecklist, to: "/backoffice/activities" },
-  { title: "Categorias", icon: TiThListOutline, to: "/categorias" },
-  { title: "Testimonios", icon: BiMessageSquareDetail, to: "/testimonios" },
-  { title: "Organizacion", icon: ImTree, to: "/organizacion" },
-  { title: "Slides", icon: ImImages, to: "/slides" },
-  { title: "Usuarios", icon: FiUsers, to: "/usuarios" },
-  { title: "Miembros", icon: IoMdPeople, to: "/miembros" },
-  { title: "Mi perfil", icon: IoMdPeople, to: "/perfil" },
+  { title: "Novedades", icon: BsNewspaper, path: "/backoffice/news" },
+  { title: "Actvidades", icon: VscChecklist, path: "/backoffice/activities" },
+  { title: "Categorias", icon: TiThListOutline, path: "/backoffice/categories" },
+  { title: "Testimonios", icon: BiMessageSquareDetail, path: "/backoffice/testimonios" },
+  { title: "Organizacion", icon: ImTree, path: "/backoffice/organizacion" },
+  { title: "Slides", icon: ImImages, path: "/backoffice/slides" },
+  { title: "Usuarios", icon: FiUsers, path: "/backoffice/usuarios" },
+  { title: "Miembros", icon: IoMdPeople, path: "/backoffice/miembros" },
+  { title: "Mi perfil", icon: IoMdPeople, path: "/backoffice/perfil" },
 ];
-const standardList = [{ title: "Mi perfil", icon: IoMdPeople, to: "/perfil" }];
+const standardList = [{ title: "Mi perfil", icon: IoMdPeople, path: "/perfil" }];
 
 const Sidebar = ({ user, isOpen, closeSidebar }) => {
   const items = user.isAdmin ? adminList : standardList;
 
+
   return (
     <div
       id='sidebar'
-      className={`bottom-0 top-0 flex-shrink-0 ${
+      className={`bottom-0 top-0 flex-shrink-0 d-flex ${
         isOpen ? "translate-x-0" : "-translate-x-full"
       } shadow-lg`}>
       <div className='sidebar-content d-flex flex-column justify-content-between'>
@@ -49,7 +50,7 @@ const Sidebar = ({ user, isOpen, closeSidebar }) => {
 
           {/* LINKS */}
           <div className='links'>
-            {items.map(({ icon: Icon, title, to: path }, index) => (
+            {items.map(({ icon: Icon, title, path }, index) => (
               <Link to={path} key={index}>
                 <Icon className='icon' />
                 <span>{title}</span>
@@ -62,11 +63,8 @@ const Sidebar = ({ user, isOpen, closeSidebar }) => {
             <img src={user.userImage} alt='' />
             <div className='d-flex flex-column'>
               <span className='username'>{user.userName}</span>
-              <p>
-                User role:{" "}
-                <span className='user-role'>
-                  {user.isAdmin ? "ADMIN" : "STANDARD"}
-                </span>
+              <p className='user-role'>
+                User role: <span>{user.isAdmin ? "ADMIN" : "STANDARD"}</span>
               </p>
             </div>
           </div>

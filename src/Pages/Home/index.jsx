@@ -1,4 +1,5 @@
 import React from 'react';
+import { Slider } from '../../components';
 require('./index.css');
 
 const Home = () => {
@@ -32,7 +33,7 @@ const Home = () => {
 
     return(
         <div className="container-fluid bg-blue py-5 parallax">
-            Slider
+            <Slider/>
             <h1 className="text-center my-4">Welcome Text</h1>
             <h2 className="text-center my-4">Novedades</h2>
             <div className="row">
