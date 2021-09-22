@@ -5,23 +5,26 @@ import EditNameOrganization from "./Organization/EditNameOrganization";
 import LoaderSpinner from "./LoaderSpinner";
 import BackofficeNavigation from "./BackOficeNavigation";
 import Footer from "./Footer";
+import UserForm from './UserForm';
 import Slider from "./Slider";
 import RegisterForm from "./RegisterForm";
 import ContactForm from "./Contact/ContactForm";
 import ContactText from "./Contact/ContactText";
 import LoginForm from "./LoginForm";
 
-export {
-  LoginForm,  
-  FormEditSlide,
-  EditNameOrganization,
-  LoaderSpinner,
-  Information,
-  Alert,
-  BackofficeNavigation,
-  Footer,
-  RegisterForm,
-  Slider,
-  ContactForm,
-  ContactText,
+
+export { 
+    LoaderSpinner,
+    Information,
+    Alert,
+    BackofficeNavigation,
+    Footer,
+    UserForm,
+    FormEditSlide,
+    EditNameOrganization,
+    ContactForm,
+    RegisterForm,
+    Slider,
+    ContactText,
+    LoginForm
 };
