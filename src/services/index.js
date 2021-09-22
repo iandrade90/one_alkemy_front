@@ -15,13 +15,12 @@ const getAllService = async (path , cancelToken )=> {
     return response;
 };
 
-const postService = async (path , body , cancelToken )=> {
+const postService = async (path, body, cancelToken) => {
     const response = await axios
         .post(
-            `${config.base_server_path}${path}`, {
+            `${config.base_server_path}${path}`, body,{
                 cancelToken: cancelToken?.token
-            },
-            body,
+            }
         )  
     return response;
 }

@@ -4,7 +4,7 @@ import Sidebar from "./Sidebar";
 
 import { GoGrabber } from "../../icons";
 
-const BackofficeNavigation = ({ children }) => {
+export default function BackofficeNavigation({ children }){
   const [isOpen, setIsOpen] = useState(false);
 
   
@@ -54,5 +54,3 @@ const BackofficeNavigation = ({ children }) => {
     </div>
   );
 };
-
-export default BackofficeNavigation;
