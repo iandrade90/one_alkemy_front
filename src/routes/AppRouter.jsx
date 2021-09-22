@@ -1,9 +1,10 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { RegisterForm } from "../components";
-import LoginForm from "../components/LoginForm";
 
-import { BackOffice, ContactPage } from "../Pages";
+import { RegisterForm , LoginForm } from "../components";
+
+import { BackOffice, ContactPage } from "../pages";
+
 const AppRouter = () => {
   return (
     <Router>
