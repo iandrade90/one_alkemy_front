@@ -4,7 +4,7 @@ import Sidebar from "./Sidebar";
 
 import { GoGrabber } from "../../icons";
 
-const BackofficeNavigation = ({ children }) => {
+export default function BackofficeNavigation({ children }){
   const [isOpen, setIsOpen] = useState(false);
 
   //? En un futuro este estado sera implementado mediante Redux, por ahora se lleva a cabo con un useState
@@ -54,5 +54,3 @@ const BackofficeNavigation = ({ children }) => {
     </div>
   );
 };
-
-export default BackofficeNavigation;

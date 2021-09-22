@@ -1,6 +1,5 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
-
 import { BackofficeNavigation } from "../../components";
 
 const BackOffice = () => {
@@ -8,9 +7,10 @@ const BackOffice = () => {
     <BackofficeNavigation>
       <Switch>
         <SectionRouter
-            path='/backoffice/activities'
-            title='Actividades'
-            component={<h1>ahacomponentrs</h1>}/>  
+          path='/backoffice/activities'
+          title='Actividades'
+          component={<h1>aca hay un componente</h1>}
+        />
       </Switch>
     </BackofficeNavigation>
   );
