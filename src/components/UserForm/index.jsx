@@ -1,6 +1,6 @@
 import React from 'react';
 import { ErrorMessage, Formik, Form, Field } from 'formik';
-import './index.css';
+import './styleForm.css';
 
 function UserForm(){
 
@@ -8,7 +8,7 @@ function UserForm(){
 
     return(
         <div className="wrapper bg-white mt-sm-5">
-            <h4 className="pb-4 border-bottom">Perfil</h4>
+            <h4 className="pb-4 border-bottom h4">Perfil</h4>
             <Formik
                 initialValues={{firstName: '', lastName: '', roleId: ''}}
                 validate={values => {
@@ -35,7 +35,7 @@ function UserForm(){
                         <Form className="py-2">
                             <div className="row py-2">
                                 <div className="col-md-6">
-                                    <label for="firstName">Nombre: </label>
+                                    <label className="label" for="firstName">Nombre: </label>
                                 </div>
                                 <div className="col-md-6">
                                     <Field className="bg-light form-control" type="text" name="firstName" placeholder="Nombre"/>
@@ -44,7 +44,7 @@ function UserForm(){
                             </div>
                             <div className="row py-2">
                                 <div className="col-md-6">
-                                    <label for="firstName">Apellido: </label>
+                                    <label  className="label" for="firstName">Apellido: </label>
                                 </div>
                                 <div className="col-md-6">
                                     <Field className="bg-light form-control" type="text" name="lastName" placeholder="Apellido" />
@@ -55,7 +55,7 @@ function UserForm(){
                                 {isAdmin === true && 
                                     <>
                                         <div className="col-md-6">
-                                            <label for="firstName">Rol: </label>
+                                            <label className="label"  for="firstName">Rol: </label>
                                         </div>
                                         <div className="col-md-6">
                                             <Field className="bg-light form-control arrow" name="roleId" as="select" placeholder="Rol">
