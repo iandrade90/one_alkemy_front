@@ -1,0 +1,11 @@
+.news-table tr td {
+    vertical-align: middle;
+}
+  
+.news-table tr td div {
+    width: 125px;
+    height: 75px;
+    overflow: hidden;
+    margin: auto;
+}
+  
