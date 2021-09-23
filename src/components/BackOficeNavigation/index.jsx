@@ -32,6 +32,7 @@ export default function BackofficeNavigation({ children }){
       <button
         className={`sidebar-overlay ${isOpen ? "d-block" : "d-none"}`}
         onClick={closeSidebar}></button>
+        
       {/* CONTENT */}
       <div className='flex-grow-1 d-flex flex-column '>
         {/* HEADER */}

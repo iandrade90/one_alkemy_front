@@ -4,7 +4,6 @@
 
 .modal-sms {
   width: clamp(50%, 700px, 95%);
-  /* height: min(50%, 300px); */
   background-color: var(--color-gray-100);
   padding: 1.7rem;
   border-radius: 12px;
@@ -13,6 +12,13 @@
   font-family: "Open Sans";
   overflow: hidden;
 }
+
+@media (max-width: 1199.98px) { 
+  .modal-sms {
+    padding: 1rem;
+  } 
+}
+
 
 .modal-sms .close-button {
   border-radius: 100vh;
@@ -31,7 +37,7 @@
 .modal-sms-body {
   display: flex;
   gap: 1rem;
-  align-items: start;
+  align-items: flex-start;
 }
 
 .modal-sms-body h4 {
@@ -83,7 +89,8 @@
   margin: 0 -1.7rem -1.7rem;
   display: flex;
   justify-content: flex-end;
-  padding: 1rem 1.7rem;
+  padding: 1rem 1.7rem 1.6rem;
+
   gap: 1rem;
 }
 
