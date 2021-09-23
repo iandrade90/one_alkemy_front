@@ -3,9 +3,13 @@ import { Formik, Form } from "formik";
 import { formSchema } from "./validations";
 import { postService } from "../../services";
 import InputRegisterForm from "./InputForm";
+import { useHistory } from "react-router";
+import { Alert } from "..";
 import "./style.css";
 
+
 const RegisterForm = () => {
+  const history = useHistory();
   return (
     <Formik
       //Valores iniciales de los inputs
@@ -17,9 +21,8 @@ const RegisterForm = () => {
       }}
       //Validaciones importadas de validations.js
       validationSchema={formSchema}
-      onSubmit={(values, { resetForm }) => {
-        resetForm();
-
+      onSubmit={async (values, { resetForm }) => {
+        
         //Almacenado de los datos del usuario en espera del servicio de peticiones HTTP
         const userData = {
           firstName: values.name,
@@ -27,7 +30,24 @@ const RegisterForm = () => {
           email: values.email,
           password: values.password,
         };
-        postService("auth/register", userData).then((response) => {});
+        try {
+          const response = await postService("auth/register", userData);
+          resetForm();
+          await Alert({
+            icon: 'success',
+            title: `Bienvenido ${response?.data?.firstName || ""}` ,
+            text: "Registro exitoso, iniciá sesión para continuar",
+            showConfirmButton: false,
+            timer: 1900
+          }).then(()=>history.push('/login'));
+        } catch (error) {
+          await Alert({
+              icon: 'error',
+              title: `${error.response.data?.msg || "Ops..."}`,
+              text: error.response.data?.details?.map(d =>(d.msg)),
+            })
+        }
+        
       }}
     >
       {({ errors }) => (

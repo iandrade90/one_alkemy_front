@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./style.css";
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -6,9 +6,14 @@ import { HiExclamationCircle as DangerIcon } from "../../icons";
 import { postService } from "../../services";
 import { useHistory } from "react-router";
 
+import { useDispatch } from "react-redux";
+import { fillUserData } from '../../store/authSlice';
+import { Alert } from "..";
+
 const LoginForm = () => {
-  const [data, setData] = useState({});
   let history = useHistory();
+  const dispatch = useDispatch();
+
   const formik = useFormik({
     initialValues: { email: "", password: "" },
     validationSchema: Yup.object({
@@ -19,17 +24,30 @@ const LoginForm = () => {
         .min(6, "Debe tener al menos 6 caracteres")
         .required("Requerido"),
     }),
-    onSubmit: values => {
-      postService('auth/login', values)
-        .then(response => {
-          console.log(response)
-          // en el response llega la data: email, id, roleId y token, conectar con redux para el almacenamiento globlal
-          history.push('/')
-        })
-      .catch(error => console.log(error))
-    },
+    onSubmit:async  values => {
+      try {
+        const response = await postService('auth/login', values);
+        localStorage.setItem("token_id",response?.data?.token);
+        dispatch(fillUserData(response?.data?.user)); 
+  
+       await Alert({
+          title:`Bienvenido ${response?.data?.user?.firstName || "Usuario"}`,
+          text:"Sesión iniciada",
+          icon:"success",
+          showConfirmButton:false,
+          timer:1500
+        }).then(()=> history.push('/') );
+      } catch (error) {
 
-  });
+        await Alert({
+          icon: 'error',
+          title: `${error.data?.data?.ok || "Ops..."}`,
+          text: error.data?.data?.ok,
+        })
+      }
+
+    }}
+  );
 
   return (
     <div className='h-screen d-flex align-items-center justify-content-center flex-column '>
