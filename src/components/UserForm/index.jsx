@@ -4,11 +4,11 @@ import './styleForm.css';
 
 function UserForm(){
 
-    const isAdmin = true;
+    const isAdmin = false;
 
     return(
         <div className="wrapper bg-white mt-sm-5">
-            <h4 className="pb-4 border-bottom h4">Perfil</h4>
+            <h4 className="pb-4 border-bottom h4">Modificar Perfil</h4>
             <Formik
                 initialValues={{firstName: '', lastName: '', roleId: ''}}
                 validate={values => {

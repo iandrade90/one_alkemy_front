@@ -35,8 +35,8 @@ const RegisterForm = () => {
         <div className="h-screen d-flex align-items-center justify-content-center flex-column registerContainer">
           <div className="">
             <div className="d-flex flex-column align-items-center top-form px-5 text-center ">
-              <img src="./assets/logo.png" alt="" className="logo" />
-              <h2>Inicia sesión con tu cuenta</h2>
+              <img src="./assets/logo.png" alt="" className="regLogo" />
+              <h2>Registráte con tu Email</h2>
             </div>
             <Form className="row bg-white widthRegisterForm g-3 border rounded p-3 mt-3 m-auto shadow">
               <InputRegisterForm
