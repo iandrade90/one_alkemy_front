@@ -7,21 +7,16 @@ import config from '../config'
  ?`Bearer ${localStorage.getItem("token_id")}` 
  :'';
 
-const getAllService = async (path , cancelToken )=> {
+const getAllService = async ( path )=> {
     const response = await axios
-        .get(`${config.base_server_path}${path}`, {
-            cancelToken: cancelToken?.token,
-        });
+        .get(`${config.base_server_path}${path}`);
     return response;
 };
 
-const postService = async (path , body , cancelToken )=> {
+const postService = async (path, body) => {
     const response = await axios
         .post(
-            `${config.base_server_path}${path}`, {
-                cancelToken: cancelToken?.token
-            },
-            body,
+            `${config.base_server_path}${path}`, body
         )  
     return response;
 }

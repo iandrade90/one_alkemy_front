@@ -1,0 +1,20 @@
+.contactContainer {
+  width: 100%;
+  max-width: 1920px;
+}
+
+.contactContainer * {
+  box-sizing: border-box !important;
+}
+
+@media screen and (min-width: 992px) {
+  .contactContainer footer {
+    position: absolute;
+    bottom: 0;
+
+    background-color: var(--color-white);
+
+    min-width: 100%;
+    box-shadow: 2px 2px 5px var(--color-gray-300);
+  }
+}

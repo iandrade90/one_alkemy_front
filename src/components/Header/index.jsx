@@ -81,10 +81,10 @@ const Header = () => {
           <div>
             {!user ? (
               <div className='d-flex align-items-center gap-2'>
-                <Link to='' className='button secondary-btn flex-grow-1'>
+                <Link to='/register' className='button secondary-btn flex-grow-1'>
                   Registrarse
                 </Link>
-                <Link to='' className='button primary-btn flex-grow-1'>
+                <Link to='/login' className='button primary-btn flex-grow-1'>
                   Iniciar Sesión
                 </Link>
               </div>
