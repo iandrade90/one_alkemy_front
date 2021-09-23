@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { AiOutlineEdit, AiOutlineDelete } from "react-icons/ai";
 
 const initialList = [
@@ -11,7 +11,7 @@ const initialList = [
     {
         id: 2,
         firstName: "matias",
-        lastName: "suarez",
+        lastName: "Gonzalez",
         email: "leandro@gmail.com",
     },
     {
@@ -40,9 +40,9 @@ const initialList = [
     },
     {
         id: 7,
-        firstName: "zzzzzzzzzz",
-        lastName: "zzzzzzzzzzzz",
-        email: "zzzzzzzzzzz@gmail.com",
+        firstName: "test",
+        lastName: "test",
+        email: "test@gmail.com",
     },
 ];
 
@@ -89,9 +89,6 @@ const ListUser = () => {
         setListUser(newListUser)
     }
 
-    // useEffect(() => {
-    //     setListUser(listUser)
-    // }, [listUser]);
     return (
         <div className='container'>
 
@@ -160,12 +157,12 @@ const ListUser = () => {
                                     <td>{user.lastName}</td>
                                     <td>{user.email}</td>
                                     <td>
-                                        <button type='button' className='btn btn-primary btn-sm p-1 m-1' data-bs-toggle="modal" data-bs-target="#ModalEdit"
+                                        <button type='button' className='btn btn-secondary btn-sm p-1 m-1' data-bs-toggle="modal" data-bs-target="#ModalEdit"
                                             onClick={() => selectUser(user)}
                                         >
                                             <AiOutlineEdit />
                                         </button>
-                                        <button type='button' className='btn btn-primary btn-sm p-1 m-1' data-bs-toggle="modal" data-bs-target="#ModalDelete" onClick={() => selectUser(user)}>
+                                        <button type='button' className='btn btn-danger btn-sm p-1 m-1' data-bs-toggle="modal" data-bs-target="#ModalDelete" onClick={() => selectUser(user)}>
                                             <AiOutlineDelete />
                                         </button>
                                     </td>

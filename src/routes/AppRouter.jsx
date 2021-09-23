@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Home from '../Pages/Home/index'
 import { RegisterForm , LoginForm } from "../components";
-import { BackOffice, ContactPage } from "../pages";
+import { BackOffice, ContactPage } from "../Pages";
 
 const AppRouter = () => {
   return (
