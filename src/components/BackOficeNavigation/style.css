@@ -1,12 +1,9 @@
-@import url("../../index.css");
-
 .backoffice-link {
   text-decoration: none;
   background-color: var(--color-gray-500);
 }
 
 #sidebar {
-  /* background-color: rgba(30, 64, 175, 100); */
   background: rgb(74, 132, 241);
   background: linear-gradient(
     205deg,
@@ -15,16 +12,16 @@
     rgba(30, 64, 175, 1) 72%
   );
   width: 17rem;
-  /* border-radius: 0 0.5rem 0.5rem 0; */
   transition: transform 0.5s ease-in-out;
   position: absolute;
   z-index: 99999;
+  font-family: "Open Sans";
 }
 
 .sidebar-overlay {
   position: fixed;
   width: 100vw;
-  cursor: crosshair;
+  cursor: default !important;
   z-index: 10;
   height: 100vh;
   right: 0;
@@ -49,11 +46,17 @@
 
 .sidebar-content {
   padding: 2rem 1rem;
-  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  /* d-flex flex-column justify-content-between */
 }
 
 .sidebar-content .logo img {
-  width: 10rem;
+  width: 11rem;
+  height: auto;
+  justify-self: center;
 }
 
 .sidebar-content .links {
@@ -95,9 +98,10 @@
 
 .profile-section {
   margin: -2rem -1rem;
-  padding: 1rem 0.75rem;
+  padding: 1rem 0.7rem;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   border-top: 1px solid var(--color-blue-900);
 }
 
@@ -109,12 +113,17 @@
 }
 
 .profile-section div {
-  margin-left: 0.6rem;
+  margin-left: 0.3rem;
 }
 
 .profile-section .username {
   font-size: var(--text-base);
   color: var(--color-gray-200);
+}
+
+.profile-section .user-role {
+  font-size: var(--text-sm);
+  color: var(--color-gray-400);
 }
 
 .profile-section p {
@@ -179,17 +188,19 @@
 
 .main-content {
   padding: 2rem 2rem 0.5rem 2rem;
+  overflow: auto;
 }
 
-.section-title {
+.section-title h2 {
   color: var(--color-gray-800);
-  font-size: var(--text-5xl);
-  font-weight: 500;
+  font-size: var(--text-3xl);
+  font-family: "Open Sans";
+  font-weight: 600;
   letter-spacing: -0.12rem;
 }
 
 .section-content {
-  margin-top: 1.5rem;
+  margin: 1.25rem 0;
   background-color: var(--color-gray-100);
   border-radius: var(--borderRadius);
   padding: 0.5rem 1rem;
