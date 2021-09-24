@@ -1,13 +1,11 @@
 import React from 'react'
 import { Route } from 'react-router'
 import { NewsCard } from '../../components'
-import Card from '../../components/NewsCard/Card'
+
 
 function News() {
     // consumicion de API con data de las novedades
-    const filterNew = (id, array) => {
-       return array.find(e => id == e.id)
-    }
+
     const data = [
         {   id:1,
             name: "lorem Ipsum dolor sit amet",
@@ -41,7 +39,8 @@ function News() {
         }
     ]
     return (
-        <div>
+      
+            <>
             <Route exact path='/novedades' render={() => (
                 <div class="container-md">
                     <div class="row justify-content-center g-5">
@@ -52,8 +51,9 @@ function News() {
                         ))}
                     </div>
                 </div>)} />
-       
-         </div>
+     
+            </>
+
     ) 
  }
 
