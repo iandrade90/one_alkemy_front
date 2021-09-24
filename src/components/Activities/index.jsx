@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import Modal from "./Modal";
 import { AnimatePresence } from "framer-motion";
-
+import { Route } from 'react-router';
+import { Link } from 'react-router-dom';
+import './style.css'
 const activitiesData = [
   {
     id: 1,
@@ -115,7 +117,13 @@ export const Activities = () => {
             ? activities.map(act => (
                 <tr key={act.id}>
                   <th scope='row'>{act.id}</th>
-                  <td colSpan='2'>{act.title}</td>
+                  <Route>
+                    <td className="link-activity" colSpan='2'>
+                    <Link to={`/backoffice/activities/${act.id}`} >
+                      {act.title}
+                    </Link>
+                      </td>
+                  </Route>
                   <td>
                     <div className='d-flex justify-content-center align-items-center'>
                       <button

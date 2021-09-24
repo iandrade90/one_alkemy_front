@@ -11,9 +11,11 @@ import RegisterForm from "./RegisterForm";
 import ContactForm from "./Contact/ContactForm";
 import ContactText from "./Contact/ContactText";
 import LoginForm from "./LoginForm";
+import ActivityDetail from "./Activities/ActivityDetail";
 
 
-export { 
+export {
+    ActivityDetail,
     LoaderSpinner,
     Information,
     Alert,
