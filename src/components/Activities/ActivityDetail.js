@@ -2,48 +2,57 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { getAllService } from '../../services';
 import './ActivityDetail.css';
+import { useParams } from 'react-router-dom';
 
 const ActivityDetail = () => {
-
+    const { id } = useParams();
     const [activityDetail, setActivityDetail] = useState({})
+    const [message, setMessage] = useState('')
 
     useEffect(() => {
-        getAllService('/organizations/1/public')
+        getAllService(`/activities/${id}`)
             .then((response) => {
-                console.log(response.data)
                 setActivityDetail(response.data);
             })
             .catch((error) => {
                 console.log(error);
+                setMessage(error)
             });
     }, [setActivityDetail]);
     return (
-        <>
+        (<>
+            {
+                (message !== '') ? (<h4>Ocurrio un error! Vuelva a intertar mas tarde!</h4>) :
 
-            <div className="">
-                <div className="card  card__activity " >
-                    <div className="row g-0">
-                        <div className="col-xl-6">
-                            <div className="card-image__activity ">
-                                <img className="card-img-top activity__img" src="http://adamthemes.com/demo/code/cards/images/blog01.jpeg" alt="blog" />
-                                <div className="card-caption"> Quisque a bibendum magna </div>
+                    (activityDetail.message) ? (
+                        <h4>{activityDetail.message}</h4>)
+                        :
+                        (
+                            <div className="">
+
+                                <div className="card  card__activity " >
+                                    <div className="row g-0">
+                                        <div className="col-xl-6">
+                                            <div className="card-image__activity">
+                                                <img className="card-img-top activity__img" src={activityDetail.image} alt={activityDetail.name} />
+                                                <div className="card-caption"> {activityDetail.name}</div>
+                                            </div>
+                                        </div>
+                                        <div className="col-xl-6">
+                                            <div className="card-body ">
+                                                <h4 className="card-caption activity__text"> {activityDetail.name}</h4>
+                                                <p className="card-text">
+                                                    {activityDetail.content}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
                             </div>
-                        </div>
-                        <div className="col-xl-6">
-                            <div className="card-body ">
-                                <h4 className="card-caption activity__text"> Quisque a bibendum magna </h4>
-                                <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.
-                                    {activityDetail.welcomeText}</p>
-                            </div>
-                        </div>
-                    </div>
-
-
-                </div>
-            </div>
-
-        </>
+                        )
+            }
+        </>)
     )
 }
-
 export default ActivityDetail
