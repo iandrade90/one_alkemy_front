@@ -30,7 +30,7 @@ const adminList = [
   },
   { title: "Organizacion", icon: ImTree, path: "/backoffice/organizacion" },
   { title: "Slides", icon: ImImages, path: "/backoffice/slides" },
-  { title: "Usuarios", icon: FiUsers, path: "/backoffice/usuarios" },
+  { title: "Usuarios", icon: FiUsers, path: "/backoffice/users" },
   { title: "Miembros", icon: IoMdPeople, path: "/backoffice/miembros" },
   { title: "Mi perfil", icon: IoMdPeople, path: "/backoffice/profile" },
 ];
