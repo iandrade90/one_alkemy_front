@@ -53,7 +53,7 @@ const Sidebar = ({ user, isOpen, closeSidebar }) => {
             <GoX className='icon' />
           </button>
           {/* LOGO */}
-          <div className='logo d-flex justify-content-center'>
+          <div className='logo'>
             <img src='./assets/logo.png' alt='' />
           </div>
 
