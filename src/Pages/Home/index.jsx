@@ -1,5 +1,5 @@
 import React from "react";
-import { Slider } from "../../components";
+import { Footer, Slider } from "../../components";
 import Header from "../../components/Header/index";
 import {Link} from "react-router-dom";
 require("./index.css");
@@ -72,6 +72,7 @@ const Home = () => {
           ))}
         </div>
       </div>
+      <Footer />
     </>
   );
 };
