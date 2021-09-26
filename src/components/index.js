@@ -11,6 +11,7 @@ import RegisterForm from "./RegisterForm";
 import ContactForm from "./Contact/ContactForm";
 import ContactText from "./Contact/ContactText";
 import LoginForm from "./LoginForm";
+import Testimonials from "./Testimonials";
 import ListUser from "./User/ListUser";
 
 
@@ -28,5 +29,6 @@ export {
     RegisterForm,
     Slider,
     ContactText,
-    LoginForm
+    LoginForm,
+    Testimonials
 };

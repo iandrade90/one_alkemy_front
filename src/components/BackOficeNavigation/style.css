@@ -14,7 +14,7 @@
   width: 17rem;
   transition: transform 0.5s ease-in-out;
   position: absolute;
-  z-index: 99999;
+  z-index: 199;
   font-family: "Open Sans";
 }
 

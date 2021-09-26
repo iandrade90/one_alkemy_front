@@ -25,7 +25,7 @@ export default function BackofficeNavigation({ children }){
 
   return (
     <div
-      className='position-relative d-flex vh-100'
+      className='position-md-relative d-md-flex vh-100'
       style={{ backgroundColor: "var(--color-gray-200)" }}>
       {/* sidebar */}
       <Sidebar isOpen={isOpen} closeSidebar={closeSidebar} user={user} />

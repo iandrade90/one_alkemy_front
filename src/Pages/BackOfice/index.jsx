@@ -1,6 +1,6 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
-import { BackofficeNavigation } from "../../components";
+import { BackofficeNavigation, Testimonials } from "../../components";
 import { Activities } from "../../components/Activities";
 import {ListUser} from "../../components";
 import { Profile } from "../index";
@@ -17,6 +17,12 @@ const BackOffice = () => {
             <Activities />
           </div>
         </Route>
+        <Route path='/backoffice/testimonios'>
+          <div className='section-title'>
+            <h2 className='text-end'>Testimonios</h2>
+          </div>
+          <div className='section-content flex-grow-1 vh-100 overflow-auto'>
+            <Testimonials />
         <Route path='/backoffice/users'>
           <div className='section-title'>
             <h2>Usuarios</h2>
@@ -41,7 +47,7 @@ const BackOffice = () => {
 export default BackOffice;
 
 //! SUGERENCIA de como deberia implementarse la navegacion del backoffice
-const SectionRouter = ({
+const SectioRouter = ({
   component: Component,
   title,
   children,
