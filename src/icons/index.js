@@ -1,5 +1,5 @@
 import { ImTree , ImImages } from "react-icons/im";
-import{FiUsers} from 'react-icons/fi';
+import{FiUsers , FiUploadCloud} from 'react-icons/fi';
 import {GoX , GoSignOut , GoGrabber} from 'react-icons/go';
 import {BiMessageSquareDetail} from 'react-icons/bi';
 import {BsNewspaper,BsPencil, BsTrash} from 'react-icons/bs'
@@ -39,7 +39,8 @@ import {
     HiExclamationCircle,
     HiX,
     HiOutlineExclamation,
-    HiOutlineClipboardList
+    HiOutlineClipboardList,
+    FiUploadCloud
   }
 
 

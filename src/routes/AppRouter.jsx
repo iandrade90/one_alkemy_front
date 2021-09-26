@@ -1,10 +1,9 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Home from '../Pages/Home/index'
 import { RegisterForm , LoginForm } from "../components";
-import { BackOffice, ContactPage } from "../Pages";
+import { BackOffice, ContactPage , Home } from "../pages";
 
-const AppRouter = () => {
+const AppRouter = () => { 
   return (
     <Router>
       <Switch>
