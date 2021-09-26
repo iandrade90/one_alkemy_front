@@ -13,10 +13,11 @@ import ContactText from "./Contact/ContactText";
 import LoginForm from "./LoginForm";
 import Testimonials from "./Testimonials";
 import ListUser from "./User/ListUser";
-
+import ActivityDetail from "./Activities/ActivityDetail";
 
 export {
     ListUser,
+    ActivityDetail,
     LoaderSpinner,
     Information,
     Alert,

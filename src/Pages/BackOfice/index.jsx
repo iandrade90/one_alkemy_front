@@ -4,12 +4,13 @@ import { BackofficeNavigation, Testimonials } from "../../components";
 import { Activities } from "../../components/Activities";
 import {ListUser} from "../../components";
 import { Profile } from "../index";
+import {ActivityDetail} from "../../components";
 
 const BackOffice = () => {
   return (
     <BackofficeNavigation>
       <Switch>
-        <Route path='/backoffice/activities'>
+        <Route exact path='/backoffice/activities'>
           <div className='section-title'>
             <h2>Actividades</h2>
           </div>
@@ -23,12 +24,22 @@ const BackOffice = () => {
           </div>
           <div className='section-content flex-grow-1 vh-100 overflow-auto'>
             <Testimonials />
+          </div>
+        </Route>
         <Route path='/backoffice/users'>
           <div className='section-title'>
             <h2>Usuarios</h2>
           </div>
           <div className='section-content flex-grow-1 vh-100 overflow-auto'>
             <ListUser />
+            </div>
+        </Route>
+        <Route path='/backoffice/activities/:id'>
+          <div className='section-title'>
+            <h2>Detalle de actividad</h2>
+          </div>
+          <div className='section-content flex-grow-1 vh-100 overflow-auto'>
+            <ActivityDetail />
           </div>
         </Route>
         <Route path='/backoffice/profile'>
@@ -39,6 +50,7 @@ const BackOffice = () => {
             <Profile />
           </div>
         </Route>
+        
       </Switch>
     </BackofficeNavigation>
   );
