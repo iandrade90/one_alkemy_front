@@ -1,3 +1,7 @@
+.registerContainer * {
+  box-sizing: border-box !important;
+}
+
 .widthRegisterForm {
   width: 75%;
 }
@@ -5,6 +9,17 @@
 .font-error {
   font-size: 0.8rem;
 }
+
+.btn-register {
+  background-color: var(--color-blue-700);
+  color: var(--color-white);
+}
+
+.regLogo{
+  width: 13rem;
+  height: auto;
+}
+
 
 @media screen and (min-width: 992px) {
   .widthRegisterForm {

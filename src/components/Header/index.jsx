@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import "./style.css";
 import { HiUser, HiCog, HiClipboardList, HiOutlineLogout } from "../../icons";
 const LINKS = [
@@ -59,17 +59,17 @@ const Header = () => {
           className='collapse navbar-collapse ms-lg-4 mt-2 mt-lg-0  '
           id='navbarSupportedContent'>
           <ul className='navbar-nav me-auto text-md ms-2 mb-2 mb-lg-0'>
-            <li className='nav-item rounded ps-2 ps-lg-0 mb-1 me-lg-4 mb-lg-0 header-link active'>
-              <Link to='/' className='nav-link'>
+            <li className='nav-item rounded ps-2 ps-lg-0 mb-1 me-lg-4 mb-lg-0 header-link'>
+              <NavLink to='/' className='nav-link' activeClassName="nav-link-selected">
                 Inicio
-              </Link>
+              </NavLink>
             </li>
             {publicInfo &&
               publicInfo.links.map(link => (
-                <li className='nav-item rounded-3 ps-2 ps-lg-0 mb-1 mb-lg-0 me-lg-3 '>
-                  <Link to='' className='nav-link'>
+                <li className='nav-item rounded-3 ps-2 ps-lg-0 mb-1 mb-lg-0 me-lg-3'>
+                  <NavLink to={link.route} className='nav-link' activeClassName="nav-link-selected">
                     {link.name}
-                  </Link>
+                  </NavLink>
                 </li>
               ))}
 
@@ -81,10 +81,10 @@ const Header = () => {
           <div>
             {!user ? (
               <div className='d-flex align-items-center gap-2'>
-                <Link to='' className='button secondary-btn flex-grow-1'>
+                <Link to='/register' className='button secondary-btn flex-grow-1'>
                   Registrarse
                 </Link>
-                <Link to='' className='button primary-btn flex-grow-1'>
+                <Link to='/login' className='button primary-btn flex-grow-1'>
                   Iniciar Sesión
                 </Link>
               </div>

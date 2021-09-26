@@ -1,11 +1,19 @@
-import React, { useState } from "react";
+import React from "react";
 import "./style.css";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { HiExclamationCircle as DangerIcon } from "../../icons";
+import { postService } from "../../services";
+import { useHistory } from "react-router";
+
+import { useDispatch } from "react-redux";
+import { fillUserData } from '../../store/authSlice';
+import { Alert } from "..";
 
 const LoginForm = () => {
-  const [data, setData] = useState({});
+  let history = useHistory();
+  const dispatch = useDispatch();
+
   const formik = useFormik({
     initialValues: { email: "", password: "" },
     validationSchema: Yup.object({
@@ -16,18 +24,37 @@ const LoginForm = () => {
         .min(6, "Debe tener al menos 6 caracteres")
         .required("Requerido"),
     }),
-    onSubmit: values => {
-      alert(JSON.stringify(values, null, 2));
-      setData(values);
-    },
-  });
+    onSubmit:async  values => {
+      try {
+        const response = await postService('auth/login', values);
+        localStorage.setItem("token_id",response?.data?.token);
+        dispatch(fillUserData(response?.data?.user)); 
+  
+       await Alert({
+          title:`Bienvenido ${response?.data?.user?.firstName || "Usuario"}`,
+          text:"Sesión iniciada",
+          icon:"success",
+          showConfirmButton:false,
+          timer:1500
+        }).then(()=> history.push('/') );
+      } catch (error) {
+
+        await Alert({
+          icon: 'error',
+          title: `${error.data?.data?.ok || "Ops..."}`,
+          text: error.data?.data?.ok,
+        })
+      }
+
+    }}
+  );
 
   return (
     <div className='h-screen d-flex align-items-center justify-content-center flex-column '>
       <div className=''>
         {/* TOP */}
         <div className='d-flex flex-column align-items-center top-form px-5 text-center '>
-          <img src='./assets/logo.png' alt='' className='logo' />
+          <img src='./assets/logo.png' alt='' className='navbar-logo' />
           <h2>Inicia sesión con tu cuenta</h2>
         </div>
         {/* BOTTOM */}
