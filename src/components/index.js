@@ -5,6 +5,9 @@ import EditNameOrganization from "./Organization/EditNameOrganization";
 import LoaderSpinner from "./LoaderSpinner";
 import BackofficeNavigation from "./BackOficeNavigation";
 import Footer from "./Footer";
+import Alert from "./Alert";
+import Information from './Profile/Info';
+import NewsCard from "./NewsCard";
 import UserForm from './UserForm';
 import Slider from "./Slider";
 import RegisterForm from "./RegisterForm";
@@ -13,15 +16,17 @@ import ContactText from "./Contact/ContactText";
 import LoginForm from "./LoginForm";
 import Testimonials from "./Testimonials";
 import ListUser from "./User/ListUser";
-
+import ActivityDetail from "./Activities/ActivityDetail";
 
 export {
     ListUser,
+    ActivityDetail,
     LoaderSpinner,
     Information,
     Alert,
     BackofficeNavigation,
     Footer,
+    NewsCard,
     UserForm,
     FormEditSlide,
     EditNameOrganization,

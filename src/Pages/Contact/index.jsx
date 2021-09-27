@@ -1,11 +1,13 @@
 import React from "react";
 import { ContactForm, ContactText, Footer } from "../../components";
+import Header from "../../components/Header";
 import "./style.css";
 
 const ContactPage = () => {
   return (
     /* Cuando este disponible aplicar Header y Footer */
     <div className="text-center contactContainer">
+      <Header />
       <div className="col-12 mt-5">
         <h4 className="text-uppercase">Contactate con nosotros.</h4>
       </div>
