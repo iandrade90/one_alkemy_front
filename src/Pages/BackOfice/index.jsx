@@ -2,7 +2,7 @@ import React from "react";
 import { Switch, Route } from "react-router-dom";
 import { BackofficeNavigation, Testimonials } from "../../components";
 import { Activities } from "../../components/Activities";
-import {ListUser} from "../../components";
+import { ListUser } from "../../components";
 import { Profile } from "../index";
 import {ActivityDetail} from "../../components";
 

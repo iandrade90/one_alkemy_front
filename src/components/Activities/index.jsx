@@ -91,7 +91,7 @@ export const Activities = () => {
     <>
       <table
         className='table table-hover caption-top align-middle'
-        style={{ fontFamily: "Open Sans" }}>
+        style={{ fontFamily: "Poppins" }}>
         <caption>
           <div className='d-flex justify-content-between'>
             <div>Lista de actividades</div>
