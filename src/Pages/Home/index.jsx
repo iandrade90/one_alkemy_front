@@ -1,6 +1,7 @@
 import React from "react";
 import { Slider } from "../../components";
 import Header from "../../components/Header/index";
+import {Link} from "react-router-dom";
 require("./index.css");
 
 const Home = () => {

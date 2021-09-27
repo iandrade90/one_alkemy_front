@@ -14,9 +14,13 @@ import RegisterForm from "./RegisterForm";
 import ContactForm from "./Contact/ContactForm";
 import ContactText from "./Contact/ContactText";
 import LoginForm from "./LoginForm";
+import Testimonials from "./Testimonials";
+import ListUser from "./User/ListUser";
+import ActivityDetail from "./Activities/ActivityDetail";
 
-
-export { 
+export {
+    ListUser,
+    ActivityDetail,
     LoaderSpinner,
     Information,
     Alert,
@@ -30,5 +34,6 @@ export {
     RegisterForm,
     Slider,
     ContactText,
-    LoginForm
+    LoginForm,
+    Testimonials
 };
