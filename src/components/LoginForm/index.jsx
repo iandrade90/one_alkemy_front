@@ -27,6 +27,7 @@ const LoginForm = () => {
     onSubmit:async  values => {
       try {
         const response = await postService('auth/login', values);
+       
         localStorage.setItem("token_id",response?.data?.token);
         dispatch(fillUserData(response?.data?.user)); 
   
@@ -38,11 +39,11 @@ const LoginForm = () => {
           timer:1500
         }).then(()=> history.push('/') );
       } catch (error) {
-
+        console.log(error)
         await Alert({
           icon: 'error',
-          title: `${error.data?.data?.ok || "Ops..."}`,
-          text: error.data?.data?.ok,
+          title: `${error.data?.msg || "Ops..."}`,
+          text: error.data?.msg,
         })
       }
 
