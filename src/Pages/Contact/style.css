@@ -1,24 +1,23 @@
 @import url("../../index.css");
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@200;300;400;600;700;800&display=swap");
 
+.contactContainer * {
+  box-sizing: border-box !important;
+}
+
 .contactContainer {
   width: 100%;
   max-width: 1920px;
   font-family: "Poppins" !important;
 }
 
-.contactContainer * {
-  box-sizing: border-box !important;
+.contactContainer footer {
+  background-color: var(--color-white);
+  margin-top: 3rem;
 }
 
-@media screen and (min-width: 992px) {
-  .contactContainer footer {
-    position: absolute;
-    bottom: 0;
-
-    background-color: var(--color-white);
-
-    min-width: 100%;
-    box-shadow: 2px 2px 5px var(--color-gray-300);
+@media (min-width: 992px) {
+  .mainComponentsContainer {
+    margin-bottom: 10rem !important;
   }
 }

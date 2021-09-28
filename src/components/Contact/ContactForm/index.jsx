@@ -70,7 +70,7 @@ const ContactForm = () => {
             <div className="col-12">
               <Field
                 as="textarea"
-                className="form-control border pb-2 pt-2"
+                className="form-control border pb-5 pt-2"
                 id="message"
                 name="message"
                 placeholder="Mensaje..."
@@ -86,7 +86,7 @@ const ContactForm = () => {
               />
             </div>
 
-            <div className="col-12 col-md-6 col-lg-2 m-auto">
+            <div className="col-12 col-md-6 col-lg-3 m-auto">
               <button
                 type="submit"
                 className="btn btn-primary float-center w-100 p-2 mt-3"

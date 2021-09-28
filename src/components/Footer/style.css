@@ -3,6 +3,7 @@
 footer {
   background-color: var(--color-gray-100);
   padding: 2rem 0 0;
+  overflow-x: scroll;
 }
 
 .footer-contact {
@@ -88,9 +89,11 @@ footer {
   color: var(--color-gray-700);
 }
 
-
-@media (max-width: 992px) { 
-    .b-left {
-        border: none;
-    }
+@media (max-width: 992px) {
+  .b-left {
+    border: none;
+  }
+  h2 {
+    text-align: left;
+  }
 }

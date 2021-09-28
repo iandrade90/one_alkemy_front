@@ -5,10 +5,8 @@ import EditNameOrganization from "./Organization/EditNameOrganization";
 import LoaderSpinner from "./LoaderSpinner";
 import BackofficeNavigation from "./BackOficeNavigation";
 import Footer from "./Footer";
-import Alert from "./Alert";
-import Information from './Profile/Info';
 import NewsCard from "./NewsCard";
-import UserForm from './UserForm';
+import UserForm from "./UserForm";
 import Slider from "./Slider";
 import RegisterForm from "./RegisterForm";
 import ContactForm from "./Contact/ContactForm";
@@ -19,21 +17,21 @@ import ListUser from "./User/ListUser";
 import ActivityDetail from "./Activities/ActivityDetail";
 
 export {
-    ListUser,
-    ActivityDetail,
-    LoaderSpinner,
-    Information,
-    Alert,
-    BackofficeNavigation,
-    Footer,
-    NewsCard,
-    UserForm,
-    FormEditSlide,
-    EditNameOrganization,
-    ContactForm,
-    RegisterForm,
-    Slider,
-    ContactText,
-    LoginForm,
-    Testimonials
+  ListUser,
+  ActivityDetail,
+  LoaderSpinner,
+  Information,
+  Alert,
+  BackofficeNavigation,
+  Footer,
+  NewsCard,
+  UserForm,
+  FormEditSlide,
+  EditNameOrganization,
+  ContactForm,
+  RegisterForm,
+  Slider,
+  ContactText,
+  LoginForm,
+  Testimonials,
 };
