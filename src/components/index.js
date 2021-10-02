@@ -17,6 +17,7 @@ import LoginForm from "./LoginForm";
 import Testimonials from "./Testimonials";
 import ListUser from "./User/ListUser";
 import ActivityDetail from "./Activities/ActivityDetail";
+import ContactList from "./ContactList";
 
 export {
     ListUser,
@@ -35,5 +36,6 @@ export {
     Slider,
     ContactText,
     LoginForm,
-    Testimonials
+    Testimonials,
+    ContactList
 };
