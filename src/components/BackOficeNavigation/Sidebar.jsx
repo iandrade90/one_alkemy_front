@@ -32,6 +32,7 @@ const adminList = [
   { title: "Slides", icon: ImImages, path: "/backoffice/slides" },
   { title: "Usuarios", icon: FiUsers, path: "/backoffice/users" },
   { title: "Miembros", icon: IoMdPeople, path: "/backoffice/miembros" },
+  { title: "Contactos", icon: IoMdPeople, path: "/backoffice/contacts" },
   { title: "Mi perfil", icon: IoMdPeople, path: "/backoffice/profile" },
 ];
 const standardList = [

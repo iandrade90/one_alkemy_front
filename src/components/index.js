@@ -15,6 +15,7 @@ import LoginForm from "./LoginForm";
 import Testimonials from "./Testimonials";
 import ListUser from "./User/ListUser";
 import ActivityDetail from "./Activities/ActivityDetail";
+import ContactList from "./ContactList";
 
 export {
   ListUser,
@@ -34,4 +35,5 @@ export {
   ContactText,
   LoginForm,
   Testimonials,
+  ContactList
 };
