@@ -34,7 +34,7 @@ const Header = () => {
   const [publicInfo, setPublicInfo] = useState(null);
 
   //? Cuando este implementado Redux se debera hacer consultar por la existencia de un usuario
-  const [user, setUser] = useState(false);
+  const [user, setUser] = useState(true);
 
   useEffect(() => {
     //?  Una vez que el endpoint este creado, se debe implementar una peticion a la api para obtener los datos de manera dinamica

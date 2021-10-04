@@ -4,13 +4,23 @@ import { BackofficeNavigation, Testimonials } from "../../components";
 import { Activities } from "../../components/Activities";
 import { ListUser } from "../../components";
 import { Profile } from "../index";
+import {ActivityDetail} from "../../components";
+import NewsBackoffice from "../../components/NewsBackoffice";
 
 const BackOffice = () => {
   return (
     <BackofficeNavigation>
       <Switch>
-        <Route path="/backoffice/activities">
-          <div className="section-title">
+        <Route exact path='/backoffice/news'>
+          <div className='section-title'>
+            <h2>Novedades</h2>
+          </div>
+          <div className='section-content flex-grow-1 vh-100 overflow-auto'>
+            <NewsBackoffice />
+          </div>
+        </Route>
+        <Route exact path='/backoffice/activities'>
+          <div className='section-title'>
             <h2>Actividades</h2>
           </div>
           <div className="section-content flex-grow-1 vh-100 overflow-auto">
