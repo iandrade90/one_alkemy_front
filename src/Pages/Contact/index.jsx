@@ -9,9 +9,9 @@ const ContactPage = () => {
     <div className="text-center contactContainer">
       <Header />
       <div className="col-12 mt-5">
-        <h4 className="text-uppercase">Contactate con nosotros.</h4>
+        <h4 className="text-uppercase">Contactate con nosotros</h4>
       </div>
-      <div className="row mt-4 mb-4 m-auto pe-3 ps-3 mt-md-5">
+      <div className="row mt-4 m-auto pe-3 ps-3 mt-md-5 mainComponentsContainer">
         <ContactText />
         <ContactForm />
       </div>

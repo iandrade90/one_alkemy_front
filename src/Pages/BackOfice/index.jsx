@@ -5,48 +5,49 @@ import { Activities } from "../../components/Activities";
 import { ListUser } from "../../components";
 import { Profile } from "../index";
 import {ActivityDetail} from "../../components";
+import NewsBackoffice from "../../components/NewsBackoffice";
 
 const BackOffice = () => {
   return (
     <BackofficeNavigation>
       <Switch>
+        <Route exact path='/backoffice/news'>
+          <div className='section-title'>
+            <h2>Novedades</h2>
+          </div>
+          <div className='section-content flex-grow-1 vh-100 overflow-auto'>
+            <NewsBackoffice />
+          </div>
+        </Route>
         <Route exact path='/backoffice/activities'>
           <div className='section-title'>
             <h2>Actividades</h2>
           </div>
-          <div className='section-content flex-grow-1 vh-100 overflow-auto'>
+          <div className="section-content flex-grow-1 vh-100 overflow-auto">
             <Activities />
           </div>
         </Route>
-        <Route path='/backoffice/testimonios'>
-          <div className='section-title'>
-            <h2 className='text-end'>Testimonios</h2>
+        <Route path="/backoffice/testimonios">
+          <div className="section-title">
+            <h2 className="text-end">Testimonios</h2>
           </div>
-          <div className='section-content flex-grow-1 vh-100 overflow-auto'>
+          <div className="section-content flex-grow-1 vh-100 overflow-auto">
             <Testimonials />
           </div>
         </Route>
-        <Route path='/backoffice/users'>
-          <div className='section-title'>
+        <Route path="/backoffice/users">
+          <div className="section-title">
             <h2>Usuarios</h2>
           </div>
-          <div className='section-content flex-grow-1 vh-100 overflow-auto'>
+          <div className="section-content flex-grow-1 vh-100 overflow-auto">
             <ListUser />
-            </div>
-        </Route>
-        <Route path='/backoffice/activities/:id'>
-          <div className='section-title'>
-            <h2>Detalle de actividad</h2>
-          </div>
-          <div className='section-content flex-grow-1 vh-100 overflow-auto'>
-            <ActivityDetail />
           </div>
         </Route>
-        <Route path='/backoffice/profile'>
-          <div className='section-title'>
+        <Route path="/backoffice/profile">
+          <div className="section-title">
             <h2>Perfil de Iván</h2>
           </div>
-          <div className='section-content flex-grow-1 vh-100 overflow-auto'>
+          <div className="section-content flex-grow-1 vh-100 overflow-auto">
             <Profile />
           </div>
         </Route>
@@ -58,16 +59,14 @@ const BackOffice = () => {
             <ContactList />
           </div>
         </Route>
-        
       </Switch>
     </BackofficeNavigation>
   );
 };
-
 export default BackOffice;
 
 //! SUGERENCIA de como deberia implementarse la navegacion del backoffice
-const SectioRouter = ({
+/*const SectioRouter = ({
   component: Component,
   title,
   children,
@@ -84,4 +83,4 @@ const SectioRouter = ({
       </div>
     </Route>
   );
-};
+};*/

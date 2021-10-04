@@ -4,12 +4,14 @@ import { formSchema } from "./validations";
 import { postService } from "../../services";
 import InputRegisterForm from "./InputForm";
 import { useHistory } from "react-router";
+import { useDispatch } from "react-redux";
+import { fillUserData } from "../../store/authSlice";
 import { Alert } from "..";
 import "./style.css";
 
-
 const RegisterForm = () => {
   const history = useHistory();
+  const dispatch = useDispatch();
   return (
     <Formik
       //Valores iniciales de los inputs
@@ -22,7 +24,6 @@ const RegisterForm = () => {
       //Validaciones importadas de validations.js
       validationSchema={formSchema}
       onSubmit={async (values, { resetForm }) => {
-        
         //Almacenado de los datos del usuario en espera del servicio de peticiones HTTP
         const userData = {
           firstName: values.name,
@@ -33,21 +34,25 @@ const RegisterForm = () => {
         try {
           const response = await postService("auth/register", userData);
           resetForm();
+          console.log(response.data);
           await Alert({
-            icon: 'success',
-            title: `Bienvenido ${response?.data?.firstName || ""}` ,
-            text: "Registro exitoso, iniciá sesión para continuar",
+            icon: "success",
+            title: `Bienvenido ${userData.firstName || ""}`,
+            text: "Registro exitoso, se iniciara sesion automaticamente",
             showConfirmButton: false,
-            timer: 1900
-          }).then(()=>history.push('/login'));
+            timer: 1900,
+          }).then(() => {
+            localStorage.setItem("token_id", response.data.token);
+            dispatch(fillUserData(response.data));
+            history.push("/");
+          });
         } catch (error) {
           await Alert({
-              icon: 'error',
-              title: `${error.response.data?.msg || "Ops..."}`,
-              text: error.response.data?.details?.map(d =>(d.msg)),
-            })
+            icon: "error",
+            title: `${error.response.data?.msg || "Ops..."}`,
+            text: error.response.data?.details?.map((d) => d.msg),
+          });
         }
-        
       }}
     >
       {({ errors }) => (
