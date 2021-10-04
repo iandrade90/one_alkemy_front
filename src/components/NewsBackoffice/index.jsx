@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
 import Modal from "./Modal";
-import news from "./data";
+import { BsPencil, BsTrash } from "../../icons/index";
+import { AnimatePresence } from "framer-motion";
+import { deleteService, getAllService } from "../../services";
 import { BsPencil, BsTrash } from "../../icons/index";
 import { AnimatePresence } from "framer-motion";
 import { Route } from "react-router";
 import { Link } from "react-router-dom";
 
 const NewsBackoffice = () => {
+  const [news, setNews] = useState({});
   const [modal, setModal] = useState(false);
   const [newsData, setNewsData] = useState();
   const [newsActData, setNewsActData] = useState({});
@@ -22,16 +25,21 @@ const NewsBackoffice = () => {
   };
 
   useEffect(() => {
-    setNewsData(news);
+    const data = getAllService(`news/`);
+    data.then((res) => {
+      setNewsData(res.data);
+      setNews(res.data);
+    });
   }, []);
-
   const handleSubmit = (payload) => {
     //? Veo el atributo 'type' para decidir que tipo de accion debo hacer con lo que me llega desde modal
     //todo EN CADA SITUACION SE DEBE REALIZAR LA PETICION AL ENDPOINT CORRESPONDIENTE
     let newNewsList;
-    console.log(payload);
 
     if (payload.type === "delete") {
+      //Borra la novedad de la base de datos
+      deleteService(`news/${payload.data.id}`);
+      //Borra la novedad del front sin realizar otra llamada a la base de datos para actualizar
       newNewsList = newsData.filter((news) => news.id !== payload.data.id);
       setNewsData(newNewsList);
     } else {

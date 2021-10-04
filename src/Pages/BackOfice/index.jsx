@@ -15,7 +15,7 @@ const BackOffice = () => {
   return (
     <BackofficeNavigation>
       <Switch>
-        <Route path="/backoffice/news" exact>
+        <Route exact path="/backoffice/news">
           <div className="section-title">
             <h2>Novedades</h2>
           </div>
@@ -31,7 +31,7 @@ const BackOffice = () => {
             <DetailsCard />
           </div>
         </Route>
-        <Route path="/backoffice/activities">
+        <Route exact path="/backoffice/activities">
           <div className="section-title">
             <h2>Actividades</h2>
           </div>
