@@ -12,6 +12,7 @@ import "./style.css";
 const RegisterForm = () => {
   const history = useHistory();
   const dispatch = useDispatch();
+ 
   return (
     <Formik
       //Valores iniciales de los inputs

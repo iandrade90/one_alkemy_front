@@ -43,13 +43,13 @@ const Home = () => {
   return (
     <>
       <Header />
-      <div className='container-fluid bg-blue py-5 parallax'>
+      <div className="container-fluid">
         <Slider />
         <h1 className='text-center my-4'>Welcome Text</h1>
         <h2 className='text-center my-4'>Novedades</h2>
         <div className='row'>
-          {data.map(news => (
-            <div className='col-sm-12 col-lg-3 my-2'>
+          {data.map((news ,i)=> (
+            <div key={i} className='col-sm-12 col-lg-3 my-2'>
               <div className='card border-0 news-home shadow-sm'>
                 <div className='news-home-image-container'>
                   <div className='news-home-image'>
@@ -59,7 +59,7 @@ const Home = () => {
                       alt={news.title}
                     />
                   </div>
-                  <a href='#' className='btn-primary news-home-category'>
+                  <a href='#!' className='btn-primary news-home-category'>
                     {news.category}
                   </a>
                 </div>
@@ -71,7 +71,7 @@ const Home = () => {
             </div>
           ))}
         </div>
-      </div>
+        </div>
       <Footer />
     </>
   );

@@ -1,14 +1,29 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { PrivateRouter } from "./PrivateRoutes";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { RegisterForm , LoginForm } from "../components";
 import { BackOffice, ContactPage, Home, News } from "../pages";
 import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { getAllService } from "../services";
+import { fillUserData } from "../store/authSlice";
 
 const AppRouter = () => {
-  const { isLogged } = useSelector((state) => state.user_auth)
+  const { isLogged , user } = useSelector((state) => state.user_auth)
+  const dispatch = useDispatch()
 
-  console.log(isLogged)
+  useEffect(()=> {
+    
+    const fetchMe= async ()=>{
+       const  response = await getAllService('/auth/me')
+       console.log(response.data)
+       dispatch(fillUserData(response.data))
+    }
+    if(!user.firstName){
+      fetchMe()
+    }
+  },[dispatch, user])
+  console.log(isLogged , user)
   return (
     <Router>
       <Switch>

@@ -3,17 +3,13 @@ import "./style.css";
 import Sidebar from "./Sidebar";
 
 import { GoGrabber } from "../../icons";
+import { useSelector } from "react-redux";
 
 export default function BackofficeNavigation({ children }){
   const [isOpen, setIsOpen] = useState(false);
-
+  const { isLogged , user } = useSelector((state) => state.user_auth)
   
   //? En un futuro este estado sera implementado mediante Redux, por ahora se lleva a cabo con un useState
-  const [user, setUser] = useState({
-    userName: "Octavio Peralta",
-    userImage: "https://i.pravatar.cc/100?img=12",
-    isAdmin: true,
-  });
 
   const closeSidebar = () => {
     setIsOpen(false);

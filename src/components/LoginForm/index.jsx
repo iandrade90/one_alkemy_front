@@ -6,14 +6,15 @@ import { HiExclamationCircle as DangerIcon } from "../../icons";
 import { postService } from "../../services";
 import { useHistory } from "react-router";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { fillUserData } from '../../store/authSlice';
 import { Alert } from "..";
 
 const LoginForm = () => {
   let history = useHistory();
   const dispatch = useDispatch();
-
+  const userInfo = useSelector(state=> state.user_auth)
+  console.log(userInfo);
   const formik = useFormik({
     initialValues: { email: "", password: "" },
     validationSchema: Yup.object({

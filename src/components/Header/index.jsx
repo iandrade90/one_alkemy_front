@@ -3,8 +3,8 @@ import React, { useState, useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
 import "./style.css";
 import { HiUser, HiClipboardList, HiOutlineLogout } from "../../icons";
-import { useLogout } from "./useLogout";
-
+import { useDispatch, useSelector } from "react-redux";
+import {resetUserData} from '../../store/authSlice'
 const LINKS = [
   { name: "Inicio", route: "/" },
   {
@@ -30,12 +30,15 @@ const LINKS = [
 ];
 
 const Header = () => {
-  const [isAdmin, setIsAdmin] = useState(true);
+  const { isLogged , user } = useSelector((state) => state.user_auth)
   const [publicInfo, setPublicInfo] = useState(null);
-
+  const dispatch = useDispatch()
   //? Cuando este implementado Redux se debera hacer consultar por la existencia de un usuario
-  const [user, setUser] = useState(true);
 
+  const handleLogout=()=>{
+    localStorage.removeItem("token_id");
+    dispatch(resetUserData())
+  }
   useEffect(() => {
     //?  Una vez que el endpoint este creado, se debe implementar una peticion a la api para obtener los datos de manera dinamica
     const info = { logo: "./assets/logo-sm.png", links: LINKS };
@@ -87,7 +90,7 @@ const Header = () => {
             />
           </ul>
           <div>
-            {!user ? (
+            {!isLogged ? (
               <div className="d-flex align-items-center gap-2">
                 <Link
                   to="/register"
@@ -110,7 +113,7 @@ const Header = () => {
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
                   >
-                    <img src="https://i.pravatar.cc/250?img=3" alt="" />
+                    <img src={user?.image} alt="" />
                   </a>
 
                   <ul
@@ -126,7 +129,7 @@ const Header = () => {
                         Mi perfil
                       </Link>
                     </li>
-                    {isAdmin && (
+                    {user?.isAdmin && (
                       <li>
                         <Link className="dropdown-item" to="/backoffice">
                           <HiClipboardList className="me-2 h-100 text-secondary" />
@@ -138,8 +141,8 @@ const Header = () => {
                     <li>
                       <Link
                         className="dropdown-item"
-                        onClick={useLogout}
-                        to="/login"
+                        onClick={handleLogout }
+                        to='#!'
                       >
                         <HiOutlineLogout className="me-2 h-100 text-secondary" />
                         Cerrar sesión
@@ -154,21 +157,21 @@ const Header = () => {
                     </button>
                     <div className="d-lg-none d-flex flex-column ms-2 user-details justify-content-center">
                       <Link className="user-name" to="/backoffice/profile">
-                        Octavio Peralta
+                        {user?.firstName}
                       </Link>
                       <span className="user-email">
-                        octaviojperalta99@gmail.com
+                        {user?.email}
                       </span>
                     </div>
                   </div>
                   <div className="mobile-buttons">
-                    {isAdmin && (
+                    {user?.isAdmin && (
                       <Link to="/backoffice/">
                         <HiClipboardList className=" icon me-2 h-100 text-secondary" />
                       </Link>
                     )}
 
-                    <Link to="/login">
+                     <Link onClick={ handleLogout }  to='#!'>
                       <HiOutlineLogout className=" icon me-2 h-100 text-secondary" />
                     </Link>
                   </div>

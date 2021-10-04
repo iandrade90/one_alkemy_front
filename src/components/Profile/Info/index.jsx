@@ -1,9 +1,10 @@
 import React from 'react';
 import '../index.css';
 import {Link} from 'react-router-dom'
+import { useSelector } from 'react-redux';
 
 const Information = () => {
-    
+    const { isLogged , user } = useSelector((state) => state.user_auth)
     return(
         
         <div className="d-flex justify-content-center align-items-center" style={{height:'100%'}}>
