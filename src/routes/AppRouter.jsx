@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { RegisterForm , LoginForm } from "../components";
-import { BackOffice, ContactPage, Home, News } from "../Pages";
+import { BackOffice, ContactPage, Home, News, UsPage } from "../Pages";
 
 const AppRouter = () => {
   return (
@@ -13,6 +13,7 @@ const AppRouter = () => {
         <Route exact path="/login" component={LoginForm} />
         <Route path="/backoffice" component={BackOffice} />
         <Route exact path="/contact" component={ContactPage} />
+        <Route exact path="/us" component={UsPage} />
       </Switch>
     </Router>
   );

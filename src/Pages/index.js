@@ -4,6 +4,7 @@ import ContactPage from "./Contact";
 import Form from './UserForm/';
 import Home from './Home'
 import News from './News'
+import UsPage from './UsPage'
 
 export{
     BackOffice,
@@ -11,5 +12,6 @@ export{
     Form,
     ContactPage,
     Home,
-    News
+    News,
+    UsPage
 }
