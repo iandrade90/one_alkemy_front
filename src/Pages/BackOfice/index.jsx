@@ -1,26 +1,38 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
-import { BackofficeNavigation, Testimonials, ContactList } from "../../components";
+import {
+  BackofficeNavigation,
+  Testimonials,
+  ContactList,
+  ListUser,
+  DetailsCard,
+} from "../../components";
 import { Activities } from "../../components/Activities";
-import { ListUser } from "../../components";
 import { Profile } from "../index";
-import {ActivityDetail} from "../../components";
 import NewsBackoffice from "../../components/NewsBackoffice";
 
 const BackOffice = () => {
   return (
     <BackofficeNavigation>
       <Switch>
-        <Route exact path='/backoffice/news'>
-          <div className='section-title'>
+        <Route path="/backoffice/news" exact>
+          <div className="section-title">
             <h2>Novedades</h2>
           </div>
-          <div className='section-content flex-grow-1 vh-100 overflow-auto'>
+          <div className="section-content flex-grow-1 vh-100 overflow-auto">
             <NewsBackoffice />
           </div>
         </Route>
-        <Route exact path='/backoffice/activities'>
-          <div className='section-title'>
+        <Route path="/backoffice/news/:id">
+          <div className="section-title">
+            <h2>Novedades</h2>
+          </div>
+          <div className="section-content flex-grow-1 vh-100 overflow-auto">
+            <DetailsCard />
+          </div>
+        </Route>
+        <Route path="/backoffice/activities">
+          <div className="section-title">
             <h2>Actividades</h2>
           </div>
           <div className="section-content flex-grow-1 vh-100 overflow-auto">
@@ -51,11 +63,11 @@ const BackOffice = () => {
             <Profile />
           </div>
         </Route>
-        <Route path='/backoffice/contacts'>
-          <div className='section-title'>
+        <Route path="/backoffice/contacts">
+          <div className="section-title">
             <h2>Contactos</h2>
           </div>
-          <div className='section-content flex-grow-1 vh-100 overflow-auto'>
+          <div className="section-content flex-grow-1 vh-100 overflow-auto">
             <ContactList />
           </div>
         </Route>
