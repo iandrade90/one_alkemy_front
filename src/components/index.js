@@ -15,6 +15,8 @@ import LoginForm from "./LoginForm";
 import Testimonials from "./Testimonials";
 import ListUser from "./User/ListUser";
 import ActivityDetail from "./Activities/ActivityDetail";
+import NewsBackoffice from "./NewsBackoffice";
+import DetailsCard from "./DetailsCard";
 import ContactList from "./ContactList";
 
 export {
@@ -24,6 +26,7 @@ export {
   Information,
   Alert,
   BackofficeNavigation,
+  NewsBackoffice,
   Footer,
   NewsCard,
   UserForm,
@@ -35,5 +38,6 @@ export {
   ContactText,
   LoginForm,
   Testimonials,
-  ContactList
+  DetailsCard,
+  ContactList,
 };
