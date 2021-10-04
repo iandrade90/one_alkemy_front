@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { RegisterForm , LoginForm } from "../components";
-import { BackOffice, ContactPage, Home, News } from "../Pages";
+import { BackOffice, ContactPage, Home, News } from "../pages";
 
 const AppRouter = () => {
   return (
