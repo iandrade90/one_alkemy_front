@@ -1,9 +1,14 @@
 import React from "react";
+import { PrivateRouter } from "./PrivateRoutes";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { RegisterForm , LoginForm } from "../components";
-import { BackOffice, ContactPage, Home, News } from "../Pages";
+import { BackOffice, ContactPage, Home, News } from "../pages";
+import { useSelector } from "react-redux";
 
 const AppRouter = () => {
+  const { isLogged } = useSelector((state) => state.user_auth)
+
+  console.log(isLogged)
   return (
     <Router>
       <Switch>
