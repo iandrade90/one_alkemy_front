@@ -36,7 +36,7 @@ const NewsBackoffice = () => {
 
     if (payload.type === "delete") {
       //Borra la novedad de la base de datos
-      deleteService(`news/${payload.data.id}`);
+      deleteService(`/news/${payload.data.id}`);
       //Borra la novedad del front sin realizar otra llamada a la base de datos para actualizar
       newNewsList = newsData.filter((news) => news.id !== payload.data.id);
       setNewsData(newNewsList);
