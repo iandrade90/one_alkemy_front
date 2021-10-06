@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import Modal from "./Modal";
 import { AnimatePresence } from "framer-motion";
-import { Route } from 'react-router';
-import { Link } from 'react-router-dom';
-import './style.css'
+import { Route } from "react-router";
+import { Link } from "react-router-dom";
+import "./style.css";
 const activitiesData = [
   {
     id: 1,
@@ -31,22 +31,20 @@ export const Activities = () => {
     setActivityData({});
     setModalOpen(false);
   };
-  const open = activity => {
+  const open = (activity) => {
     setActivityData(activity);
     setModalOpen(true);
   };
 
-  
   //! Posteriormene estas acciones seran acompañadas por sus respectivas peticiones a al API
-  const handleSubmit = payload => {
+  const handleSubmit = (payload) => {
     //? Veo el atributo 'type' para decidir que tipo de accion debo hacer con lo que me llega desde modal
     //todo EN CADA SITUACION SE DEBE REALIZAR LA PETICION AL ENDPOINT CORRESPONDIENTE
     let newActivitiesList;
-    console.log(payload)
 
     if (payload.type === "delete") {
       newActivitiesList = activities.filter(
-        activity => activity.id !== payload.data.id
+        (activity) => activity.id !== payload.data.id
       );
       setActivities(newActivitiesList);
     } else {
@@ -55,7 +53,7 @@ export const Activities = () => {
 
       if (!activityExists) {
         //? Creo una nueva actividad
-        const activitiesID = activities.map(act => act.id);
+        const activitiesID = activities.map((act) => act.id);
         const maxID = Math.max(...activitiesID);
 
         newActivitiesList = activities.concat({
@@ -65,7 +63,7 @@ export const Activities = () => {
         });
       } else {
         //? Caso contrario, edita la actividad en funcion del id que me llega
-        newActivitiesList = activities.map(activity => {
+        newActivitiesList = activities.map((activity) => {
           if (activity.id === payload.id) {
             return {
               id: activity.id,
@@ -90,13 +88,14 @@ export const Activities = () => {
   return (
     <>
       <table
-        className='table table-hover caption-top align-middle'
-        style={{ fontFamily: "Poppins" }}>
+        className="table table-hover caption-top align-middle"
+        style={{ fontFamily: "Poppins" }}
+      >
         <caption>
-          <div className='d-flex justify-content-between'>
+          <div className="d-flex justify-content-between">
             <div>Lista de actividades</div>
             <div>
-              <button className='btn btn btn-primary' onClick={() => open({})}>
+              <button className="btn btn btn-primary" onClick={() => open({})}>
                 Crear actividad
               </button>
             </div>
@@ -104,36 +103,38 @@ export const Activities = () => {
         </caption>
         <thead>
           <tr>
-            <th scope='col'>ID</th>
-            <th scope='col'>Nombre de Actividad</th>
-            <th scope='col'></th>
-            <th scope='col' className='text-center'>
+            <th scope="col">ID</th>
+            <th scope="col">Nombre de Actividad</th>
+            <th scope="col"></th>
+            <th scope="col" className="text-center">
               Acciones
             </th>
           </tr>
         </thead>
         <tbody>
           {activities
-            ? activities.map(act => (
+            ? activities.map((act) => (
                 <tr key={act.id}>
-                  <th scope='row'>{act.id}</th>
+                  <th scope="row">{act.id}</th>
                   <Route>
-                    <td className="link-activity" colSpan='2'>
-                    <Link to={`/backoffice/activities/${act.id}`} >
-                      {act.title}
-                    </Link>
-                      </td>
+                    <td className="link-activity" colSpan="2">
+                      <Link to={`/backoffice/activities/${act.id}`}>
+                        {act.title}
+                      </Link>
+                    </td>
                   </Route>
                   <td>
-                    <div className='d-flex justify-content-center align-items-center'>
+                    <div className="d-flex justify-content-center align-items-center">
                       <button
-                        className='btn btn-sm btn-secondary me-2'
-                        onClick={() => open(act)}>
+                        className="btn btn-sm btn-secondary me-2"
+                        onClick={() => open(act)}
+                      >
                         Editar
                       </button>
                       <button
-                        className='btn btn-sm btn-danger'
-                        onClick={() => open({ act, delete: true })}>
+                        className="btn btn-sm btn-danger"
+                        onClick={() => open({ act, delete: true })}
+                      >
                         Borrar
                       </button>
                     </div>

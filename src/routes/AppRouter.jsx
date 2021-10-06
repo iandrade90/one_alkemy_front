@@ -15,14 +15,12 @@ const AppRouter = () => {
   useEffect(() => {
     const fetchMe = async () => {
       const response = await getAllService("/auth/me");
-      console.log(response.data);
       dispatch(fillUserData(response.data));
     };
     if (!user.firstName) {
       fetchMe();
     }
   }, [dispatch, user]);
-  console.log(isLogged, user);
   return (
     <Router>
       <Switch>
