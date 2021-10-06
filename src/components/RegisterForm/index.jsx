@@ -33,7 +33,7 @@ const RegisterForm = () => {
           password: values.password,
         };
         try {
-          const response = await postService("auth/register", userData);
+          const response = await postService("/auth/register", userData);
           resetForm();
           console.log(response.data);
           await Alert({

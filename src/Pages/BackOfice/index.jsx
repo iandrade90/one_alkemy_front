@@ -6,6 +6,8 @@ import {
   ContactList,
   ListUser,
   DetailsCard,
+  ActivityDetail,
+  EditNameOrganization,
 } from "../../components";
 import { Activities } from "../../components/Activities";
 import { Profile } from "../index";
@@ -39,6 +41,22 @@ const BackOffice = () => {
           </div>
           <div className="section-content flex-grow-1 vh-100 overflow-auto">
             <Activities />
+          </div>
+        </Route>
+        <Route path="/backoffice/activities/:id">
+          <div className="section-title">
+            <h2>Detalle de actividades</h2>
+          </div>
+          <div className="section-content flex-grow-1 vh-100 overflow-auto">
+            <ActivityDetail/>
+          </div>
+        </Route>
+        <Route path="/backoffice/edit-organization">
+          <div className="section-title">
+            <h2>Organización</h2>
+          </div>
+          <div className="section-content flex-grow-1 vh-100 overflow-auto">
+            <EditNameOrganization/>
           </div>
         </Route>
         <Route path="/backoffice/testimonios">

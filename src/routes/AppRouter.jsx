@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { PrivateRouter } from "./PrivateRoutes";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { RegisterForm , LoginForm } from "../components";
-import { BackOffice, ContactPage, Home, News } from "../pages";
+import { BackOffice, ContactPage, Home, News } from "../Pages";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { getAllService } from "../services";

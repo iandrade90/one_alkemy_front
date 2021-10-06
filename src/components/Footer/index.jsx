@@ -14,7 +14,7 @@ const Footer = () => {
   const [organizationData, setOrganizationData] = useState(null);
 
   useEffect(() => {
-    getAllService("organizations/1/public").then(({ data }) => {
+    getAllService("/organizations/1/public").then(({ data }) => {
       setOrganizationData({
         name: data.name,
         logo: data.image,
