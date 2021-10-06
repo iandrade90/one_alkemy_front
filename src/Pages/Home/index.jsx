@@ -8,7 +8,7 @@ const Home = () => {
   const [newsData, setNewsData] = useState([]);
 
   useEffect(() => {
-    const a = getAllService("/news").then((res) => {
+    getAllService("/news").then((res) => {
       setNewsData(res.data);
     });
   }, []);
