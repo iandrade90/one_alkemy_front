@@ -14,7 +14,7 @@ const Footer = () => {
   const [organizationData, setOrganizationData] = useState(null);
 
   useEffect(() => {
-    getAllService("organizations/1/public").then(({ data }) => {
+    getAllService("/organizations/1/public").then(({ data }) => {
       setOrganizationData({
         name: data.name,
         logo: data.image,
@@ -26,7 +26,7 @@ const Footer = () => {
   }, []);
 
   return (
-    <footer className='footer shadow-md'>
+    <footer className='shadow-md'>
       <div className='container'>
         <div className='row'>
           <div className='col-md-4 col-lg-5 mb-3 mb-lg-0'>

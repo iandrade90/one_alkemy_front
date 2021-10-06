@@ -1,5 +1,5 @@
 import React from "react";
-import { Link , useHistory} from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import "./style.css";
 
 import {
@@ -18,16 +18,8 @@ import {
 const adminList = [
   { title: "Novedades", icon: BsNewspaper, path: "/backoffice/news" },
   { title: "Actvidades", icon: VscChecklist, path: "/backoffice/activities" },
-  {
-    title: "Categorias",
-    icon: TiThListOutline,
-    path: "/backoffice/categories",
-  },
-  {
-    title: "Testimonios",
-    icon: BiMessageSquareDetail,
-    path: "/backoffice/testimonios",
-  },
+  { title: "Categorias", icon: TiThListOutline, path: "/backoffice/categories",},
+  { title: "Testimonios", icon: BiMessageSquareDetail, path: "/backoffice/testimonios",},
   { title: "Organizacion", icon: ImTree, path: "/backoffice/organizacion" },
   { title: "Slides", icon: ImImages, path: "/backoffice/slides" },
   { title: "Usuarios", icon: FiUsers, path: "/backoffice/users" },
@@ -40,11 +32,11 @@ const standardList = [
 ];
 
 const Sidebar = ({ user, isOpen, closeSidebar }) => {
-  const history=useHistory()
+  const history = useHistory();
   const items = user.isAdmin ? adminList : standardList;
-  const handleLogout=()=>{
-    history.push('/')
-  }
+  const handleLogout = () => {
+    history.push("/");
+  };
   return (
     <div
       id='sidebar'
@@ -74,15 +66,20 @@ const Sidebar = ({ user, isOpen, closeSidebar }) => {
 
         <div className='profile-section'>
           <div className='d-flex align-items-center'>
-            <img src={user.image} alt='' />
-            <div className='d-flex flex-column'>
-              <span className='username'>{user.firstName} {user.lastName}</span>
+            <img
+              src={user.avatar}
+              alt=''
+            />
+            <div className='d-flex flex-column ms-2'>
+              <span className='username'>
+                {user.firstName} {user.lastName}
+              </span>
               <p className='user-role'>
                 User role: <span>{user.isAdmin ? "ADMIN" : "STANDARD"}</span>
               </p>
             </div>
           </div>
-          <Link   onClick={handleLogout } to='#!'>
+          <Link onClick={handleLogout} to='#!'>
             <GoSignOut className='icon' />
           </Link>
         </div>

@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Modal from "./Modal";
 import { AnimatePresence } from "framer-motion";
-import { Route } from 'react-router';
-import { Link } from 'react-router-dom';
-import './style.css'
+import { Route } from "react-router";
+import { Link } from "react-router-dom";
+import "./style.css";
+import { deleteService, getAllService, postService } from "../../services";
 const activitiesData = [
   {
     id: 1,
@@ -36,13 +37,9 @@ export const Activities = () => {
     setModalOpen(true);
   };
 
-  
-  //! Posteriormene estas acciones seran acompañadas por sus respectivas peticiones a al API
-  const handleSubmit = payload => {
-    //? Veo el atributo 'type' para decidir que tipo de accion debo hacer con lo que me llega desde modal
-    //todo EN CADA SITUACION SE DEBE REALIZAR LA PETICION AL ENDPOINT CORRESPONDIENTE
+  const handleSubmit = async payload => {
     let newActivitiesList;
-    console.log(payload)
+    console.log(payload);
 
     if (payload.type === "delete") {
       newActivitiesList = activities.filter(
@@ -58,11 +55,14 @@ export const Activities = () => {
         const activitiesID = activities.map(act => act.id);
         const maxID = Math.max(...activitiesID);
 
+        await postService("activities/", {})
+        
         newActivitiesList = activities.concat({
           id: maxID + 1,
           title: payload.title,
           description: payload.description,
         });
+        
       } else {
         //? Caso contrario, edita la actividad en funcion del id que me llega
         newActivitiesList = activities.map(activity => {
@@ -82,9 +82,8 @@ export const Activities = () => {
     close();
   };
 
-  //? OP: Una vez que este implementado en endpoint se utilizara para obtener la infomacion, mientras tanto se utiliza un arraty
   useEffect(() => {
-    setActivities(activitiesData);
+    getAllService("activities").then(({ data }) => setActivities(data.data));
   }, []);
 
   return (
@@ -118,11 +117,11 @@ export const Activities = () => {
                 <tr key={act.id}>
                   <th scope='row'>{act.id}</th>
                   <Route>
-                    <td className="link-activity" colSpan='2'>
-                    <Link to={`/backoffice/activities/${act.id}`} >
-                      {act.title}
-                    </Link>
-                      </td>
+                    <td className='link-activity' colSpan='2'>
+                      <Link to={`/backoffice/activities/${act.id}`}>
+                        {act.title}
+                      </Link>
+                    </td>
                   </Route>
                   <td>
                     <div className='d-flex justify-content-center align-items-center'>

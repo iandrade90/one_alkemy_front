@@ -57,8 +57,8 @@ nav * {
 }
 
 .secondary-btn:hover {
-  background-color: var(--color-blue-100);
-  color: var(--color-blue-100);
+  background-color: var(--color-gray-100);
+  color: var(--color-blue-600);
 }
 
 .nav-item {
@@ -115,6 +115,19 @@ nav * {
 .mobile-buttons a:hover .icon {
   color: var(--color-blue-600) !important;
 }
+
+.header-username {
+  color: var(--color-gray-500);
+  text-decoration: none;
+  font-weight: 500;
+  margin-right: 0.3rem;
+  transition: color 0.3s ease-in-out;
+}
+
+.header-username:hover {
+  color: var(--color-gray-800);
+}
+
 
 @media (min-width: 992px) {
   .user-image {

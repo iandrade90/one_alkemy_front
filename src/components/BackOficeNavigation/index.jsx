@@ -5,10 +5,10 @@ import Sidebar from "./Sidebar";
 import { GoGrabber } from "../../icons";
 import { useSelector } from "react-redux";
 
-export default function BackofficeNavigation({ children }){
+export default function BackofficeNavigation({ children }) {
   const [isOpen, setIsOpen] = useState(false);
-  const { isLogged , user } = useSelector((state) => state.user_auth)
-  
+  const { isLogged, user } = useSelector(state => state.user_auth);
+
   //? En un futuro este estado sera implementado mediante Redux, por ahora se lleva a cabo con un useState
 
   const closeSidebar = () => {
@@ -28,7 +28,7 @@ export default function BackofficeNavigation({ children }){
       <button
         className={`sidebar-overlay ${isOpen ? "d-block" : "d-none"}`}
         onClick={closeSidebar}></button>
-        
+
       {/* CONTENT */}
       <div className='flex-grow-1 d-flex flex-column '>
         {/* HEADER */}
@@ -39,7 +39,11 @@ export default function BackofficeNavigation({ children }){
             <GoGrabber />
           </button>
           <div className='px-3'>
-            <img src={user.userImage} className='user-avatar' alt='' />
+            <img
+              src={user.avatar}
+              className='user-avatar'
+              alt=''
+            />
           </div>
         </div>
 
@@ -50,4 +54,4 @@ export default function BackofficeNavigation({ children }){
       </div>
     </div>
   );
-};
+}
