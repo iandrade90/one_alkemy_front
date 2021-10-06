@@ -10,6 +10,7 @@ const DetailsCard = () => {
   const [image, setImage] = useState();
   const [name, setName] = useState();
   const [content, setContent] = useState();
+  const [type, setType] = useState();
   const [isFound, setIsFound] = useState(false);
   //Al montarse el componente recojemos los datos del endpoint
   useEffect(() => {
@@ -18,6 +19,7 @@ const DetailsCard = () => {
       setImage(res.data.image);
       setName(res.data.name);
       setContent(res.data.content);
+      setType(res.data.type);
       res && setIsFound(true);
     });
   }, []);
@@ -45,7 +47,11 @@ const DetailsCard = () => {
             <div className="backside">
               <div className="card cardBack">
                 <div className="card-body2 text-center">
-                  {content ? <p className="text-card">{content}</p> : null}
+                  <div className="text-card">
+                    {content ? <p>Contenido: {content}</p> : null}
+
+                    {type ? <p>tipo: {type}</p> : null}
+                  </div>
                 </div>
               </div>
             </div>
