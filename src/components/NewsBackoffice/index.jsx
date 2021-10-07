@@ -23,7 +23,7 @@ const NewsBackoffice = () => {
   };
 
   useEffect(() => {
-    const data = getAllService(`news/`);
+    const data = getAllService(`news`);
     data.then((res) => {
       setNewsData(res.data);
       setNews(res.data);
