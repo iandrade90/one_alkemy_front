@@ -23,7 +23,7 @@ const NewsBackoffice = () => {
   };
 
   useEffect(() => {
-    const data = getAllService(`news/`);
+    const data = getAllService(`news`);
     data.then((res) => {
       setNewsData(res.data);
       setNews(res.data);
@@ -108,18 +108,20 @@ const NewsBackoffice = () => {
                 ? newsData.map((item) => (
                     <tr key={item.id}>
                       <Route>
-                        <td className="link-activity" colSpan="2">
-                          <Link to={`/backoffice/news/${item.id}`}>
-                            <td>{item.title}</td>
-                          </Link>
+                        <td>
+                          <div className="link-activity" colSpan="2">
+                            <Link to={`/backoffice/news/${item.id}`}>
+                              <td>{item.name}</td>
+                            </Link>
+                          </div>
                         </td>
                       </Route>
                       <td>
                         <div>
-                          <img src={item.image} width="90" alt={item.title} />
+                          <img src={item.image} width="90" alt={item.name} />
                         </div>
                       </td>
-                      <td>{item.category}</td>
+                      <td>{item.type}</td>
                       <td>
                         <button
                           className="btn btn-lg btn-primary me-2"

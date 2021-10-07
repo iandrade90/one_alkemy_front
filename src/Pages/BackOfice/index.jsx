@@ -5,13 +5,16 @@ import {
   Testimonials,
   ContactList,
   ListUser,
+  Categories,
   DetailsCard,
 } from "../../components";
 import { Activities } from "../../components/Activities";
 import { Profile } from "../index";
 import NewsBackoffice from "../../components/NewsBackoffice";
+import { useSelector } from "react-redux";
 
 const BackOffice = () => {
+  const { isLogged , user } = useSelector((state) => state.user_auth)
   return (
     <BackofficeNavigation>
       <Switch>
@@ -39,6 +42,14 @@ const BackOffice = () => {
             <Activities />
           </div>
         </Route>
+        <Route exact path='/backoffice/categories'>
+          <div className='section-title'>
+            <h2>Categorias</h2>
+          </div>
+          <div className="section-content flex-grow-1 vh-100 overflow-auto">
+            <Categories />
+          </div>
+        </Route>
         <Route path="/backoffice/testimonios">
           <div className="section-title">
             <h2 className="text-end">Testimonios</h2>
@@ -57,7 +68,7 @@ const BackOffice = () => {
         </Route>
         <Route path="/backoffice/profile">
           <div className="section-title">
-            <h2>Perfil de Iván</h2>
+            <h2>Perfil de {user?.firstName}</h2>
           </div>
           <div className="section-content flex-grow-1 vh-100 overflow-auto">
             <Profile />

@@ -18,6 +18,7 @@ import ActivityDetail from "./Activities/ActivityDetail";
 import NewsBackoffice from "./NewsBackoffice";
 import DetailsCard from "./DetailsCard";
 import ContactList from "./ContactList";
+import Categories from './Categories';
 
 export {
   ListUser,
@@ -38,6 +39,7 @@ export {
   ContactText,
   LoginForm,
   Testimonials,
-  DetailsCard,
   ContactList,
+  Categories,
+  DetailsCard,
 };
