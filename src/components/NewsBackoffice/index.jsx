@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Modal from "./Modal";
-import { BsPencil, BsTrash } from "../../icons/index";
 import { AnimatePresence } from "framer-motion";
 import { deleteService, getAllService } from "../../services";
+import { BsPencil, BsTrash } from "../../icons/index";
 import { Route } from "react-router";
 import { Link } from "react-router-dom";
 
