@@ -69,28 +69,28 @@ const DeleteModal = ({ onSubmit, data }) => {
           <h4>Eliminar actividad</h4>
           <p>
             Estas seguro que deseas eliminar la actividad{" "}
-            <strong>{data.title}</strong> ? Toda la información relacionada sera
+            <strong>{data.name}</strong> ? Toda la información relacionada sera
             eliminada permanentemente. Esta acción no puede deshacerse.
           </p>
         </div>
       </div>
       <div className='modal-sms-footer'>
-        <button className='btn btn-cancel shadow-sm'>Cancelar</button>
         <button
           className='btn btn-delete shadow-sm'
           onClick={() => onSubmit({data, type: "delete"})}>
           Eliminar
         </button>
+        <button className='btn btn-cancel shadow-sm'>Cancelar</button>
       </div>
     </>
   );
 };
 
 const CreationUpdateModal = ({ onSubmit, data }) => {
-  const isEdit = "title" in data;
-  const [title, setTitle] = useState(isEdit ? data.title : "");
+  const isEdit = "name" in data;
+  const [title, setTitle] = useState(isEdit ? data.name : "");
   const [description, setDescription] = useState(
-    isEdit ? data.description : ""
+    isEdit ? data.content : ""
   );
 
   return (
@@ -135,7 +135,7 @@ const CreationUpdateModal = ({ onSubmit, data }) => {
         <button className='btn btn-cancel shadow-sm'>Cancelar</button>
         <button
           className='btn btn-confirm shadow-sm'
-          onClick={() => onSubmit({title, description, id: data.id})}>
+          onClick={() => onSubmit({name: title, content: description, id: data.id})}>
           Guardar
         </button>
       </div>

@@ -4,7 +4,12 @@ import { AnimatePresence } from "framer-motion";
 import { Route } from "react-router";
 import { Link } from "react-router-dom";
 import "./style.css";
-import { deleteService, getAllService, postService } from "../../services";
+import {
+  deleteService,
+  getAllService,
+  postService,
+  updateService,
+} from "../../services";
 const activitiesData = [
   {
     id: 1,
@@ -27,6 +32,7 @@ export const Activities = () => {
   const [activities, setActivities] = useState();
   const [modalOpen, setModalOpen] = useState(false);
   const [activityData, setActivityData] = useState({});
+  console.log(activities);
 
   const close = () => {
     setActivityData({});
@@ -39,12 +45,14 @@ export const Activities = () => {
 
   const handleSubmit = async payload => {
     let newActivitiesList;
-    console.log(payload);
 
     if (payload.type === "delete") {
+      await deleteService(`activities/${payload.data.id}`);
+
       newActivitiesList = activities.filter(
         activity => activity.id !== payload.data.id
       );
+
       setActivities(newActivitiesList);
     } else {
       //? Si el payload no llega con un id => la actividad no existe
@@ -52,25 +60,29 @@ export const Activities = () => {
 
       if (!activityExists) {
         //? Creo una nueva actividad
-        const activitiesID = activities.map(act => act.id);
-        const maxID = Math.max(...activitiesID);
-
-        await postService("activities/", {})
-        
-        newActivitiesList = activities.concat({
-          id: maxID + 1,
-          title: payload.title,
-          description: payload.description,
+        const { data: activityCreated } = await postService("activities/", {
+          name: payload.name,
+          content: payload.content,
         });
-        
+
+        newActivitiesList = activities.concat({
+          id: activityCreated.data.id,
+          name: activityCreated.data.name,
+          content: activityCreated.data.content,
+        });
       } else {
         //? Caso contrario, edita la actividad en funcion del id que me llega
+        await updateService(`activities/${payload.id}`, {
+          name: payload.name,
+          content: payload.content,
+        });
+
         newActivitiesList = activities.map(activity => {
           if (activity.id === payload.id) {
             return {
               id: activity.id,
-              title: payload.title,
-              description: payload.description,
+              name: payload.name,
+              content: payload.content,
             };
           }
 
@@ -119,7 +131,7 @@ export const Activities = () => {
                   <Route>
                     <td className='link-activity' colSpan='2'>
                       <Link to={`/backoffice/activities/${act.id}`}>
-                        {act.title}
+                        {act.name}
                       </Link>
                     </td>
                   </Route>
