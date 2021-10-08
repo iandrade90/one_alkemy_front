@@ -18,9 +18,17 @@ import {
 const adminList = [
   { title: "Novedades", icon: BsNewspaper, path: "/backoffice/news" },
   { title: "Actvidades", icon: VscChecklist, path: "/backoffice/activities" },
-  { title: "Categorias", icon: TiThListOutline, path: "/backoffice/categories",},
-  { title: "Testimonios", icon: BiMessageSquareDetail, path: "/backoffice/testimonios",},
-  { title: "Organizacion", icon: ImTree, path: "/backoffice/organizacion" },
+  {
+    title: "Categorias",
+    icon: TiThListOutline,
+    path: "/backoffice/categories",
+  },
+  {
+    title: "Testimonios",
+    icon: BiMessageSquareDetail,
+    path: "/backoffice/testimonios",
+  },
+  { title: "Organizacion", icon: ImTree, path: "/backoffice/edit-organization" },
   { title: "Slides", icon: ImImages, path: "/backoffice/slides" },
   { title: "Usuarios", icon: FiUsers, path: "/backoffice/users" },
   { title: "Miembros", icon: IoMdPeople, path: "/backoffice/miembros" },
@@ -28,7 +36,7 @@ const adminList = [
   { title: "Mi perfil", icon: IoMdPeople, path: "/backoffice/profile" },
 ];
 const standardList = [
-  { title: "Mi perfil", icon: IoMdPeople, path: "/perfil" },
+  { title: "Mi perfil", icon: IoMdPeople, path: "/backoffice/profile" },
 ];
 
 const Sidebar = ({ user, isOpen, closeSidebar }) => {

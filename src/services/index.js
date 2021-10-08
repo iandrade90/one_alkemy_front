@@ -28,4 +28,9 @@ const updateService = async (path, body) => {
   return response.data;
 };
 
-export { getAllService, postService, updateService, deleteService };
+const putService = async (path, body) => {
+  const response = await axios.put(`${config.base_server_path}${path}`, body);
+  return response;
+}
+
+export { getAllService, postService, putService, deleteService, updateService };

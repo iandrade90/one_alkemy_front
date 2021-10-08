@@ -14,10 +14,10 @@ const AppRouter = () => {
 
   useEffect(() => {
     const fetchMe = async () => {
-      const response = await getAllService("/auth/me");
+      const response = await getAllService("auth/me");
       dispatch(fillUserData(response.data));
     };
-    if (!user.firstName) {
+    if (!user.firstName && isLogged) {
       fetchMe();
     }
   }, [dispatch, user]);

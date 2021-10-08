@@ -14,7 +14,7 @@ const DetailsCard = () => {
   const [isFound, setIsFound] = useState(false);
   //Al montarse el componente recojemos los datos del endpoint
   useEffect(() => {
-    const data = getAllService(`/news/${id}`);
+    const data = getAllService(`news/${id}`);
     data.then((res) => {
       setImage(res.data.image);
       setName(res.data.name);
