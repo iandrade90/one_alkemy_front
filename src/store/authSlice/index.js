@@ -6,7 +6,7 @@ const authInitialState = {
     isAdmin: false,
     firstName: null,
     lastName: null,
-    avatar: null,
+    image: null,
     email: null,
   },
 };
