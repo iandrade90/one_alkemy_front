@@ -6,7 +6,7 @@ import React from 'react';
 const Carousel = ({arrayCarousel}) =>{   
 
         return(         
-            <div id="carouselExampleCaptions" className="carousel slide w-75 mt-5 " data-bs-ride="carousel" >
+            <div id="carouselExampleCaptions" className="carousel slide w-100" data-bs-ride="carousel" >
             <div className="carousel-indicators">
               <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
               <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>

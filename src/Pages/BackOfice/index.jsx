@@ -1,30 +1,74 @@
 import React from "react";
-import { Switch, Route } from "react-router-dom";
-import { BackofficeNavigation, Testimonials, ContactList } from "../../components";
+import { Switch, Route, Redirect } from "react-router-dom";
+import {
+  BackofficeNavigation,
+  Testimonials,
+  ContactList,
+  ListUser,
+  Categories,
+  DetailsCard,
+  ActivityDetail,
+  EditNameOrganization,
+} from "../../components";
 import { Activities } from "../../components/Activities";
-import { ListUser } from "../../components";
 import { Profile } from "../index";
-import {ActivityDetail} from "../../components";
 import NewsBackoffice from "../../components/NewsBackoffice";
+import { useSelector } from "react-redux";
 
 const BackOffice = () => {
+  const { isLogged , user } = useSelector((state) => state.user_auth)
   return (
     <BackofficeNavigation>
       <Switch>
-        <Route exact path='/backoffice/news'>
-          <div className='section-title'>
+        <Route exact path="/backoffice">
+          <Redirect to="/backoffice/news" />
+        </Route>
+        <Route exact path="/backoffice/news">
+          <div className="section-title">
             <h2>Novedades</h2>
           </div>
-          <div className='section-content flex-grow-1 vh-100 overflow-auto'>
+          <div className="section-content flex-grow-1 vh-100 overflow-auto">
             <NewsBackoffice />
           </div>
         </Route>
-        <Route exact path='/backoffice/activities'>
+        <Route path="/backoffice/news/:id">
+          <div className="section-title">
+            <h2>Novedades</h2>
+          </div>
+          <div className="section-content flex-grow-1 vh-100 overflow-auto">
+            <DetailsCard />
+          </div>
+        </Route>
+        <Route exact path='/backoffice/categories'>
           <div className='section-title'>
+            <h2>Categorias</h2>
+          </div>
+          <div className="section-content flex-grow-1 vh-100 overflow-auto">
+            <Categories />
+            </div>
+        </Route>
+        <Route exact path="/backoffice/activities">
+          <div className="section-title">
             <h2>Actividades</h2>
           </div>
           <div className="section-content flex-grow-1 vh-100 overflow-auto">
             <Activities />
+          </div>
+        </Route>
+        <Route path="/backoffice/activities/:id">
+          <div className="section-title">
+            <h2>Detalle de actividades</h2>
+          </div>
+          <div className="section-content flex-grow-1 vh-100 overflow-auto">
+            <ActivityDetail/>
+          </div>
+        </Route>
+        <Route path="/backoffice/edit-organization">
+          <div className="section-title">
+            <h2>Organización</h2>
+          </div>
+          <div className="section-content flex-grow-1 vh-100 overflow-auto">
+            <EditNameOrganization/>
           </div>
         </Route>
         <Route path="/backoffice/testimonios">
@@ -45,17 +89,17 @@ const BackOffice = () => {
         </Route>
         <Route path="/backoffice/profile">
           <div className="section-title">
-            <h2>Perfil de Iván</h2>
+            <h2>Perfil de {user?.firstName}</h2>
           </div>
           <div className="section-content flex-grow-1 vh-100 overflow-auto">
             <Profile />
           </div>
         </Route>
-        <Route path='/backoffice/contacts'>
-          <div className='section-title'>
+        <Route path="/backoffice/contacts">
+          <div className="section-title">
             <h2>Contactos</h2>
           </div>
-          <div className='section-content flex-grow-1 vh-100 overflow-auto'>
+          <div className="section-content flex-grow-1 vh-100 overflow-auto">
             <ContactList />
           </div>
         </Route>

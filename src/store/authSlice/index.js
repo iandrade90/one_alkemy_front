@@ -6,7 +6,7 @@ const authInitialState = {
     isAdmin: false,
     firstName: null,
     lastName: null,
-    avatar: null,
+    image: null,
     email: null,
   },
 };
@@ -19,8 +19,8 @@ export const authSlice = createSlice({
       state.user = action.payload;
       state.isLogged = true;
     },
-    resetUserData: (state) => {
-      state.user = authInitialState;
+    resetUserData: (state ) => {
+      state.user = authInitialState.user;
       state.isLogged = false;
     },
   },
