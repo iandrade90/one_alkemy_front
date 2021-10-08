@@ -25,7 +25,7 @@ const ContactForm = () => {
           email: values.email,
           message: values.message,
         };
-        postService('/contacts', userData)
+        postService('contacts', userData)
           .then(success =>  Alert({
             title:`Gracias por contactarte con nosotros!`,
             text:"Hecho",

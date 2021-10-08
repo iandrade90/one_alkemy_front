@@ -28,7 +28,7 @@ const adminList = [
     icon: BiMessageSquareDetail,
     path: "/backoffice/testimonios",
   },
-  { title: "Organizacion", icon: ImTree, path: "/backoffice/organizacion" },
+  { title: "Organizacion", icon: ImTree, path: "/backoffice/edit-organization" },
   { title: "Slides", icon: ImImages, path: "/backoffice/slides" },
   { title: "Usuarios", icon: FiUsers, path: "/backoffice/users" },
   { title: "Miembros", icon: IoMdPeople, path: "/backoffice/miembros" },

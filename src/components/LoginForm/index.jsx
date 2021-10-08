@@ -82,8 +82,8 @@ const LoginForm = () => {
                 </div>
               ) : null}
             </div>
-            <div className="form-group form-g mt-4">
-              <label for="password">Contraseña</label>
+            <div className='form-group form-g mt-4'>
+              <label htmlFor='password'>Contraseña</label>
               <input
                 placeholder=" "
                 type="password"
@@ -112,7 +112,7 @@ const LoginForm = () => {
                   className="custom-control-input"
                   id="customCheck1"
                 />
-                <label className="custom-control-label ms-2" for="customCheck1">
+                <label className='custom-control-label ms-2' htmlFor='customCheck1'>
                   Recordarme
                 </label>
               </div>

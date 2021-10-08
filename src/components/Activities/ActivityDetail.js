@@ -10,7 +10,7 @@ const ActivityDetail = () => {
   const [message, setMessage] = useState("");
 
   useEffect(() => {
-    getAllService(`/activities/${id}`)
+    getAllService(`activities/${id}`)
       .then((response) => {
         setActivityDetail(response.data);
       })
