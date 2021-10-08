@@ -38,7 +38,7 @@ export const Activities = () => {
     setActivityData({});
     setModalOpen(false);
   };
-  const open = activity => {
+  const open = (activity) => {
     setActivityData(activity);
     setModalOpen(true);
   };
@@ -50,7 +50,7 @@ export const Activities = () => {
       await deleteService(`activities/${payload.data.id}`);
 
       newActivitiesList = activities.filter(
-        activity => activity.id !== payload.data.id
+        (activity) => activity.id !== payload.data.id
       );
 
       setActivities(newActivitiesList);
@@ -101,13 +101,14 @@ export const Activities = () => {
   return (
     <>
       <table
-        className='table table-hover caption-top align-middle'
-        style={{ fontFamily: "Poppins" }}>
+        className="table table-hover caption-top align-middle"
+        style={{ fontFamily: "Poppins" }}
+      >
         <caption>
-          <div className='d-flex justify-content-between'>
+          <div className="d-flex justify-content-between">
             <div>Lista de actividades</div>
             <div>
-              <button className='btn btn btn-primary' onClick={() => open({})}>
+              <button className="btn btn btn-primary" onClick={() => open({})}>
                 Crear actividad
               </button>
             </div>
@@ -115,19 +116,19 @@ export const Activities = () => {
         </caption>
         <thead>
           <tr>
-            <th scope='col'>ID</th>
-            <th scope='col'>Nombre de Actividad</th>
-            <th scope='col'></th>
-            <th scope='col' className='text-center'>
+            <th scope="col">ID</th>
+            <th scope="col">Nombre de Actividad</th>
+            <th scope="col"></th>
+            <th scope="col" className="text-center">
               Acciones
             </th>
           </tr>
         </thead>
         <tbody>
           {activities
-            ? activities.map(act => (
+            ? activities.map((act) => (
                 <tr key={act.id}>
-                  <th scope='row'>{act.id}</th>
+                  <th scope="row">{act.id}</th>
                   <Route>
                     <td className='link-activity' colSpan='2'>
                       <Link to={`/backoffice/activities/${act.id}`}>
@@ -136,15 +137,17 @@ export const Activities = () => {
                     </td>
                   </Route>
                   <td>
-                    <div className='d-flex justify-content-center align-items-center'>
+                    <div className="d-flex justify-content-center align-items-center">
                       <button
-                        className='btn btn-sm btn-secondary me-2'
-                        onClick={() => open(act)}>
+                        className="btn btn-sm btn-secondary me-2"
+                        onClick={() => open(act)}
+                      >
                         Editar
                       </button>
                       <button
-                        className='btn btn-sm btn-danger'
-                        onClick={() => open({ act, delete: true })}>
+                        className="btn btn-sm btn-danger"
+                        onClick={() => open({ act, delete: true })}
+                      >
                         Borrar
                       </button>
                     </div>

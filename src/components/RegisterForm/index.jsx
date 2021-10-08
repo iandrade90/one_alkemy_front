@@ -37,7 +37,6 @@ const RegisterForm = () => {
         try {
           const response = await postService("auth/register", userData);
           resetForm();
-          console.log(response.data);
           await Alert({
             icon: "success",
             title: `Bienvenido ${userData.firstName || ""}`,

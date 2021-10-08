@@ -5,6 +5,7 @@ import {
   Testimonials,
   ContactList,
   ListUser,
+  Categories,
   DetailsCard,
 } from "../../components";
 import { Activities } from "../../components/Activities";
@@ -39,6 +40,14 @@ const BackOffice = () => {
           </div>
           <div className="section-content flex-grow-1 vh-100 overflow-auto">
             <Activities />
+          </div>
+        </Route>
+        <Route exact path='/backoffice/categories'>
+          <div className='section-title'>
+            <h2>Categorias</h2>
+          </div>
+          <div className="section-content flex-grow-1 vh-100 overflow-auto">
+            <Categories />
           </div>
         </Route>
         <Route path="/backoffice/testimonios">
