@@ -36,7 +36,7 @@ const adminList = [
   { title: "Mi perfil", icon: IoMdPeople, path: "/backoffice/profile" },
 ];
 const standardList = [
-  { title: "Mi perfil", icon: IoMdPeople, path: "/perfil" },
+  { title: "Mi perfil", icon: IoMdPeople, path: "/backoffice/profile" },
 ];
 
 const Sidebar = ({ user, isOpen, closeSidebar }) => {
