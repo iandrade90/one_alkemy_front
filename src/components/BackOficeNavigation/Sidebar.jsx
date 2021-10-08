@@ -75,7 +75,7 @@ const Sidebar = ({ user, isOpen, closeSidebar }) => {
         <div className='profile-section'>
           <div className='d-flex align-items-center'>
             <img
-              src={user.avatar}
+              src={user.image}
               alt=''
             />
             <div className='d-flex flex-column ms-2'>

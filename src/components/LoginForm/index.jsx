@@ -4,7 +4,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { HiExclamationCircle as DangerIcon } from "../../icons";
 import { postService } from "../../services";
-import { useHistory } from "react-router";
+import { useHistory, Link } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
 import { fillUserData } from "../../store/authSlice";
@@ -54,7 +54,7 @@ const LoginForm = () => {
       <div className="">
         {/* TOP */}
         <div className="d-flex flex-column align-items-center top-form px-5 text-center ">
-          <img src="./assets/logo.png" alt="" className="navbar-logo" />
+          <img src="./assets/logo.png" alt="" className="logo" />
           <h2>Inicia sesión con tu cuenta</h2>
         </div>
         {/* BOTTOM */}
@@ -125,6 +125,12 @@ const LoginForm = () => {
               <button className="btn login" type="submit">
                 Inciar sesión
               </button>
+            </div>
+            <div className='redirect'>
+              <p>
+                No tienes cuenta?
+                <Link to='/register'>Resgistrate acá</Link>
+              </p>
             </div>
           </form>
         </div>
