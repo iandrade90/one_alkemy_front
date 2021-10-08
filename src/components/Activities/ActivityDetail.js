@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { getAllService } from "../../services";
 import "./ActivityDetail.css";
 import { useParams } from "react-router-dom";
+import ReactHtmlParser from 'react-html-parser';
 
 const ActivityDetail = () => {
   const { id } = useParams();
@@ -18,6 +19,7 @@ const ActivityDetail = () => {
         setMessage(error);
       });
   }, [setActivityDetail]);
+
   return (
     <>
       {message !== "" ? (
@@ -44,7 +46,10 @@ const ActivityDetail = () => {
                     {" "}
                     {activityDetail.name}
                   </h4>
-                  <p className="card-text">{activityDetail.content}</p>
+                  {/* <p className="card-text">{activityDetail.content}</p> */}
+                  <div className="card-text">
+                    {ReactHtmlParser(activityDetail.content)}
+                  </div>
                 </div>
               </div>
             </div>

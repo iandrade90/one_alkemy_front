@@ -29,7 +29,7 @@ const activitiesData = [
 ];
 
 export const Activities = () => {
-  const [activities, setActivities] = useState();
+  const [activities, setActivities] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
   const [activityData, setActivityData] = useState({});
   console.log(activities);
@@ -60,7 +60,7 @@ export const Activities = () => {
 
       if (!activityExists) {
         //? Creo una nueva actividad
-        const { data: activityCreated } = await postService("activities/", {
+        const { data: activityCreated } = await postService("activities", {
           name: payload.name,
           content: payload.content,
         });

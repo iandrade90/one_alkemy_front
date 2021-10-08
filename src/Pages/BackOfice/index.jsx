@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 import {
   BackofficeNavigation,
   Testimonials,
@@ -20,6 +20,9 @@ const BackOffice = () => {
   return (
     <BackofficeNavigation>
       <Switch>
+        <Route exact path="/backoffice">
+          <Redirect to="/backoffice/news" />
+        </Route>
         <Route exact path="/backoffice/news">
           <div className="section-title">
             <h2>Novedades</h2>
