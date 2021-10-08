@@ -13,7 +13,7 @@ const LINKS = [
   },
   {
     name: "Nosotros",
-    route: "/nosotros",
+    route: "/us",
   },
   {
     name: "Servicios",
