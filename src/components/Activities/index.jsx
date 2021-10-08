@@ -4,6 +4,12 @@ import { AnimatePresence } from "framer-motion";
 import { Route } from "react-router";
 import { Link } from "react-router-dom";
 import "./style.css";
+import {
+  deleteService,
+  getAllService,
+  postService,
+  updateService,
+} from "../../services";
 const activitiesData = [
   {
     id: 1,
@@ -26,6 +32,7 @@ export const Activities = () => {
   const [activities, setActivities] = useState();
   const [modalOpen, setModalOpen] = useState(false);
   const [activityData, setActivityData] = useState({});
+  console.log(activities);
 
   const close = () => {
     setActivityData({});
@@ -36,16 +43,16 @@ export const Activities = () => {
     setModalOpen(true);
   };
 
-  //! Posteriormene estas acciones seran acompañadas por sus respectivas peticiones a al API
-  const handleSubmit = (payload) => {
-    //? Veo el atributo 'type' para decidir que tipo de accion debo hacer con lo que me llega desde modal
-    //todo EN CADA SITUACION SE DEBE REALIZAR LA PETICION AL ENDPOINT CORRESPONDIENTE
+  const handleSubmit = async payload => {
     let newActivitiesList;
 
     if (payload.type === "delete") {
+      await deleteService(`activities/${payload.data.id}`);
+
       newActivitiesList = activities.filter(
         (activity) => activity.id !== payload.data.id
       );
+
       setActivities(newActivitiesList);
     } else {
       //? Si el payload no llega con un id => la actividad no existe
@@ -53,22 +60,29 @@ export const Activities = () => {
 
       if (!activityExists) {
         //? Creo una nueva actividad
-        const activitiesID = activities.map((act) => act.id);
-        const maxID = Math.max(...activitiesID);
+        const { data: activityCreated } = await postService("activities/", {
+          name: payload.name,
+          content: payload.content,
+        });
 
         newActivitiesList = activities.concat({
-          id: maxID + 1,
-          title: payload.title,
-          description: payload.description,
+          id: activityCreated.data.id,
+          name: activityCreated.data.name,
+          content: activityCreated.data.content,
         });
       } else {
         //? Caso contrario, edita la actividad en funcion del id que me llega
-        newActivitiesList = activities.map((activity) => {
+        await updateService(`activities/${payload.id}`, {
+          name: payload.name,
+          content: payload.content,
+        });
+
+        newActivitiesList = activities.map(activity => {
           if (activity.id === payload.id) {
             return {
               id: activity.id,
-              title: payload.title,
-              description: payload.description,
+              name: payload.name,
+              content: payload.content,
             };
           }
 
@@ -80,9 +94,8 @@ export const Activities = () => {
     close();
   };
 
-  //? OP: Una vez que este implementado en endpoint se utilizara para obtener la infomacion, mientras tanto se utiliza un arraty
   useEffect(() => {
-    setActivities(activitiesData);
+    getAllService("activities").then(({ data }) => setActivities(data.data));
   }, []);
 
   return (
@@ -117,9 +130,9 @@ export const Activities = () => {
                 <tr key={act.id}>
                   <th scope="row">{act.id}</th>
                   <Route>
-                    <td className="link-activity" colSpan="2">
+                    <td className='link-activity' colSpan='2'>
                       <Link to={`/backoffice/activities/${act.id}`}>
-                        {act.title}
+                        {act.name}
                       </Link>
                     </td>
                   </Route>
