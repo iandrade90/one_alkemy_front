@@ -20,6 +20,7 @@ import DetailsCard from "./DetailsCard";
 import ContactList from "./ContactList";
 import Categories from "./Categories";
 import Members from "./Members";
+import Header from "./Header";
 
 export {
   ListUser,
@@ -44,4 +45,5 @@ export {
   Categories,
   DetailsCard,
   Members,
+  Header,
 };
