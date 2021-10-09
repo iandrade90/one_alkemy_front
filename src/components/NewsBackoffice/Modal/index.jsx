@@ -69,7 +69,7 @@ const DeleteModal = ({ onSubmit, data }) => {
           <h4>Eliminar Novedad</h4>
           <p>
             Estas seguro que deseas eliminar la novedad{" "}
-            <strong>{data.title}</strong> ? Toda la información relacionada sera
+            <strong>{data.name}</strong> ? Toda la información relacionada sera
             eliminada permanentemente. Esta acción no puede deshacerse.
           </p>
         </div>
@@ -86,12 +86,12 @@ const DeleteModal = ({ onSubmit, data }) => {
 };
 
 const CreationUpdateModal = ({ onSubmit, data }) => {
-  const isEdit = "title" in data;
-  const [title, setTitle] = useState(isEdit ? data.title : "");
+  const isEdit = "name" in data;
+  const [name, setName] = useState(isEdit ? data.name : "");
   const [content, setContent] = useState(
     isEdit ? data.content : ""
   );
-  const [category, setCategory] = useState(isEdit ? data.category : "");
+  const [type, setType] = useState(isEdit ? data.type : "");
   const [image, setImage] = useState(isEdit ? data.image : "");
 
   return (
@@ -109,11 +109,11 @@ const CreationUpdateModal = ({ onSubmit, data }) => {
               </label>
               <input
                 type='text'
-                value={title}
+                value={name}
                 className='form-control'
                 id='formGroupExampleInput'
-                onChange={e => {
-                  setTitle(e.target.value);
+                onChange={(event) => {
+                  setName(event.target.value);
                 }}
               />
             </div>
@@ -155,9 +155,9 @@ const CreationUpdateModal = ({ onSubmit, data }) => {
                 name='category'
                 className='form-control'
                 placeholder='Categoría'
-                value={category}
+                value={type}
                 onChange={(event) => {
-                  setCategory(event.target.value);
+                  setType(event.target.value);
                 }}
               />
             </div>
@@ -167,7 +167,7 @@ const CreationUpdateModal = ({ onSubmit, data }) => {
       <div className='d-flex justify-content-center modal-sms-footer'>
         <button
           className='btn btn-confirm shadow-sm'
-          onClick={() => onSubmit({title, image, content, category, id: data.id})}>
+          onClick={() => onSubmit({name: name, image: image, content: content, type: type, id: data.id})}>
           Guardar
         </button>
       </div>

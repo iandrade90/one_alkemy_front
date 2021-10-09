@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from "react";
 import Modal from "./Modal";
 import { AnimatePresence } from "framer-motion";
-import { deleteService, getAllService } from "../../services";
+import { deleteService, getAllService, postService, updateService } from "../../services";
 import { BsPencil, BsTrash } from "../../icons/index";
 import { Route } from "react-router";
 import { Link } from "react-router-dom";
 
 const NewsBackoffice = () => {
-  const [news, setNews] = useState({});
   const [modal, setModal] = useState(false);
-  const [newsData, setNewsData] = useState();
+  const [newsData, setNewsData] = useState([]);
   const [newsActData, setNewsActData] = useState({});
 
   const close = () => {
@@ -23,21 +22,16 @@ const NewsBackoffice = () => {
   };
 
   useEffect(() => {
-    const data = getAllService(`news`);
-    data.then((res) => {
-      setNewsData(res.data);
-      setNews(res.data);
-    });
+    getAllService("news").then((res) =>
+      setNewsData(res.data));
   }, []);
-  const handleSubmit = (payload) => {
-    //? Veo el atributo 'type' para decidir que tipo de accion debo hacer con lo que me llega desde modal
-    //todo EN CADA SITUACION SE DEBE REALIZAR LA PETICION AL ENDPOINT CORRESPONDIENTE
+
+  const handleSubmit = async (payload) => {
     let newNewsList;
 
     if (payload.type === "delete") {
-      //Borra la novedad de la base de datos
-      deleteService(`news/${payload.data.id}`);
-      //Borra la novedad del front sin realizar otra llamada a la base de datos para actualizar
+      await deleteService(`news/${payload.data.id}`);
+
       newNewsList = newsData.filter((news) => news.id !== payload.data.id);
       setNewsData(newNewsList);
     } else {
@@ -46,26 +40,38 @@ const NewsBackoffice = () => {
 
       if (!newsExists) {
         //? Creo una nueva actividad
-        const newsID = newsData.map((news) => news.id);
-        const maxID = Math.max(...newsID);
-
-        newNewsList = newsData.concat({
-          id: maxID + 1,
-          title: payload.title,
+        const { data } = await postService("news", {
+          name: payload.name,
           image: payload.image,
           content: payload.content,
-          category: payload.category,
+          type: payload.type,
         });
+
+        newNewsList = newsData.concat({
+          id: data.id,
+          name: data.name,
+          image: data.image,
+          content: data.content,
+          type: data.type,
+        });
+        console.log(newNewsList);
       } else {
         //? Caso contrario, edita la actividad en funcion del id que me llega
+        await updateService(`news/${payload.id}`, {
+          name: payload.name,
+          image: payload.image,
+          content: payload.content,
+          type: payload.type,
+        })
+
         newNewsList = newsData.map((news) => {
           if (news.id === payload.id) {
             return {
               id: payload.id,
-              title: payload.title,
+              name: payload.name,
               image: payload.image,
               content: payload.content,
-              category: payload.category,
+              type: payload.type,
             };
           }
 
