@@ -1,59 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { getAllService } from '../../services';
 import { AiOutlineEdit, AiOutlineDelete } from "react-icons/ai";
 
-const initialList = [
-    {
-        id: 1,
-        firstName: "leandro",
-        lastName: "suarez",
-        email: "leandro@gmail.com",
-    },
-    {
-        id: 2,
-        firstName: "matias",
-        lastName: "Gonzalez",
-        email: "leandro@gmail.com",
-    },
-    {
-        id: 3,
-        firstName: "carlos",
-        lastName: "gonzalez",
-        email: "leandro@gmail.com",
-    },
-    {
-        id: 4,
-        firstName: "leandro",
-        lastName: "suarez",
-        email: "leandro@gmail.com",
-    },
-    {
-        id: 5,
-        firstName: "leandro",
-        lastName: "suarez",
-        email: "leandro@gmail.com",
-    },
-    {
-        id: 6,
-        firstName: "leandro",
-        lastName: "suarez",
-        email: "leandro@gmail.com",
-    },
-    {
-        id: 7,
-        firstName: "test",
-        lastName: "test",
-        email: "test@gmail.com",
-    },
-];
-
 const ListUser = () => {
-    const [listUser, setListUser] = useState(initialList);
-    const [userSelected, setUserSelected] = useState({
-        id: '',
-        firstName: "",
-        lastName: "",
-        email: "",
-    })
+    const [listUser, setListUser] = useState([]);
+
+  useEffect(() => {
+      getAllService("users").then((res) =>
+        setListUser(res.data));
+    }, []);
 
     return (
         <div className='container'>
