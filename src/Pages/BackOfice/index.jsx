@@ -9,6 +9,7 @@ import {
   DetailsCard,
   ActivityDetail,
   EditNameOrganization,
+  Members,
 } from "../../components";
 import { Activities } from "../../components/Activities";
 import { Profile } from "../index";
@@ -16,7 +17,7 @@ import NewsBackoffice from "../../components/NewsBackoffice";
 import { useSelector } from "react-redux";
 
 const BackOffice = () => {
-  const { isLogged , user } = useSelector((state) => state.user_auth)
+  const { isLogged, user } = useSelector((state) => state.user_auth);
   return (
     <BackofficeNavigation>
       <Switch>
@@ -39,13 +40,13 @@ const BackOffice = () => {
             <DetailsCard />
           </div>
         </Route>
-        <Route exact path='/backoffice/categories'>
-          <div className='section-title'>
+        <Route exact path="/backoffice/categories">
+          <div className="section-title">
             <h2>Categorias</h2>
           </div>
           <div className="section-content flex-grow-1 vh-100 overflow-auto">
             <Categories />
-            </div>
+          </div>
         </Route>
         <Route exact path="/backoffice/activities">
           <div className="section-title">
@@ -60,7 +61,7 @@ const BackOffice = () => {
             <h2>Detalle de actividades</h2>
           </div>
           <div className="section-content flex-grow-1 vh-100 overflow-auto">
-            <ActivityDetail/>
+            <ActivityDetail />
           </div>
         </Route>
         <Route path="/backoffice/edit-organization">
@@ -68,7 +69,7 @@ const BackOffice = () => {
             <h2>Organización</h2>
           </div>
           <div className="section-content flex-grow-1 vh-100 overflow-auto">
-            <EditNameOrganization/>
+            <EditNameOrganization />
           </div>
         </Route>
         <Route path="/backoffice/testimonios">
@@ -85,6 +86,14 @@ const BackOffice = () => {
           </div>
           <div className="section-content flex-grow-1 vh-100 overflow-auto">
             <ListUser />
+          </div>
+        </Route>
+        <Route path="/backoffice/members">
+          <div className="section-title">
+            <h2>Miembros</h2>
+          </div>
+          <div className="section-content flex-grow-1 vh-100 overflow-auto">
+            <Members />
           </div>
         </Route>
         <Route path="/backoffice/profile">

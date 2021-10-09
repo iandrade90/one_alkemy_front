@@ -18,7 +18,9 @@ import ActivityDetail from "./Activities/ActivityDetail";
 import NewsBackoffice from "./NewsBackoffice";
 import DetailsCard from "./DetailsCard";
 import ContactList from "./ContactList";
-import Categories from './Categories';
+import Categories from "./Categories";
+import Members from "./Members";
+import Header from "./Header";
 
 export {
   ListUser,
@@ -42,4 +44,6 @@ export {
   ContactList,
   Categories,
   DetailsCard,
+  Members,
+  Header,
 };
