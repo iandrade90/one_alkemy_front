@@ -32,7 +32,6 @@ export const Activities = () => {
   const [activities, setActivities] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
   const [activityData, setActivityData] = useState({});
-  console.log(activities);
 
   const close = () => {
     setActivityData({});
