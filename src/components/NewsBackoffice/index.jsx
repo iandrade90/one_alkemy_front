@@ -117,7 +117,7 @@ const NewsBackoffice = () => {
                         <td>
                           <div className="link-activity" colSpan="2">
                             <Link to={`/backoffice/news/${item.id}`}>
-                              <td>{item.name}</td>
+                              {item.name}
                             </Link>
                           </div>
                         </td>

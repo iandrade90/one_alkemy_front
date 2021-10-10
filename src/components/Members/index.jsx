@@ -115,7 +115,7 @@ const Members = () => {
                         <td>
                           <div className="link-activity" colSpan="2">
                             <Link to={`/backoffice/members/${item.id}`}>
-                              <td>{item.name}</td>
+                              {item.name}
                             </Link>
                           </div>
                         </td>
