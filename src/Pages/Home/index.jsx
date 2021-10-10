@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Footer, Slider } from "../../components";
 import Header from "../../components/Header/index";
 import { getAllService } from "../../services";
+import ReactHtmlParser from "react-html-parser";
 require("./index.css");
 
 const Home = () => {
@@ -38,7 +39,7 @@ const Home = () => {
                 </div>
                 <div className="card-body">
                   <h5 className="card-title">{news.name}</h5>
-                  <p className="card-text">{news.content}</p>
+                  <p className="card-text">{ReactHtmlParser(news.content)}</p>
                 </div>
               </div>
             </div>
