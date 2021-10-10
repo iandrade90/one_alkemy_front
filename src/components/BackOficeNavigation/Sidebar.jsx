@@ -77,6 +77,7 @@ const Sidebar = ({ user, isOpen, closeSidebar }) => {
               </NavLink>
             ))}
           </div>
+          </div>
 
         <div className="profile-section mt-3">
           <div className="d-flex align-items-center">
@@ -94,7 +95,6 @@ const Sidebar = ({ user, isOpen, closeSidebar }) => {
             <GoSignOut className="icon" />
           </Link>
         </div>
-      </div>
 
       </div>
     </div>
