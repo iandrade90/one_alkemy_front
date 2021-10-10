@@ -7,15 +7,6 @@ import "./formEditSlide.css";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 
-const initialWelcome = {
-  titulo: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-};
-const initialSlide = {
-
-  text: "",
-  imageUrl: "",
-};
-
 const welcomeSchema = Yup.object({
   titulo: Yup.string()
     .required("Título requerido")
@@ -50,15 +41,12 @@ function FormEditSlide() {
     onSubmitProps.setSubmitting(false);
   };
 
-  const [imagePreview, setImagePreview] = useState("");
   const [titulo, setTitulo] = useState("");
 
   const [slides, setSlides] = useState([]);
-  // const [slidePreview, setSlidePreview] = useState([]);
   const [slideFile1, setSlideFile1] = useState(null); //!importante el file
 
   useEffect(() => {
-    // if(imagePreview===""){
     getAllService("/slides")
       .then((response) => {
         setSlides(response.data);
@@ -66,11 +54,9 @@ function FormEditSlide() {
       .catch((error) => {
         console.log(error);
       });
-    // }
   }, []);
 
   useEffect(() => {
-    // if(titulo===""){
     getAllService("/organizations/1/public")
       .then((response) => {
         setTitulo(response.data.welcomeText);
@@ -78,7 +64,6 @@ function FormEditSlide() {
       .catch((error) => {
         console.log(error);
       });
-    // }
   }, []);
 
   const imageHandler = (e, slide) => {

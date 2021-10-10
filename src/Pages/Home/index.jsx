@@ -7,6 +7,17 @@ require("./index.css");
 
 const Home = () => {
   const [newsData, setNewsData] = useState([]);
+  const [welcomeText, setWelcomeText] = useState('');
+
+  useEffect(() => {
+    getAllService("organizations/1/public")
+    .then((res) => {
+      setWelcomeText(res.data.welcomeText);
+    })
+    .catch((error)=>{
+      console.log(error)
+    })
+  }, []);
 
   useEffect(() => {
     getAllService("news").then((res) => {
@@ -19,7 +30,7 @@ const Home = () => {
       <Header />
       <div className="container-fluid">
         <Slider />
-        <h1 className="text-center my-4">Welcome Text</h1>
+        <h1 className="text-center my-4">{welcomeText}</h1>
         <h2 className="text-center my-4">Novedades</h2>
         <div className="row">
           {newsData.map((news, i) => (

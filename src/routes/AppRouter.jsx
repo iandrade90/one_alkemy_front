@@ -28,9 +28,10 @@ const AppRouter = () => {
         <Route exact path="/novedades" component={News} />
         <Route exact path="/register" component={RegisterForm} />
         <Route exact path="/login" component={LoginForm} />
-        <Route path="/backoffice" component={BackOffice} />
+        <PrivateRouter path="/backoffice" component={BackOffice} />
         <Route exact path="/contact" component={ContactPage} />
-        <Route exact path="/us" component={UsPage} />
+        <Route exact path="/nosotros" component={UsPage} />
+        <Route  path="/contacto" component={ContactPage} />
       </Switch>
     </Router>
   );

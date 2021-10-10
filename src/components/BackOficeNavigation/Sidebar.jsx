@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useHistory } from "react-router-dom";
+import { NavLink,Link , useHistory} from "react-router-dom";
 import "./style.css";
 
 import {
@@ -69,10 +69,10 @@ const Sidebar = ({ user, isOpen, closeSidebar }) => {
           {/* LINKS */}
           <div className="links">
             {items.map(({ icon: Icon, title, path }, index) => (
-              <Link to={path} key={index}>
+              <NavLink to={path} key={index}>
                 <Icon className="icon" />
                 <span>{title}</span>
-              </Link>
+              </NavLink>
             ))}
           </div>
         </div>

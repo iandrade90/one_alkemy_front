@@ -13,7 +13,7 @@ const LINKS = [
   },
   {
     name: "Nosotros",
-    route: "/us",
+    route: "/nosotros",
   },
   {
     name: "Servicios",
@@ -27,6 +27,10 @@ const LINKS = [
     name: "Contenido",
     route: "/contenido",
   },
+  {
+    name: "Contacto",
+    route: "/contacto",
+  }
 ];
 
 const Header = () => {
@@ -46,13 +50,13 @@ const Header = () => {
   return (
     <nav className='navbar navbar-expand-lg navbar-light shadow-sm'>
       <div className='container-fluid flex align-items-center py-1'>
-        <Link to='/'>
+      <NavLink to="/">
           <img
             src={publicInfo && publicInfo.logo}
             className='navbar-logo'
             alt=''
           />
-        </Link>
+        </NavLink>
         <button
           className='navbar-toggler'
           type='button'
@@ -152,7 +156,7 @@ const Header = () => {
                 <div className='d-flex d-lg-none align-items-center justify-content-between flex-grow-1'>
                   <div className='d-flex align-items-center user '>
                     <button className='d-block user-image overflow-hidden rounded-circle border '>
-                      <img src={user.avatar} alt='' />
+                      <img src={user.image} alt='' />
                     </button>
                     <div className='d-lg-none d-flex flex-column ms-2 user-details justify-content-center'>
                       <Link className='user-name' to='/backoffice/profile'>
@@ -163,7 +167,7 @@ const Header = () => {
                   </div>
                   <div className='mobile-buttons'>
                     {user?.isAdmin && (
-                      <Link to='/backoffice/'>
+                      <Link to="/backoffice/news">
                         <HiClipboardList className=' icon me-2 h-100 text-secondary' />
                       </Link>
                     )}

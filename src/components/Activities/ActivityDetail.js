@@ -1,4 +1,3 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { getAllService } from "../../services";
 import "./ActivityDetail.css";
@@ -11,14 +10,16 @@ const ActivityDetail = () => {
   const [message, setMessage] = useState("");
 
   useEffect(() => {
-    getAllService(`activities/${id}`)
-      .then((response) => {
-        setActivityDetail(response.data);
-      })
-      .catch((error) => {
-        setMessage(error);
-      });
-  }, [setActivityDetail]);
+    if (id) {
+      getAllService(`activities/${id}`)
+        .then((response) => {
+          setActivityDetail(response.data);
+        })
+        .catch((error) => {
+          setMessage(error);
+        });
+    }
+  }, [id]);
 
   return (
     <>

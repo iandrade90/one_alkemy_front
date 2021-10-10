@@ -106,7 +106,7 @@ const Categories = () => {
             <tbody>
               {categories
                 ? categories.map((item) => (
-                    <tr key={item.id}>
+                  <tr key={item.id} className='align-middle'>
                       <td>{item.name}</td>
                       <td>{ReactHtmlParser(item.description)}</td>
                       <td>

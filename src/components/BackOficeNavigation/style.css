@@ -34,6 +34,7 @@
   #sidebar {
     position: relative;
     transform: translateX(0);
+    /* height: 100%; */
   }
 }
 

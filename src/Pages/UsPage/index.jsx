@@ -22,7 +22,7 @@ const UsPage = () => {
           <div className="carousel-item active">
             <div className="d-flex justify-content-center">
               {data.slice(0, 3).map((item) => (
-                <div className="col-3 text-center">
+                <div key={item.id} className="col-3 text-center">
                   <div className="mx-2">
                     <img
                       src={item.image}
@@ -40,7 +40,7 @@ const UsPage = () => {
           <div className="carousel-item">
             <div className="d-flex justify-content-center">
               {data.slice(3, 6).map((item) => (
-                <div className="col-3 text-center">
+                <div key={item.id} className="col-3 text-center">
                   <div className=" mx-2">
                     <img
                       src={item.image}
