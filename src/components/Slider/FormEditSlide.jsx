@@ -1,196 +1,287 @@
 import React from "react";
-import { Formik, Form, Field, FieldArray, ErrorMessage } from "formik";
+import { useState } from "react";
+import { useEffect } from "react";
+import { getAllService, putService } from "../../services";
+import { Alert } from "..";
+import "./formEditSlide.css";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 
+const initialWelcome = {
+  titulo: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+};
 const initialSlide = {
-  titulo: "",
-  slides: [
-    {
-      text: "",
-      image: "",
-    },
-    {
-      text: "",
-      image: "",
-    },
-    {
-      text: "",
-      image: "",
-    },
-  ],
+
+  text: "",
+  imageUrl: "",
 };
 
-const slideSchema = Yup.object().shape({
+const welcomeSchema = Yup.object({
   titulo: Yup.string()
     .required("Título requerido")
     .min(20, "Mínimo 20 caracteres"),
-  slides: Yup.array().of(
-    Yup.object().shape({
-      text: Yup.string().required("Texto requerido"),
-      image: Yup.mixed().required("Requiere una imagen"),
-    })
-  ),
+});
+
+const slideSchema = Yup.object().shape({
+  text: Yup.string().required("Texto requerido"),
 });
 
 function FormEditSlide() {
-  const onSubmit = (values, onSubmitProps) => {
+  const onSubmitWelcome = async (values, onSubmitProps) => {
+    await putService(`organizations/1`, { welcomeText: values.titulo })
+      .then((response) => {
+        Alert({
+          title: response.data.message,
+          text: "Hecho",
+          icon: "success",
+          showConfirmButton: false,
+          timer: 2000,
+        });
+      })
+      .catch((error) => {
+        Alert({
+          icon: "error",
+          title: `${error?.message || "Ops..."}`,
+          text: error?.message,
+          timer: 1500,
+        });
+        console.log(error);
+      });
     onSubmitProps.setSubmitting(false);
+  };
 
-    onSubmitProps.resetForm();
+  const [imagePreview, setImagePreview] = useState("");
+  const [titulo, setTitulo] = useState("");
+
+  const [slides, setSlides] = useState([]);
+  // const [slidePreview, setSlidePreview] = useState([]);
+  const [slideFile1, setSlideFile1] = useState(null); //!importante el file
+
+  useEffect(() => {
+    // if(imagePreview===""){
+    getAllService("/slides")
+      .then((response) => {
+        setSlides(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    // }
+  }, []);
+
+  useEffect(() => {
+    // if(titulo===""){
+    getAllService("/organizations/1/public")
+      .then((response) => {
+        setTitulo(response.data.welcomeText);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    // }
+  }, []);
+
+  const imageHandler = (e, slide) => {
+    const file = e.target.files[0];
+    const reader = new FileReader();
+    if (file) {
+      reader.onload = () => {
+        if (reader.readyState === 2) {
+          const editedSlides = slides.map((object) => {
+            if (object.id === slide.id) {
+              return {
+                id: slide.id,
+                text: slide.text,
+                imageUrl: reader.result,
+              };
+            } else return object;
+          });
+          setSlides(editedSlides);
+          setSlideFile1(file); //!important este se envia por req.files
+        }
+      };
+    }
+    reader.readAsDataURL(file);
+  };
+
+  const onSubmitSlide = async (values, onSubmitProps) => {
+    const formData = new FormData();
+    formData.append("imageUrl", slideFile1);
+    formData.append("text", values.text);
+
+    await putService(`slides/${values.id}`, formData, {
+      headers: { "Content-Type": "multipart/form-data" },
+    })
+      .then((response) => {
+        Alert({
+          title: response.data.message,
+          text: "Hecho",
+          icon: "success",
+          showConfirmButton: false,
+          timer: 2000,
+        });
+        console.log(response);
+      })
+      .catch((error) => {
+        Alert({
+          icon: "error",
+          title: `${error?.message || "Ops..."}`,
+          text: error?.message,
+          timer: 1500,
+        });
+        console.log(error);
+      });
+    onSubmitProps.setSubmitting(false);
   };
 
   return (
     <>
-      <div className="container">
-        <Formik
-          initialValues={initialSlide}
-          validationSchema={slideSchema}
-          onSubmit={onSubmit}
-        >
-          {(formik) => {
+      <div className="container ">
+        <div className="col ">
+          <Formik
+            initialValues={{ titulo }}
+            validationSchema={welcomeSchema}
+            onSubmit={onSubmitWelcome}
+            enableReinitialize={true}
+          >
+            {(formik) => {
+              return (
+                <Form>
+                  <div className="form-group mb-3">
+                    <label htmlFor="titulo" className="form-label fs-4">
+                      Texto de bienvenida!{" "}
+                    </label>
+
+                    <Field id="titulo" name="titulo">
+                      {(props) => {
+                        const { field, meta } = props;
+                        return (
+                          <div>
+                            <textarea
+                              type="text"
+                              name="titulo"
+                              className={
+                                "form-control form-control-sm col-md-6" +
+                                (meta.error && meta.touched
+                                  ? " is-invalid"
+                                  : "")
+                              }
+                              id="titulo"
+                              rows={3}
+                              {...field}
+                            />
+                            <ErrorMessage
+                              name="titulo"
+                              component="div"
+                              className="text-danger fs-6 fw-lighter"
+                            />
+                          </div>
+                        );
+                      }}
+                    </Field>
+                    <div className="col-12 m-2 d-flex justify-content-end">
+                      {/* <button className="btn btn-sm btn-primary m-2" type="reset">Borrar</button> */}
+                    <button
+                      className="btn btn-sm btn-primary m-2 right"
+                      disabled={!formik.isValid}
+                      type="submit"
+                    >
+                      Guardar
+                    </button>
+                    </div>
+                    
+                  </div>
+                </Form>
+              );
+            }}
+          </Formik>
+
+          {slides.map(({ id, text, imageUrl }) => {
             return (
-              <Form className="card  col-md-11 p-2 m-3 ">
-                <div className="mb-3">
-                  <label htmlFor="titulo" className="form-label fs-5">
-                    Título del home
-                  </label>
-                  <Field id="titulo" name="titulo">
-                    {(props) => {
-                      const { field, meta } = props;
-                      return (
-                        <div>
-                          <textarea
-                            type="text"
+              <Formik
+                initialValues={{ id: id, text: text, imageUrl: imageUrl }}
+                validationSchema={slideSchema}
+                onSubmit={onSubmitSlide}
+                key={id}
+              >
+                {(props) => {
+                  return (
+                    <Form>
+                      <div className="row  align-items-center">
+                        <div className="form-group mt-3 mb-3 col-md-12 col-lg-5">
+                          <label
+                            htmlFor="tituloSlide"
+                            className="form-label fs-4 "
+                          >
+                            Nombre slide {id}
+                          </label>
+                          <Field
+                            name="text"
+                            type="text" 
                             className={
-                              "form-control form-control-sm" +
-                              (meta.error && meta.touched ? " is-invalid" : "")
+                              "form-control form-control-sm mb-2" +
+                              (props.errors.text && props.touched.text
+                                ? " is-invalid"
+                                : "")
                             }
-                            id="titulo"
-                            name="titulo"
-                            rows={3}
-                            {...field}
                           />
                           <ErrorMessage
-                            name="titulo"
+                            name={`text`}
                             component="div"
                             className="text-danger fs-6 fw-lighter"
                           />
-                        </div>
-                      );
-                    }}
-                  </Field>
-                </div>
 
-                <FieldArray name="slides">
-                  {(fieldArrayProps) =>
-                    formik.values.slides.map((slide, i) => {
-                      const slideErrors =
-                        (formik.errors.slides?.length &&
-                          formik.errors.slides[i]) ||
-                        {};
-                      const slideTouched =
-                        (formik.touched.slides?.length &&
-                          formik.touched.slides[i]) ||
-                        {};
-
-                      return (
-                        <div key={i} className="list-group  ">
-                          <div className="list-group-item">
-                            <div className="card-title fs-5 mt-3">
-                              Slide {i + 1}
-                            </div>
-                            <div className="form-row text-start ">
-                              <div className="form-group ">
-                                <label
-                                  htmlFor="titulo"
-                                  className="fw-lighter fs-5 pl-3ml-3"
-                                >
-                                  Texto de la imagen
-                                </label>
-                                <Field
-                                  name={`slides.${i}.text`}
-                                  type="text"
-                                  className={
-                                    "form-control form-control-sm" +
-                                    (slideErrors.text && slideTouched.text
-                                      ? " is-invalid"
-                                      : "")
-                                  }
-                                />
-                                <ErrorMessage
-                                  name={`slides.${i}.text`}
-                                  component="div"
-                                  className="text-danger fs-6 fw-lighter"
-                                />
-                              </div>
-                              <div className="form-group ">
-                                <label className="fw-lighter fs-5 ml-3">
-                                  Imagen
-                                </label>
-                                <Field
-                                  name={`slides.${i}.image`}
-                                  type="file"
-                                  className={
-                                    "form-control form-control-sm" +
-                                    (slideErrors.image && slideTouched.image
-                                      ? " is-invalid"
-                                      : "")
-                                  }
-                                />
-                                <ErrorMessage
-                                  name={`slides.${i}.image`}
-                                  component="div"
-                                  className="text-danger fs-6 fw-lighter"
-                                />
-                              </div>
-                              <div></div>
-                            </div>
+                          <div className="form-group ">
+                            <label className="fw-lighter fs-5 ml-3">
+                              Imagen
+                            </label>
+                            <input
+                              type="file"
+                              accept="image/*"
+                              name="slides.imageUrl"
+                              className={"form-control form-control-sm"}
+                              onChange={(o) =>
+                                imageHandler(o, { id, text, imageUrl })
+                              } //!esto rompe todo
+                            />
                           </div>
+                          <div className="col-12 m-2  d-flex justify-content-end">
+                            {/* <button
+                              className="btn btn-sm btn-primary m-2"
+                              type="reset"
+                            >
+                              Borrar
+                            </button> */}
 
-                          <div className="col-12 m-2">
-                            {i > 2 && i === formik.values.slides.length - 1 && (
-                              <button
-                                type="button"
-                                className="btn btn-primary col-1 m-2 btn-sm"
-                                onClick={() => fieldArrayProps.remove(i)}
-                              >
-                                {" "}
-                                -{" "}
-                              </button>
-                            )}
-                            {i === formik.values.slides.length - 1 && (
-                              <button
-                                type="button"
-                                className="btn btn-primary col-1 m-2 btn-sm"
-                                onClick={() => fieldArrayProps.push("")}
-                              >
-                                {" "}
-                                +{" "}
-                              </button>
-                            )}
+                            <button
+                              className="btn btn-sm btn-primary m-2 "
+                              disabled={!props.isValid}
+                              type="submit"
+                            >
+                              Guardar
+                            </button>
                           </div>
                         </div>
-                      );
-                    })
-                  }
-                </FieldArray>
-
-                <div className="col-12 m-2">
-                  <button className="btn btn-primary m-2" type="reset">
-                    Borrar
-                  </button>
-                  <button
-                    className="btn btn-primary m-2"
-                    disabled={!formik.isValid}
-                    type="submit"
-                  >
-                    Cargar slide
-                  </button>
-                </div>
-              </Form>
+                        {imageUrl && (
+                          <div className="form-group col-md-12 col-lg-7 mb-3">
+                            <div className="image-slide__container mx-auto d-block">
+                              <img
+                                className=" bd-highlight logo-image__slide"
+                                src={imageUrl}
+                                alt={text}
+                                name="slidePreview"
+                              />
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    </Form>
+                  );
+                }}
+              </Formik>
             );
-          }}
-        </Formik>
+          })}
+        </div>
       </div>
     </>
   );

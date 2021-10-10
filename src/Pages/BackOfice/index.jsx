@@ -7,6 +7,7 @@ import {
   ListUser,
   Categories,
   DetailsCard,
+  FormEditSlide,
 } from "../../components";
 import { Activities } from "../../components/Activities";
 import { Profile } from "../index";
@@ -56,6 +57,14 @@ const BackOffice = () => {
           </div>
           <div className="section-content flex-grow-1 vh-100 overflow-auto">
             <Testimonials />
+          </div>
+        </Route>
+        <Route path="/backoffice/slides">
+          <div className="section-title">
+            <h2>Slides</h2>
+          </div>
+          <div className="section-content flex-grow-1 vh-100 overflow-auto">
+            <FormEditSlide />
           </div>
         </Route>
         <Route path="/backoffice/users">
