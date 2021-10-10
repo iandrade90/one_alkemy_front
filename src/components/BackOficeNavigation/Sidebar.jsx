@@ -56,8 +56,10 @@ const Sidebar = ({ user, isOpen, closeSidebar }) => {
         isOpen ? "translate-x-0" : "-translate-x-full"
       } shadow-lg`}
     >
-      <div className="sidebar-content">
-        <div className="flex flex-column">
+      <div className="sidebar-content" 
+      // style={{ backgroundColor: "yellow" }} //mira esto octavio
+      >
+        <div className="flex flex-column ">
           <button className="close-button d-md-none" onClick={closeSidebar}>
             <GoX className="icon" />
           </button>
@@ -75,9 +77,8 @@ const Sidebar = ({ user, isOpen, closeSidebar }) => {
               </NavLink>
             ))}
           </div>
-        </div>
 
-        <div className="profile-section">
+        <div className="profile-section mt-3">
           <div className="d-flex align-items-center">
             <img src={user.image} alt="" />
             <div className="d-flex flex-column ms-2">
@@ -93,6 +94,8 @@ const Sidebar = ({ user, isOpen, closeSidebar }) => {
             <GoSignOut className="icon" />
           </Link>
         </div>
+      </div>
+
       </div>
     </div>
   );

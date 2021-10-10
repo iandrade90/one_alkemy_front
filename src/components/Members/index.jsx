@@ -110,7 +110,7 @@ const Members = () => {
             <tbody>
               {membersData
                 ? membersData.map((item) => (
-                    <tr key={item.id}>
+                    <tr key={item.id} className='align-middle'>
                       <Route>
                         <td>
                           <div className="link-activity" colSpan="2">
