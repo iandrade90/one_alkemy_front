@@ -10,7 +10,8 @@ import {
   ActivityDetail,
   EditNameOrganization,
   Members,
-  TestimonialsDetail
+  TestimonialsDetail,
+  FormEditSlide
   
 } from "../../components";
 import { Activities } from "../../components/Activities";
@@ -84,10 +85,18 @@ const BackOffice = () => {
         </Route>
         <Route path="/backoffice/testimonials/:id">
           <div className="section-title">
-            <h2>Detalle de TEstimonios</h2>
+            <h2>Detalle de Testimonios</h2>
           </div>
           <div className="section-content flex-grow-1 vh-100 overflow-auto">
             <TestimonialsDetail />
+          </div>
+        </Route>
+        <Route path="/backoffice/slides">
+          <div className="section-title">
+            <h2>Slides</h2>
+          </div>
+          <div className="section-content flex-grow-1 vh-100 overflow-auto">
+            <FormEditSlide />
           </div>
         </Route>
         <Route path="/backoffice/users">

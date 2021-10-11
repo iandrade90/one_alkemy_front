@@ -1,11 +1,14 @@
 import React, { useState } from "react";
-import Backdrop from "../../Activities/Backdrop";
+import Backdrop from "../Backdrop";
 import { motion } from "framer-motion";
+import "./style.css";
 import {
   HiOutlineExclamation,
   HiX,
   HiOutlineClipboardList,
 } from "../../../icons";
+import { CKEditor } from "@ckeditor/ckeditor5-react";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
 const dropIn = {
   hidden: {
@@ -41,9 +44,9 @@ const Modal = ({ handleClose, data, onSubmit }) => {
         animate='visible'
         exit='exit'>
         {isDelete ? (
-          <DeleteModal data={data.user} onSubmit={onSubmit} />
+          <DeleteModal data={data.act} onSubmit={onSubmit} />
         ) : (
-          <EditModal data={data} onSubmit={onSubmit} />
+          <CreationUpdateModal data={data} onSubmit={onSubmit} />
         )}
         <button className='close-button' onClick={handleClose}>
           <HiX />
@@ -63,21 +66,18 @@ const DeleteModal = ({ onSubmit, data }) => {
           <HiOutlineExclamation />
         </div>
         <div>
-          <h4>Eliminar usuario</h4>
+          <h4>Eliminar actividad</h4>
           <p>
-            Estas seguro que deseas eliminar al usuario{" "}
-            <strong>
-              {data.firstName} {data.lastName}
-            </strong>{" "}
-            ? Toda la información relacionada sera eliminada permanentemente.
-            Esta acción no puede deshacerse.
+            Estas seguro que deseas eliminar la actividad{" "}
+            <strong>{data.name}</strong> ? Toda la información relacionada sera
+            eliminada permanentemente. Esta acción no puede deshacerse.
           </p>
         </div>
       </div>
       <div className='modal-sms-footer'>
         <button
           className='btn btn-delete shadow-sm'
-          onClick={() => onSubmit({ data, type: "delete" })}>
+          onClick={() => onSubmit({data, type: "delete"})}>
           Eliminar
         </button>
         <button className='btn btn-cancel shadow-sm'>Cancelar</button>
@@ -86,11 +86,15 @@ const DeleteModal = ({ onSubmit, data }) => {
   );
 };
 
-const EditModal = ({ onSubmit, data }) => {
-  const [firstName, setFirstName] = useState(data.firstName);
-  const [lastName, setLastname] = useState(data.lastName);
-  const [role, setRole] = useState(data.roleId);
+const CreationUpdateModal = ({ onSubmit, data }) => {
+  const isEdit = "name" in data;
+  const [title, setTitle] = useState(isEdit ? data.name : "");
+  const [image , setImage ] = useState(isEdit? data.image : "")
+  const [description, setDescription] = useState(
+    isEdit ? data.content : ""
+  );
 
+     console.log(data)
   return (
     <>
       <div className='modal-sms-body '>
@@ -98,50 +102,55 @@ const EditModal = ({ onSubmit, data }) => {
           <HiOutlineClipboardList />
         </div>
         <div className='w-100'>
-          <h4>Editar usuario</h4>
+          <h4>{isEdit ? "Editar" : "Crear"} Testimonio</h4>
           <form className='mt-3'>
             <div className='form-group'>
-              <label className='mb-1' htmlFor='firstName'>
+              <div style={{display:"flex" , justifyContent:"center"}}>
+               {image && (
+              <img
+                height="150px"
+                src={image.size ? URL.createObjectURL(image) : image}
+                alt={image}
+              />
+            )} 
+              </div>
+
+            
+            <div className="mb-3">
+              <label className="form-label" htmlFor="customFile">
+                Imagen
+              </label>
+              <input
+                type="file"
+                className="form-control"
+                onChange={(e) => setImage(e.target.files[0])}
+                id="customFile"
+              />
+            </div> 
+              <label className='mb-1' htmlFor='formGroupExampleInput'>
                 Nombre
               </label>
               <input
                 type='text'
-                value={firstName}
+                value={title}
                 className='form-control'
-                id='firstName'
+                id='formGroupExampleInput'
                 onChange={e => {
-                  setFirstName(e.target.value);
+                  setTitle(e.target.value);
                 }}
               />
             </div>
-            <div className='form-group mt-2'>
-              <label className='mb-1' htmlFor='lastName'>
-                Apellido
+            <div className='form-group my-4'>
+              <label className='mb-1' htmlFor='formGroupExampleInput2'>
+                Testimonio
               </label>
-              <input
-                type='text'
-                value={lastName}
-                className='form-control'
-                id='lastName'
-                onChange={e => {
-                  setLastname(e.target.value);
+              <CKEditor
+                editor={ClassicEditor}
+                data={description}
+                onChange={(event, editor) => {
+                  setDescription(editor.getData());
                 }}
               />
-            </div>
-            <div className='form-group mt-2 mb-4'>
-              <label htmlFor='rol'>Rol</label>
-              <select
-                style={{ borderRadius: "10px" }}
-                className='form-select'
-                aria-label='select role'
-                onChange={e => setRole(e.target.value)}>
-                <option defaultValue value={role}>
-                  {role === 1 ? "ADMIN" : "STANDARD"}
-                </option>
-                <option value={role === 1 ? 2 : 1}>
-                  {role === 1 ? "STANDARD" : "ADMIN"}
-                </option>
-              </select>
             </div>
           </form>
         </div>
@@ -150,9 +159,7 @@ const EditModal = ({ onSubmit, data }) => {
         <button className='btn btn-cancel shadow-sm'>Cancelar</button>
         <button
           className='btn btn-confirm shadow-sm'
-          onClick={() =>
-            onSubmit({ id: data.id, firstName, lastName, roleId: role })
-          }>
+          onClick={() => onSubmit({name: title, content: description,image:image , id: data.id})}>
           Guardar
         </button>
       </div>

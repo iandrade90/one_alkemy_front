@@ -5,13 +5,10 @@ const ContactText = () => {
     //Texto de la Screen contacto que aparentemente luego será dinamico.
     <span className="col-12 mb-2 col-md-4 m-md-auto align-middle">
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. At risus viverra
-        adipiscing at in tellus. Nam aliquam sem et tortor consequat id porta.
-        Venenatis urna cursus eget nunc scelerisque viverra. Cursus euismod quis
-        viverra nibh cras pulvinar mattis. Mauris a diam maecenas sed enim ut
-        sem. Nulla facilisi etiam dignissim diam quis enim lobortis scelerisque
-        fermentum.
+        Si tiene preguntas de carácter general sobre Somos Más o nuestro sitio
+        web, póngase en contacto con nuestro equipo de atención al público
+        rellenando el siguiente formulario y le estaremos respondiendo a la
+        brevedad.
       </p>
     </span>
   );

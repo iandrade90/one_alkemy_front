@@ -110,15 +110,9 @@ const Members = () => {
             <tbody>
               {membersData
                 ? membersData.map((item) => (
-                    <tr key={item.id} className='align-middle'>
+                    <tr key={item.id} className="align-middle">
                       <Route>
-                        <td>
-                          <div className="link-activity" colSpan="2">
-                            <Link to={`/backoffice/members/${item.id}`}>
-                              {item.name}
-                            </Link>
-                          </div>
-                        </td>
+                        <td>{item.name}</td>
                       </Route>
                       <td>
                         <div>

@@ -8,16 +8,16 @@ require("./index.css");
 
 const Home = () => {
   const [newsData, setNewsData] = useState([]);
-  const [welcomeText, setWelcomeText] = useState('');
+  const [welcomeText, setWelcomeText] = useState("");
 
   useEffect(() => {
     getAllService("organizations/1/public")
-    .then((res) => {
-      setWelcomeText(res.data.welcomeText);
-    })
-    .catch((error)=>{
-      console.log(error)
-    })
+      .then((res) => {
+        setWelcomeText(res.data.welcomeText);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }, []);
 
   useEffect(() => {
@@ -35,7 +35,7 @@ const Home = () => {
         <h2 className="text-center my-4">Novedades</h2>
         <div className="row">
           {newsData.map((news, i) => (
-            <div key={i} className="col-sm-12 col-lg-3 my-2">
+            <div key={i} className="col-sm-12 col-lg-3 my-2 max-width-news">
               <div className="card border-0 news-home shadow-sm">
                 <div className="news-home-image-container">
                   <div className="news-home-image">
