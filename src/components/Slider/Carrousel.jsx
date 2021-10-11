@@ -1,39 +1,29 @@
 
 import React from 'react';
 
+const Carousel = ({slides}) =>{   
 
-
-const Carousel = ({arrayCarousel}) =>{   
-
-        return(         
-            <div id="carouselExampleCaptions" className="carousel slide w-100" data-bs-ride="carousel" >
+        return(       
+        <>
+        <div id="carouselExampleCaptions" className="carousel slide w-100" data-bs-ride="carousel" >
             <div className="carousel-indicators">
               <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
               <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
               <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
             </div>
             <div className="carousel-inner h-30" >
-              <div className="carousel-item active">
-                <img src={arrayCarousel[0].imageUrl} className="d-block w-100  " alt="..."/>
+              {slides.map(({ id, text, imageUrl }) => {
+              return (
+                <div key={id} className={`carousel-item  ${ id === 1 ? "active"  : " "}`}>
+                  <div></div>
+                <img style={{height:"600px"}} src={imageUrl} className="d-block w-100  " alt="..."/>
                 <div className="carousel-caption d-none d-md-block">
-                  <h5>First slide label</h5>
-                  <p>{arrayCarousel[0].text} </p>
+                  <h4>{text}</h4>
                 </div>
               </div>
-              <div className="carousel-item">
-                <img src={arrayCarousel[1].imageUrl} className="d-block w-100  " alt="..."/>
-                <div className="carousel-caption d-none d-md-block">
-                  <h5>Second slide label</h5>
-                  <p>{arrayCarousel[1].text}</p>
-                </div>
-              </div>
-              <div className="carousel-item">
-                <img src={arrayCarousel[2].imageUrl} className="d-block w-100  " alt="..."/>
-                <div className="carousel-caption d-none d-md-block">
-                  <h5>Third slide label</h5>
-                  <p>{arrayCarousel[2].text} </p>
-                </div>
-              </div>
+              )
+              })}
+           
             </div>
             <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
               <span className="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -44,6 +34,7 @@ const Carousel = ({arrayCarousel}) =>{
               <span className="visually-hidden">Next</span>
             </button>
           </div>
+          </>
         );
 
 }
