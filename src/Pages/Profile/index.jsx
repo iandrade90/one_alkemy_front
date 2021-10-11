@@ -7,7 +7,6 @@ function Profile() {
     <div style={{ height: "90%" }}>
       <Switch>
         <Route exact path="/backoffice/profile/" component={Information} />
-        <Route  path="/backoffice/profile/edit" component={UserForm} />
       </Switch>
     </div>
   );
