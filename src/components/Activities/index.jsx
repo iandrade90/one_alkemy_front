@@ -10,6 +10,7 @@ import {
   postService,
   updateService,
 } from "../../services";
+import { BsPencil, BsTrash } from "../../icons/index";
 
 export const Activities = () => {
   const [activities, setActivities] = useState([]);
@@ -83,7 +84,7 @@ export const Activities = () => {
   return (
     <>
       <table
-        className="table table-hover caption-top align-middle"
+        className="table table-hover caption-top table-striped align-middle"
         style={{ fontFamily: "Poppins" }}
       >
         <caption>
@@ -121,16 +122,16 @@ export const Activities = () => {
                   <td>
                     <div className="d-flex justify-content-center align-items-center">
                       <button
-                        className="btn btn-sm btn-secondary me-2"
+                        className="btn btn-lg btn-primary me-2"
                         onClick={() => open(act)}
                       >
-                        Editar
+                        <BsPencil/>
                       </button>
                       <button
-                        className="btn btn-sm btn-danger"
+                        className="btn btn-lg btn-danger"
                         onClick={() => open({ act, delete: true })}
                       >
-                        Borrar
+                        <BsTrash/>
                       </button>
                     </div>
                   </td>

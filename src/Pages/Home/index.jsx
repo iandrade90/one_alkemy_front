@@ -3,8 +3,7 @@ import { Footer, Slider } from "../../components";
 import Header from "../../components/Header/index";
 import { getAllService } from "../../services";
 import ReactHtmlParser from "react-html-parser";
-import MercadopagoModal from "../../components/MercadopagoModal";
-require("./index.css");
+import "./index.css"
 
 const Home = () => {
   const [newsData, setNewsData] = useState([]);
@@ -57,7 +56,6 @@ const Home = () => {
             </div>
           ))}
         </div>
-        <MercadopagoModal/>
       </div>
       <Footer />
     </>

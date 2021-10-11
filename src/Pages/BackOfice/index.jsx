@@ -6,13 +6,11 @@ import {
   ContactList,
   ListUser,
   Categories,
-  DetailsCard,
   ActivityDetail,
   EditNameOrganization,
   Members,
-  TestimonialsDetail,
-  FormEditSlide
-  
+  FormEditSlide,
+  DetailsCardBackofice,
 } from "../../components";
 import { Activities } from "../../components/Activities";
 import { Profile } from "../index";
@@ -40,7 +38,7 @@ const BackOffice = () => {
             <h2>Novedades</h2>
           </div>
           <div className="section-content flex-grow-1 vh-100 overflow-auto">
-            <DetailsCard />
+            <DetailsCardBackofice section="news" />
           </div>
         </Route>
         <Route exact path="/backoffice/categories">
@@ -67,7 +65,7 @@ const BackOffice = () => {
             <ActivityDetail />
           </div>
         </Route>
-        <Route  path="/backoffice/edit-organization">
+        <Route path="/backoffice/edit-organization">
           <div className="section-title">
             <h2>Organización</h2>
           </div>
@@ -77,18 +75,18 @@ const BackOffice = () => {
         </Route>
         <Route exact path="/backoffice/testimonials">
           <div className="section-title">
-            <h2 className="text-end">Testimonios</h2>
+            <h2>Testimonios</h2>
           </div>
           <div className="section-content flex-grow-1 vh-100 overflow-auto">
             <Testimonials />
           </div>
         </Route>
-        <Route path="/backoffice/testimonials/:id">
+        <Route exact path="/backoffice/testimonials/:id">
           <div className="section-title">
-            <h2>Detalle de Testimonios</h2>
+            <h2>Testimonios</h2>
           </div>
           <div className="section-content flex-grow-1 vh-100 overflow-auto">
-            <TestimonialsDetail />
+            <DetailsCardBackofice section="testimonials" />
           </div>
         </Route>
         <Route path="/backoffice/slides">

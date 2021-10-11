@@ -16,13 +16,12 @@ import Testimonials from "./Testimonials";
 import ListUser from "./User/ListUser";
 import ActivityDetail from "./Activities/ActivityDetail";
 import NewsBackoffice from "./NewsBackoffice";
-import DetailsCard from "./DetailsCard";
 import ContactList from "./ContactList";
 import Categories from "./Categories";
 import Members from "./Members";
 import Header from "./Header";
-import TestimonialsDetail from "./Testimonials/TestimonialDetail";
 import Err404 from "./Err404";
+import DetailsCardBackofice from "./DetailsCardBackofice";
 
 export {
   ListUser,
@@ -45,9 +44,8 @@ export {
   Testimonials,
   ContactList,
   Categories,
-  DetailsCard,
   Members,
   Header,
-  TestimonialsDetail,
   Err404,
+  DetailsCardBackofice,
 };
