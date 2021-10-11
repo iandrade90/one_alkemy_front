@@ -16,6 +16,10 @@
   margin-top: 3rem;
 }
 
+.contactContainer Footer .footer-heading {
+  text-align: left;
+}
+
 @media (min-width: 992px) {
   .mainComponentsContainer {
     margin-bottom: 10rem !important;
