@@ -4,7 +4,7 @@ import { Switch, Route } from "react-router-dom";
 
 function Profile() {
   return (
-    <div style={{ height: "100%" }}>
+    <div style={{ height: "90%" }}>
       <Switch>
         <Route exact path="/backoffice/profile/" component={Information} />
         <Route  path="/backoffice/profile/edit" component={UserForm} />

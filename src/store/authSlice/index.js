@@ -4,6 +4,7 @@ const authInitialState = {
   isLogged: !!localStorage.getItem("token_id"),
   user: {
     isAdmin: false,
+    id: null,
     firstName: null,
     lastName: null,
     image: null,
@@ -22,9 +23,11 @@ export const authSlice = createSlice({
     resetUserData: (state ) => {
       state.user = authInitialState.user;
       state.isLogged = false;
-    },
+    }
   },
 });
+
+
 
 export default authSlice.reducer;
 export const { fillUserData, resetUserData } = authSlice.actions;
