@@ -5,6 +5,8 @@ import "./style.css";
 import { HiUser, HiClipboardList, HiOutlineLogout } from "../../icons";
 import { useDispatch, useSelector } from "react-redux";
 import { resetUserData } from "../../store/authSlice";
+import MercadopagoModal from "../../components/MercadopagoModal";
+
 const LINKS = [
   { name: "Inicio", route: "/" },
   {
@@ -19,10 +21,7 @@ const LINKS = [
     name: "Servicios",
     route: "/servicios",
   },
-  {
-    name: "Donaciones",
-    route: "/donaciones",
-  },
+
   {
     name: "Contenido",
     route: "/contenido",
@@ -30,7 +29,7 @@ const LINKS = [
   {
     name: "Contacto",
     route: "/contacto",
-  }
+  },
 ];
 
 const Header = () => {
@@ -50,7 +49,7 @@ const Header = () => {
   return (
     <nav className='navbar navbar-expand-lg navbar-light shadow-sm'>
       <div className='container-fluid flex align-items-center py-1'>
-      <NavLink to="/">
+        <NavLink to='/'>
           <img
             src={publicInfo && publicInfo.logo}
             className='navbar-logo'
@@ -102,6 +101,9 @@ const Header = () => {
               </div>
             ) : (
               <div className=' d-flex align-items-center justify-content-between profile-menu'>
+                <div className='me-4'>
+                  <MercadopagoModal />
+                </div>
                 <div className='dropdown d-none d-lg-flex align-items-center'>
                   <a
                     className='header-username'
@@ -167,7 +169,7 @@ const Header = () => {
                   </div>
                   <div className='mobile-buttons'>
                     {user?.isAdmin && (
-                      <Link to="/backoffice/news">
+                      <Link to='/backoffice/news'>
                         <HiClipboardList className=' icon me-2 h-100 text-secondary' />
                       </Link>
                     )}
