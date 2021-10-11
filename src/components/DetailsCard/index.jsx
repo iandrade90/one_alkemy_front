@@ -32,7 +32,7 @@ const DetailsCard = () => {
     <div className="row">
       <div className="col-xs-12 col-sm-6 col-md-8 mx-auto mt-sm-3">
         {/* Cara delantera de la tarjeta */}
-        <div className="image-flip">
+        <div className="image-flip mx-auto">
           <div className="mainflip flip-0">
             <div className="frontside">
               <div className="card cardFront" width="100%">
@@ -50,7 +50,11 @@ const DetailsCard = () => {
                   <div className="text-card">
                     {content ? ReactHtmlParser(content) : null}
 
-                    {type ? <p>{type}</p> : null}
+                    {type ? (
+                      <p>
+                        Tipo: <b>{type}</b>
+                      </p>
+                    ) : null}
                   </div>
                 </div>
               </div>
