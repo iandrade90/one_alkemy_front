@@ -25,6 +25,7 @@ const UsPage = () => {
                 <div key={item.id} className="col-3 text-center">
                   <div className="mx-2">
                     <img
+                      style={{ objectFit: "cover" }}
                       src={item.image}
                       width="200"
                       height="200"
