@@ -75,7 +75,7 @@ const BackOffice = () => {
         </Route>
         <Route exact path="/backoffice/testimonials">
           <div className="section-title">
-            <h2 className="text-end">Testimonios</h2>
+            <h2>Testimonios</h2>
           </div>
           <div className="section-content flex-grow-1 vh-100 overflow-auto">
             <Testimonials />
@@ -83,7 +83,7 @@ const BackOffice = () => {
         </Route>
         <Route exact path="/backoffice/testimonials/:id">
           <div className="section-title">
-            <h2 className="text-end">Testimonios</h2>
+            <h2>Testimonios</h2>
           </div>
           <div className="section-content flex-grow-1 vh-100 overflow-auto">
             <DetailsCardBackofice section="testimonials" />
