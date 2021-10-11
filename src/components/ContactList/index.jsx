@@ -31,7 +31,7 @@ const ContactList = () => {
     }]
     return (
         <div className="container">
-            <div className="card table-responsive shadow-sm m-3 p-2">
+            <div className="card table-responsive table-striped m-3 p-2">
                 {
                     data.message ? (<h5>{data.message}</h5>)
                     :
@@ -39,7 +39,6 @@ const ContactList = () => {
                     <thead>
                         <tr className='align-middle'>
                         <th scope="col">Nombre</th>
-                        <th scope="col">Teléfono</th>
                         <th scope="col">Email</th>
                         <th scope="col">Mensaje</th>
                         </tr>
@@ -48,8 +47,8 @@ const ContactList = () => {
                         {data.length>0 && data.map((item) => (
                             <tr key={item.id}>
                                 <td>{item.name}</td>
-                                <td>{item.phone}</td>
                                 <td>{item.email}</td>
+                                <td>{item.message}</td>
                                 <td>{item.message}</td>
                             </tr>
                         ))
