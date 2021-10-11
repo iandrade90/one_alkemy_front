@@ -1,4 +1,3 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Alert } from '..';
 import { getAllService, putService } from '../../services';
@@ -62,8 +61,8 @@ function EditNameOrganization() {
         .catch((error)=>{
             Alert({
                 icon: "error",
-                title: `${error.data?.msg || "Ops..."}`,
-                text: error.data?.msg,
+                title: `${error.data?.message || "Ops..."}`,
+                text: error.data?.message,
                 timer:1500
               })
             console.log(error)

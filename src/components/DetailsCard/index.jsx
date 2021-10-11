@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import "./style.css";
 import heightBackside from "./style.js";
 import { useParams } from "react-router-dom";
 import { getAllService } from "../../services";
+import ReactHtmlParser from "react-html-parser";
 
 const DetailsCard = () => {
   let { id } = useParams();
@@ -48,9 +48,9 @@ const DetailsCard = () => {
               <div className="card cardBack">
                 <div className="card-body2 text-center">
                   <div className="text-card">
-                    {content ? <p>Contenido: {content}</p> : null}
+                    {content ? ReactHtmlParser(content) : null}
 
-                    {type ? <p>tipo: {type}</p> : null}
+                    {type ? <p>{type}</p> : null}
                   </div>
                 </div>
               </div>

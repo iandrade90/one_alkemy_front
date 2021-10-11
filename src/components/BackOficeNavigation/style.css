@@ -12,6 +12,10 @@
     rgba(30, 64, 175, 1) 72%
   );
   width: 17rem;
+  /* very important */
+  height: 100%; 
+  overflow: auto;
+  /* very important */
   transition: transform 0.5s ease-in-out;
   position: absolute;
   z-index: 199;
@@ -34,6 +38,7 @@
   #sidebar {
     position: relative;
     transform: translateX(0);
+    /* height: 100%; */
   }
 }
 
@@ -107,6 +112,7 @@
   align-items: center;
   justify-content: space-between;
   border-top: 1px solid var(--color-blue-900);
+  
 }
 
 .profile-section img,

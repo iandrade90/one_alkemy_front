@@ -85,6 +85,11 @@ const Footer = () => {
                       Contenido
                     </Link>
                   </li>
+                  <li className='footer-section-item'>
+                    <Link to='/contacto' className='py-1 d-block'>
+                      Contacto
+                    </Link>
+                  </li>
                 </ul>
               </div>
               <div className='col-md-5 mb-md-0 mb-1 b-left ps-4'>

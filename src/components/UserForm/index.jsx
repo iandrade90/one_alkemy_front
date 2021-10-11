@@ -35,7 +35,7 @@ function UserForm() {
           <Form className="py-2">
             <div className="row py-2">
               <div className="col-md-6">
-                <label className="label" htmlForm="firstName">Nombre: </label>
+                <label className="label" htmlFor="firstName">Nombre: </label>
               </div>
               <div className="col-md-6">
                 <Field className="bg-light form-control" type="text" name="firstName" placeholder="Nombre" />
@@ -44,7 +44,7 @@ function UserForm() {
             </div>
             <div className="row py-2">
               <div className="col-md-6">
-                <label className="label" htmlForm="firstName">Apellido: </label>
+                <label className="label" htmlFor="firstName">Apellido: </label>
               </div>
               <div className="col-md-6">
                 <Field className="bg-light form-control" type="text" name="lastName" placeholder="Apellido" />
@@ -55,7 +55,7 @@ function UserForm() {
               {isAdmin === true &&
                 <>
                   <div className="col-md-6">
-                    <label className="label" htmlForm="firstName">Rol: </label>
+                    <label className="label" htmlFor="firstName">Rol: </label>
                   </div>
                   <div className="col-md-6">
                     <Field className="bg-light form-control arrow" name="roleId" as="select" placeholder="Rol">

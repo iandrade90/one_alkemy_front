@@ -9,7 +9,7 @@ function NewsCard({ NewsData }) {
                     {NewsData.category}
                 </div>
                 <div class="card">
-                    <img src={NewsData.image} class='img-fluid' />
+                    <img src={NewsData.image} alt={NewsData.name} class='img-fluid' />
                     <h5 class="card-title">{NewsData.name} </h5>
                     <p class="card-text">{NewsData.content} </p>
                     <Link to={`/novedades/${NewsData.id}`} class="btn btn-primary">Ver más</Link>

@@ -2,10 +2,22 @@ import React, { useEffect, useState } from "react";
 import { Footer, Slider } from "../../components";
 import Header from "../../components/Header/index";
 import { getAllService } from "../../services";
+import ReactHtmlParser from "react-html-parser";
 require("./index.css");
 
 const Home = () => {
   const [newsData, setNewsData] = useState([]);
+  const [welcomeText, setWelcomeText] = useState('');
+
+  useEffect(() => {
+    getAllService("organizations/1/public")
+    .then((res) => {
+      setWelcomeText(res.data.welcomeText);
+    })
+    .catch((error)=>{
+      console.log(error)
+    })
+  }, []);
 
   useEffect(() => {
     getAllService("news").then((res) => {
@@ -18,7 +30,7 @@ const Home = () => {
       <Header />
       <div className="container-fluid">
         <Slider />
-        <h1 className="text-center my-4">Welcome Text</h1>
+        <h1 className="text-center my-4">{welcomeText}</h1>
         <h2 className="text-center my-4">Novedades</h2>
         <div className="row">
           {newsData.map((news, i) => (
@@ -38,7 +50,7 @@ const Home = () => {
                 </div>
                 <div className="card-body">
                   <h5 className="card-title">{news.name}</h5>
-                  <p className="card-text">{news.content}</p>
+                  <p className="card-text">{ReactHtmlParser(news.content)}</p>
                 </div>
               </div>
             </div>

@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useHistory } from "react-router-dom";
+import { NavLink,Link , useHistory} from "react-router-dom";
 import "./style.css";
 
 import {
@@ -56,8 +56,10 @@ const Sidebar = ({ user, isOpen, closeSidebar }) => {
         isOpen ? "translate-x-0" : "-translate-x-full"
       } shadow-lg`}
     >
-      <div className="sidebar-content">
-        <div className="flex flex-column">
+      <div className="sidebar-content" 
+      // style={{ backgroundColor: "yellow" }} //mira esto octavio
+      >
+        <div className="flex flex-column ">
           <button className="close-button d-md-none" onClick={closeSidebar}>
             <GoX className="icon" />
           </button>
@@ -69,15 +71,15 @@ const Sidebar = ({ user, isOpen, closeSidebar }) => {
           {/* LINKS */}
           <div className="links">
             {items.map(({ icon: Icon, title, path }, index) => (
-              <Link to={path} key={index}>
+              <NavLink to={path} key={index}>
                 <Icon className="icon" />
                 <span>{title}</span>
-              </Link>
+              </NavLink>
             ))}
           </div>
-        </div>
+          </div>
 
-        <div className="profile-section">
+        <div className="profile-section mt-3">
           <div className="d-flex align-items-center">
             <img src={user.image} alt="" />
             <div className="d-flex flex-column ms-2">
@@ -93,6 +95,7 @@ const Sidebar = ({ user, isOpen, closeSidebar }) => {
             <GoSignOut className="icon" />
           </Link>
         </div>
+
       </div>
     </div>
   );

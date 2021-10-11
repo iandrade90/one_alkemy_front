@@ -13,7 +13,7 @@ const LINKS = [
   },
   {
     name: "Nosotros",
-    route: "/us",
+    route: "/nosotros",
   },
   {
     name: "Servicios",
@@ -27,6 +27,10 @@ const LINKS = [
     name: "Contenido",
     route: "/contenido",
   },
+  {
+    name: "Contacto",
+    route: "/contacto",
+  }
 ];
 
 const Header = () => {
@@ -46,13 +50,13 @@ const Header = () => {
   return (
     <nav className='navbar navbar-expand-lg navbar-light shadow-sm'>
       <div className='container-fluid flex align-items-center py-1'>
-        <Link to='/'>
+      <NavLink to="/">
           <img
             src={publicInfo && publicInfo.logo}
             className='navbar-logo'
             alt=''
           />
-        </Link>
+        </NavLink>
         <button
           className='navbar-toggler'
           type='button'
@@ -163,7 +167,7 @@ const Header = () => {
                   </div>
                   <div className='mobile-buttons'>
                     {user?.isAdmin && (
-                      <Link to='/backoffice/'>
+                      <Link to="/backoffice/news">
                         <HiClipboardList className=' icon me-2 h-100 text-secondary' />
                       </Link>
                     )}

@@ -10,29 +10,11 @@ import {
   postService,
   updateService,
 } from "../../services";
-const activitiesData = [
-  {
-    id: 1,
-    title: "Prueba 1",
-    description: "<p>Prueba <strong>1</strong></p>",
-  },
-  {
-    id: 2,
-    title: "Prueba 2",
-    description: "<p>Prueba <strong>2</strong></p>",
-  },
-  {
-    id: 3,
-    title: "Prueba 3",
-    description: "<p>Prueba <strong>3</strong></p>",
-  },
-];
 
 export const Activities = () => {
   const [activities, setActivities] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
   const [activityData, setActivityData] = useState({});
-  console.log(activities);
 
   const close = () => {
     setActivityData({});
@@ -43,7 +25,7 @@ export const Activities = () => {
     setModalOpen(true);
   };
 
-  const handleSubmit = async payload => {
+  const handleSubmit = async (payload) => {
     let newActivitiesList;
 
     if (payload.type === "delete") {
@@ -77,7 +59,7 @@ export const Activities = () => {
           content: payload.content,
         });
 
-        newActivitiesList = activities.map(activity => {
+        newActivitiesList = activities.map((activity) => {
           if (activity.id === payload.id) {
             return {
               id: activity.id,
@@ -130,7 +112,7 @@ export const Activities = () => {
                 <tr key={act.id}>
                   <th scope="row">{act.id}</th>
                   <Route>
-                    <td className='link-activity' colSpan='2'>
+                    <td className="link-activity" colSpan="2">
                       <Link to={`/backoffice/activities/${act.id}`}>
                         {act.name}
                       </Link>
