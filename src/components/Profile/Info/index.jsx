@@ -3,15 +3,17 @@ import { ModalModify, ModalDelete } from '../Modal';
 import { AnimatePresence } from "framer-motion";
 import '../index.css';
 import { useSelector, useDispatch } from 'react-redux';
-import { fillUserData } from '../../../store/authSlice'
-import { updateService } from '../../../services';
+import { fillUserData, resetUserData } from '../../../store/authSlice'
+import { deleteService, updateService } from '../../../services';
+import { useHistory } from 'react-router';
+import { Alert } from '../..';
 
 const Information = () => {
   const [modalModify, setModalModify] = useState(false);
   const [modalDelete, setModalDelete] = useState(false);
   const { isLogged, user } = useSelector((state) => state.user_auth)
   const dispatch = useDispatch();
-
+  const history = useHistory()
   const closeModify = () => {
     setModalModify(false);
   }
@@ -29,10 +31,29 @@ const Information = () => {
 
   const handleSubmit = async (payload) => {
     try {
+      if (payload.type === 'delete') {
+      
+        const response = await deleteService(`users/${payload.data.id}`)
+        if (response.status === 200) {
+          dispatch(resetUserData())
+          await Alert({
+            icon: "info",
+            title: `Usuario eliminado exitosamente`,
+            showConfirmButton: false,
+            timer: 1900,
+           })
+         
+            history.push('/')
+    
+        }
+      
+      
+      }
+      else{
       const response = await updateService(`auth/${payload.id}`, payload)
       localStorage.setItem('token_id', response?.token);
       dispatch(fillUserData(response.user));
-      closeModify();
+      closeModify();}
     } catch (error) {
       console.log(error) 
     }
@@ -79,7 +100,10 @@ const Information = () => {
         {modalDelete && (
           <ModalDelete 
             modal={modalModify}
-            handleClose={closeDelete} />
+            handleClose={closeDelete}
+            onSubmit={handleSubmit}
+          />
+          
         )}
       </AnimatePresence>
     </div>

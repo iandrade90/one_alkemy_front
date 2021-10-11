@@ -30,7 +30,7 @@ const dropIn = {
 
 const Modal = ({ handleClose, data, onSubmit }) => {
   const isDelete = data.delete || false;
-
+ 
   return (
     <Backdrop onClick={handleClose}>
       <motion.div

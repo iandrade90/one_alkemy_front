@@ -19,7 +19,7 @@ const ListUser = () => {
   };
   const handleSubmit = async payload => {
     let newUserList;
-
+     
     if (payload.type === "delete") {
       await deleteService(`users/${payload.data.id}`);
 
