@@ -21,6 +21,7 @@ import ContactList from "./ContactList";
 import Categories from "./Categories";
 import Members from "./Members";
 import Header from "./Header";
+import TestimonialsDetail from './Testimonials/TestimonialDetail'
 
 export {
   ListUser,
@@ -46,4 +47,5 @@ export {
   DetailsCard,
   Members,
   Header,
+  TestimonialsDetail
 };

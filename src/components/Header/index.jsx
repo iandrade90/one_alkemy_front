@@ -152,7 +152,7 @@ const Header = () => {
                 <div className='d-flex d-lg-none align-items-center justify-content-between flex-grow-1'>
                   <div className='d-flex align-items-center user '>
                     <button className='d-block user-image overflow-hidden rounded-circle border '>
-                      <img src={user.avatar} alt='' />
+                      <img src={user.image} alt='' />
                     </button>
                     <div className='d-lg-none d-flex flex-column ms-2 user-details justify-content-center'>
                       <Link className='user-name' to='/backoffice/profile'>

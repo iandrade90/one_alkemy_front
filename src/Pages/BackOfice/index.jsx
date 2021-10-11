@@ -10,6 +10,8 @@ import {
   ActivityDetail,
   EditNameOrganization,
   Members,
+  TestimonialsDetail
+  
 } from "../../components";
 import { Activities } from "../../components/Activities";
 import { Profile } from "../index";
@@ -64,7 +66,7 @@ const BackOffice = () => {
             <ActivityDetail />
           </div>
         </Route>
-        <Route path="/backoffice/edit-organization">
+        <Route  path="/backoffice/edit-organization">
           <div className="section-title">
             <h2>Organización</h2>
           </div>
@@ -72,12 +74,20 @@ const BackOffice = () => {
             <EditNameOrganization />
           </div>
         </Route>
-        <Route path="/backoffice/testimonios">
+        <Route exact path="/backoffice/testimonials">
           <div className="section-title">
             <h2 className="text-end">Testimonios</h2>
           </div>
           <div className="section-content flex-grow-1 vh-100 overflow-auto">
             <Testimonials />
+          </div>
+        </Route>
+        <Route path="/backoffice/testimonials/:id">
+          <div className="section-title">
+            <h2>Detalle de TEstimonios</h2>
+          </div>
+          <div className="section-content flex-grow-1 vh-100 overflow-auto">
+            <TestimonialsDetail />
           </div>
         </Route>
         <Route path="/backoffice/users">

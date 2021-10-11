@@ -34,7 +34,7 @@ function TestimonialsForm({ testimonial }) {
           onChange={(e) => setImage(e.target.files[0])}
           id="customFile"
         />
-      </div>
+      </div> 
 
       <div className="form-group ">
         <label>Nombre</label>

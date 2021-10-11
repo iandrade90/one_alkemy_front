@@ -26,7 +26,7 @@ const adminList = [
   {
     title: "Testimonios",
     icon: BiMessageSquareDetail,
-    path: "/backoffice/testimonios",
+    path: "/backoffice/testimonials",
   },
   {
     title: "Organizacion",

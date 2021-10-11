@@ -10,8 +10,8 @@ const getAllService = async path => {
   return response;
 };
 
-const postService = async (path, body) => {
-  const response = await axios.post(`${config.base_server_path}${path}`, body);
+const postService = async (path, body , image ) => {
+  const response = await axios.post(`${config.base_server_path}${path}`, body , {headers:{"Content-Type":!image ? 'application/json' : 'multipart/form-data'}});
   return response;
 };
 
@@ -23,8 +23,8 @@ const deleteService = async (path, body) => {
   return response;
 };
 
-const updateService = async (path, body) => {
-  const response = await axios.put(`${config.base_server_path}${path}`, body);
+const updateService = async (path, body , image) => {
+  const response = await axios.put(`${config.base_server_path}${path}`, body ,{headers:{"Content-Type":!image ? 'application/json' : 'multipart/form-data'}});
   return response.data;
 };
 

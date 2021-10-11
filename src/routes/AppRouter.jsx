@@ -2,9 +2,8 @@ import React, { useEffect } from "react";
 import { PrivateRouter } from "./PrivateRoutes";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { RegisterForm, LoginForm } from "../components";
-import { BackOffice, ContactPage, Home, News, UsPage } from "../Pages";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
+import { BackOffice, ContactPage, Home, News, UsPage } from "../pages";
+import { useSelector , useDispatch} from "react-redux";
 import { getAllService } from "../services";
 import { fillUserData } from "../store/authSlice";
 
@@ -20,10 +19,10 @@ const AppRouter = () => {
     if (!user.firstName && isLogged) {
       fetchMe();
     }
-  }, [dispatch, user]);
+  }, [dispatch, isLogged, user]);
   return (
     <Router>
-      <Switch>
+      <Switch> 
         <Route exact path="/" component={Home} />
         <Route exact path="/novedades" component={News} />
         <Route exact path="/register" component={RegisterForm} />
