@@ -106,6 +106,7 @@ const NewsBackoffice = () => {
                 <th scope="col">Título</th>
                 <th scope="col">Imagen</th>
                 <th scope="col">Categoria</th>
+                <th scope="col"></th>
                 <th scope="col">Acciones</th>
               </tr>
             </thead>
@@ -127,7 +128,7 @@ const NewsBackoffice = () => {
                           <img src={item.image} width="90" alt={item.name} />
                         </div>
                       </td>
-                      <td>{item.type}</td>
+                      <td colSpan="2">{item.type}</td>
                       <td>
                         <button
                           className="btn btn-lg btn-primary me-2"

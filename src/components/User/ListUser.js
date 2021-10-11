@@ -3,6 +3,7 @@ import { deleteService, getAllService, updateService } from "../../services";
 import { AiOutlineEdit, AiOutlineDelete } from "react-icons/ai";
 import { AnimatePresence } from "framer-motion";
 import Modal from "./UserModal";
+import { BsPencil, BsTrash } from "../../icons/index";
 
 const ListUser = () => {
   const [listUser, setListUser] = useState([]);
@@ -58,10 +59,9 @@ const ListUser = () => {
   return (
     <div className=''>
       <div className='table-responsive'>
-        <table className='table'>
+        <table className='table table-striped'>
           <thead>
             <tr>
-              <th scope='col'>ID</th>
               <th scope='col'>Nombre</th>
               <th scope='col'>Apellido</th>
               <th scope='col'>Email</th>
@@ -73,7 +73,6 @@ const ListUser = () => {
             {listUser.length > 0 ? (
               listUser.map(user => (
                 <tr key={user.id} className='align-middle'>
-                  <td>{user.id}</td>
                   <td>{user.firstName}</td>
                   <td>{user.lastName}</td>
                   <td>{user.email}</td>
@@ -81,16 +80,16 @@ const ListUser = () => {
                   <td>
                     <button
                       type='button'
-                      className='btn btn-sm btn-secondary me-2'
+                      className='btn btn-lg btn-primary me-2'
                       onClick={() => open(user)}>
                       {/* <AiOutlineEdit /> */}
-                      Editar
+                      <BsPencil/>
                     </button>
                     <button
                       type='button'
-                      className='btn btn-sm btn-danger me-2'
+                      className='btn btn-lg btn-danger me-2'
                       onClick={() => open({ user, delete: true })}>
-                      Borrar
+                      <BsTrash/>
                       {/* <AiOutlineDelete /> */}
                     </button>
                   </td>
