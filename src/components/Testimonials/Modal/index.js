@@ -77,7 +77,7 @@ const DeleteModal = ({ onSubmit, data }) => {
       <div className='modal-sms-footer'>
         <button
           className='btn btn-delete shadow-sm'
-          onClick={() => onSubmit({data, type: "delete"})}>
+          onClick={() => onSubmit({ data, type: "delete" })}>
           Eliminar
         </button>
         <button className='btn btn-cancel shadow-sm'>Cancelar</button>
@@ -89,12 +89,10 @@ const DeleteModal = ({ onSubmit, data }) => {
 const CreationUpdateModal = ({ onSubmit, data }) => {
   const isEdit = "name" in data;
   const [title, setTitle] = useState(isEdit ? data.name : "");
-  const [image , setImage ] = useState(isEdit? data.image : "")
-  const [description, setDescription] = useState(
-    isEdit ? data.content : ""
-  );
+  const [image, setImage] = useState(isEdit ? data.image : "");
+  const [description, setDescription] = useState(isEdit ? data.content : "");
 
-     console.log(data)
+  console.log(data);
   return (
     <>
       <div className='modal-sms-body '>
@@ -105,28 +103,27 @@ const CreationUpdateModal = ({ onSubmit, data }) => {
           <h4>{isEdit ? "Editar" : "Crear"} Testimonio</h4>
           <form className='mt-3'>
             <div className='form-group'>
-              <div style={{display:"flex" , justifyContent:"center"}}>
-               {image && (
-              <img
-                height="150px"
-                src={image.size ? URL.createObjectURL(image) : image}
-                alt={image}
-              />
-            )} 
+              <div className='mb-3'>
+                <label className='form-label' htmlFor='customFile'>
+                  Imagen
+                </label>
+                <input
+                  type='file'
+                  className='form-control'
+                  onChange={e => setImage(e.target.files[0])}
+                  id='customFile'
+                />
+              </div>
+              <div style={{ display: "flex", justifyContent: "center" }}>
+                {image && (
+                  <img
+                    height='150px'
+                    src={image.size ? URL.createObjectURL(image) : image}
+                    alt={image}
+                  />
+                )}
               </div>
 
-            
-            <div className="mb-3">
-              <label className="form-label" htmlFor="customFile">
-                Imagen
-              </label>
-              <input
-                type="file"
-                className="form-control"
-                onChange={(e) => setImage(e.target.files[0])}
-                id="customFile"
-              />
-            </div> 
               <label className='mb-1' htmlFor='formGroupExampleInput'>
                 Nombre
               </label>
@@ -159,7 +156,14 @@ const CreationUpdateModal = ({ onSubmit, data }) => {
         <button className='btn btn-cancel shadow-sm'>Cancelar</button>
         <button
           className='btn btn-confirm shadow-sm'
-          onClick={() => onSubmit({name: title, content: description,image:image , id: data.id})}>
+          onClick={() =>
+            onSubmit({
+              name: title,
+              content: description,
+              image: image,
+              id: data.id,
+            })
+          }>
           Guardar
         </button>
       </div>

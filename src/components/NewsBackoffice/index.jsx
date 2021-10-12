@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from "react";
 import Modal from "./Modal";
 import { AnimatePresence } from "framer-motion";
-import { deleteService, getAllService, postService, updateService } from "../../services";
+import {
+  deleteService,
+  getAllService,
+  postService,
+  updateService,
+} from "../../services";
 import { BsPencil, BsTrash } from "../../icons/index";
 import { Route } from "react-router";
 import { Link } from "react-router-dom";
@@ -11,28 +16,29 @@ const NewsBackoffice = () => {
   const [newsData, setNewsData] = useState([]);
   const [newsActData, setNewsActData] = useState({});
 
+  console.log(newsData);
+
   const close = () => {
     setNewsActData({});
     setModal(false);
   };
 
-  const open = (data) => {
+  const open = data => {
     setNewsActData(data);
     setModal(true);
   };
 
   useEffect(() => {
-    getAllService("news").then((res) =>
-      setNewsData(res.data));
+    getAllService("news").then(res => setNewsData(res.data));
   }, []);
 
-  const handleSubmit = async (payload) => {
+  const handleSubmit = async payload => {
     let newNewsList;
 
     if (payload.type === "delete") {
       await deleteService(`news/${payload.data.id}`);
 
-      newNewsList = newsData.filter((news) => news.id !== payload.data.id);
+      newNewsList = newsData.filter(news => news.id !== payload.data.id);
       setNewsData(newNewsList);
     } else {
       //? Si el payload no llega con un id => la actividad no existe
@@ -40,36 +46,39 @@ const NewsBackoffice = () => {
 
       if (!newsExists) {
         //? Creo una nueva actividad
-        const { data } = await postService("news", {
-          name: payload.name,
-          image: payload.image,
-          content: payload.content,
-          type: payload.type,
-        });
+        const formData = new FormData();
+        for (let key in payload) {
+          formData.append(key, payload[key]);
+        }
 
+        const { data } = await postService("news", formData, true);
+        console.log("Data:", data);
         newNewsList = newsData.concat({
-          id: data.id,
-          name: data.name,
-          image: data.image,
-          content: data.content,
-          type: data.type,
+          id: data.data.id,
+          name: data.data.name,
+          image: data.data.image,
+          content: data.data.content,
+          type: data.data.type,
         });
-        console.log(newNewsList);
       } else {
         //? Caso contrario, edita la actividad en funcion del id que me llega
-        await updateService(`news/${payload.id}`, {
-          name: payload.name,
-          image: payload.image,
-          content: payload.content,
-          type: payload.type,
-        })
+        const formData = new FormData();
+        for (let key in payload) {
+          formData.append(key, payload[key]);
+        }
 
-        newNewsList = newsData.map((news) => {
+        const { data } = await updateService(
+          `news/${payload.id}`,
+          formData,
+          true
+        );
+
+        newNewsList = newsData.map(news => {
           if (news.id === payload.id) {
             return {
               id: payload.id,
               name: payload.name,
-              image: payload.image,
+              image: data.image,
               content: payload.content,
               type: payload.type,
             };
@@ -85,17 +94,16 @@ const NewsBackoffice = () => {
 
   return (
     <>
-      <section className="border-bottom">
-        <div className="table-responsive">
-          <table className="caption-top table table-striped table-sm">
+      <section className='border-bottom'>
+        <div className='table-responsive'>
+          <table className='caption-top table table-striped table-sm'>
             <caption>
-              <div className="d-flex justify-content-between">
+              <div className='d-flex justify-content-between'>
                 <div>Lista de Novedades</div>
                 <div>
                   <button
-                    className="btn btn btn-primary"
-                    onClick={() => open({})}
-                  >
+                    className='btn btn btn-primary'
+                    onClick={() => open({})}>
                     Crear novedad
                   </button>
                 </div>
@@ -103,20 +111,20 @@ const NewsBackoffice = () => {
             </caption>
             <thead>
               <tr>
-                <th scope="col">Título</th>
-                <th scope="col">Imagen</th>
-                <th scope="col">Categoria</th>
-                <th scope="col"></th>
-                <th scope="col">Acciones</th>
+                <th scope='col'>Título</th>
+                <th scope='col'>Imagen</th>
+                <th scope='col'>Categoria</th>
+                <th scope='col'></th>
+                <th scope='col'>Acciones</th>
               </tr>
             </thead>
             <tbody>
               {newsData
-                ? newsData.map((item) => (
-                  <tr key={item.id} className='align-middle'>
+                ? newsData.map(item => (
+                    <tr key={item.id} className='align-middle'>
                       <Route>
                         <td>
-                          <div className="link-activity" colSpan="2">
+                          <div className='link-activity' colSpan='2'>
                             <Link to={`/backoffice/news/${item.id}`}>
                               {item.name}
                             </Link>
@@ -125,21 +133,19 @@ const NewsBackoffice = () => {
                       </Route>
                       <td>
                         <div>
-                          <img src={item.image} width="90" alt={item.name} />
+                          <img src={item.image} width='90' alt={item.name} />
                         </div>
                       </td>
-                      <td colSpan="2">{item.type}</td>
+                      <td colSpan='2'>{item.type}</td>
                       <td>
                         <button
-                          className="btn btn-lg btn-primary me-2"
-                          onClick={() => open(item)}
-                        >
+                          className='btn btn-lg btn-primary me-2'
+                          onClick={() => open(item)}>
                           <BsPencil />
                         </button>
                         <button
-                          className="btn btn-lg btn-danger"
-                          onClick={() => open({ item, delete: true })}
-                        >
+                          className='btn btn-lg btn-danger'
+                          onClick={() => open({ item, delete: true })}>
                           <BsTrash />
                         </button>
                       </td>
