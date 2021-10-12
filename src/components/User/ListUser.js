@@ -3,13 +3,13 @@ import { deleteService, getAllService, updateService } from "../../services";
 import { AnimatePresence } from "framer-motion";
 import Modal from "./UserModal";
 import { BsPencil, BsTrash } from "../../icons/index";
-import { LoaderSpinner } from '../index'
+import { LoaderSpinner } from "../index";
 
 const ListUser = () => {
   const [listUser, setListUser] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
   const [userData, setUserData] = useState({});
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
 
   const close = () => {
     setUserData({});
@@ -29,21 +29,20 @@ const ListUser = () => {
 
       setListUser(newUserList);
     } else {
-      newUserList = listUser;
-
-      //   //? Caso contrario, edita la actividad en funcion del id que me llega
+      //? Caso contrario, edita la actividad en funcion del id que me llega
       await updateService(`users/${payload.id}`, payload);
 
       newUserList = listUser.map(user => {
         if (user.id === payload.id) {
-          return {
+          const newUser = {
             ...user,
             id: user.id,
             firstName: payload.firstName,
             lastName: payload.lastName,
-            email: payload.email,
             roleId: payload.roleId,
           };
+
+          return newUser;
         }
 
         return user;
@@ -54,23 +53,23 @@ const ListUser = () => {
   };
 
   useEffect(() => {
-    setLoading(true)
+    setLoading(true);
     getAllService("users")
       .then(res => {
-        setListUser(res.data)
-        setLoading(false)
+        setListUser(res.data);
+        setLoading(false);
       })
-      .catch((error) => {
-        console.log(error)
-        setLoading(false)
+      .catch(error => {
+        console.log(error);
+        setLoading(false);
       });
-    ;
-
   }, []);
 
   return (
     <>
-      {loading ? <LoaderSpinner /> :
+      {loading ? (
+        <LoaderSpinner />
+      ) : (
         <>
           <div className=''>
             <div className='table-responsive'>
@@ -93,7 +92,7 @@ const ListUser = () => {
                         <td>{user.email}</td>
                         <td>{user.roleId === 1 ? "ADMIN" : "STANDARD"}</td>
                         <td>
-                          <div className="d-flex">
+                          <div className='d-flex'>
                             <button
                               type='button'
                               className='btn btn-lg btn-primary me-2'
@@ -130,9 +129,10 @@ const ListUser = () => {
             </div>
           </div>
         </>
-      }
+      )}
+      ;
     </>
   );
-}
+};
 
 export default ListUser;

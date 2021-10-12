@@ -22,7 +22,7 @@ const Members = () => {
     setModal(false);
   };
 
-  const open = (data) => {
+  const open = data => {
     setNewMembersData(data);
     setModal(true);
   };
@@ -40,14 +40,14 @@ const Members = () => {
     });
   }, []);
 
-  const handleSubmit = async (payload) => {
+  const handleSubmit = async payload => {
     let newMembersList;
 
     if (payload.type === "delete") {
       await deleteService(`members/${payload.data.id}`);
 
       newMembersList = membersData.filter(
-        (members) => members.id !== payload.data.id
+        members => members.id !== payload.data.id
       );
       setMembersData(newMembersList);
     } else {
@@ -73,7 +73,7 @@ const Members = () => {
           image: payload.image,
         });
 
-        newMembersList = membersData.map((members) => {
+        newMembersList = membersData.map(members => {
           if (members.id === payload.id) {
             return {
               id: payload.id,
@@ -100,13 +100,12 @@ const Members = () => {
         <div className="table-responsive">
           <table className="caption-top table table-striped table-sm">
             <caption>
-              <div className="d-flex justify-content-between">
+              <div className='d-flex justify-content-between'>
                 <div>Lista de miembros</div>
                 <div>
                   <button
-                    className="btn btn btn-primary"
-                    onClick={() => open({})}
-                  >
+                    className='btn btn btn-primary'
+                    onClick={() => open({})}>
                     Crear miembro
                   </button>
                 </div>
@@ -114,21 +113,27 @@ const Members = () => {
             </caption>
             <thead>
               <tr>
-                <th scope="col">Nombre</th>
-                <th scope="col">Imagen</th>
-                <th scope="col">Acciones</th>
+                <th scope='col'>Nombre</th>
+                <th scope='col'>Imagen</th>
+                <th scope='col'>Acciones</th>
               </tr>
             </thead>
             <tbody>
               {membersData
-                ? membersData.map((item) => (
-                    <tr key={item.id} className="align-middle">
+                ? membersData.map(item => (
+                    <tr key={item.id} className='align-middle'>
                       <Route>
                         <td>{item.name}</td>
                       </Route>
                       <td>
                         <div>
-                          <img src={item.image} width="90" alt={item.name} />
+                          <img
+                            src={item.image}
+                            width='90'
+                            height='90'
+                            alt={item.name}
+                            style={{ objectFit: "cover" }}
+                          />
                         </div>
                       </td>
                       <td>

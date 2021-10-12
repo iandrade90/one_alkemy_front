@@ -11,31 +11,31 @@ import {
   updateService,
 } from "../../services";
 import { BsPencil, BsTrash } from "../../icons/index";
-import { LoaderSpinner } from '../index'
+import { LoaderSpinner } from "../index";
 
 const Testimonials = () => {
   const [activities, setTestimonial] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
   const [activityData, setActivityData] = useState({});
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
 
   const close = () => {
     setActivityData({});
     setModalOpen(false);
   };
-  const open = (activity) => {
+  const open = activity => {
     setActivityData(activity);
     setModalOpen(true);
   };
 
-  const handleSubmit = async (payload) => {
+  const handleSubmit = async payload => {
     let newActivitiesList;
 
     if (payload.type === "delete") {
       await deleteService(`testimonials/${payload.data.id}`);
 
       newActivitiesList = activities.filter(
-        (activity) => activity.id !== payload.data.id
+        activity => activity.id !== payload.data.id
       );
 
       setTestimonial(newActivitiesList);
@@ -47,7 +47,6 @@ const Testimonials = () => {
         //? Creo una nueva actividad
         const formData = new FormData();
         for (let key in payload) {
-          // console.log(`${key}: ${payload[key]}`)
           formData.append(key, payload[key]);
         }
 
@@ -57,7 +56,6 @@ const Testimonials = () => {
           true
         );
 
-        console.log(testimonialCreated);
         newActivitiesList = activities.concat({
           id: testimonialCreated.data.id,
           name: testimonialCreated.data.name,
@@ -71,15 +69,19 @@ const Testimonials = () => {
           formData.append(key, payload[key]);
         }
         //? Caso contrario, edita la actividad en funcion del id que me llega
-        await updateService(`testimonials/${payload.id}`, formData, true);
+        const { data } = await updateService(
+          `testimonials/${payload.id}`,
+          formData,
+          true
+        );
 
-        newActivitiesList = activities.map((activity) => {
+        newActivitiesList = activities.map(activity => {
           if (activity.id === payload.id) {
             return {
               id: activity.id,
               name: payload.name,
               content: payload.content,
-              image: payload.image,
+              image: data.image,
             };
           }
 
@@ -92,91 +94,93 @@ const Testimonials = () => {
   };
 
   useEffect(() => {
-    setLoading(true)
+    setLoading(true);
     getAllService("testimonials")
       .then(({ data }) => {
-        setTestimonial(data.data)
-        setLoading(false)
+        setTestimonial(data.data);
+        setLoading(false);
       })
-      .catch((error) => {
+      .catch(error => {
         console.log(error);
-        setLoading(false)
+        setLoading(false);
       });
   }, []);
 
   return (
     <>
-      {loading ? <LoaderSpinner /> :
-        <>
-          <table
-            className="table table-hover caption-top table-striped align-middle"
-            style={{ fontFamily: "Poppins" }}
-          >
-            <caption>
-              <div className="d-flex justify-content-between">
-                <div>Lista de Testimonios</div>
-                <div>
-                  <button className="btn btn btn-primary" onClick={() => open({})}>
-                    Crear Testimonio
-                  </button>
-                </div>
-              </div>
-            </caption>
-            <thead>
-              <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Nombre de Testimonio</th>
-                <th scope="col"></th>
-                <th scope="col" className="text-center">
-                  Acciones
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {activities
-                ? activities.map((act) => (
-                  <tr key={act.id} >
-                    <th scope="row">{act.id}</th>
-                    <Route>
-                      <td className="link-activity" colSpan="2">
-                        <Link to={`/backoffice/testimonials/${act.id}`}>
-                          {act.name}
-                        </Link>
-                      </td>
-                    </Route>
-                    <td>
-                      <div className="d-flex justify-content-center align-items-center">
-                        <button
-                          className="btn btn-lg btn-primary me-2"
-                          onClick={() => open(act)}
-                        >
-                          <BsPencil />
-                        </button>
-                        <button
-                          className="btn btn-lg btn-danger"
-                          onClick={() => open({ act, delete: true })}
-                        >
-                          <BsTrash />
-                        </button>
-                      </div>
+      <table
+        className='table table-hover caption-top table-striped align-middle'
+        style={{ fontFamily: "Poppins" }}>
+        <caption>
+          <div className='d-flex justify-content-between'>
+            <div>Lista de Testimonios</div>
+            <div>
+              <button className='btn btn btn-primary' onClick={() => open({})}>
+                Crear Testimonio
+              </button>
+            </div>
+          </div>
+        </caption>
+        <thead>
+          <tr>
+            <th scope='col'>Nombre de Testimonio</th>
+            <th scope='col'>Imagen</th>
+            <th scope='col' className='text-center'>
+              Acciones
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {activities
+            ? activities.map(act => (
+                <tr key={act.id}>
+                  <Route>
+                    <td className='link-activity'>
+                      <Link to={`/backoffice/testimonials/${act.id}`}>
+                        {act.name}
+                      </Link>
                     </td>
-                  </tr>
-                ))
-                : null}
-            </tbody>
-          </table>
-          <AnimatePresence inital={false} exitBeforeEnter={true}>
-            {modalOpen && (
-              <Modal
-                modalOpen={modalOpen}
-                handleClose={close}
-                data={activityData}
-                onSubmit={handleSubmit}
-              />
-            )}
-          </AnimatePresence>
-        </>
-      }
+                  </Route>
+                  <td>
+                    <div>
+                      <img
+                        src={act.image}
+                        width='90'
+                        height='90'
+                        alt={act.name}
+                        style={{ objectFit: "cover" }}
+                      />
+                    </div>
+                  </td>
+                  <td>
+                    <div className='d-flex justify-content-center align-items-center'>
+                      <button
+                        className='btn btn-lg btn-primary me-2'
+                        onClick={() => open(act)}>
+                        <BsPencil />
+                      </button>
+                      <button
+                        className='btn btn-lg btn-danger'
+                        onClick={() => open({ act, delete: true })}>
+                        <BsTrash />
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ))
+            : null}
+        </tbody>
+      </table>
+      <AnimatePresence inital={false} exitBeforeEnter={true}>
+        {modalOpen && (
+          <Modal
+            modalOpen={modalOpen}
+            handleClose={close}
+            data={activityData}
+            onSubmit={handleSubmit}
+          />
+        )}
+      </AnimatePresence>
     </>
   );
 };

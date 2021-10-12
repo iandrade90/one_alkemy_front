@@ -30,7 +30,7 @@ const dropIn = {
 
 const Modal = ({ handleClose, data, onSubmit }) => {
   const isDelete = data.delete || false;
- 
+
   return (
     <Backdrop onClick={handleClose}>
       <motion.div
@@ -130,10 +130,11 @@ const EditModal = ({ onSubmit, data }) => {
               />
             </div>
             <div className='form-group mt-2'>
-              <label className='mb-1' htmlFor='email' >
+              <label className='mb-1' htmlFor='email'>
                 Email
               </label>
-              <input disabled
+              <input
+                disabled
                 type='email'
                 value={email}
                 className='form-control'
@@ -163,7 +164,7 @@ const EditModal = ({ onSubmit, data }) => {
         <button
           className='btn btn-confirm shadow-sm'
           onClick={() =>
-            onSubmit({ id: data.id, firstName, lastName,email, roleId: role })
+            onSubmit({ id: data.id, firstName, lastName, roleId: Number(role) })
           }>
           Guardar
         </button>
