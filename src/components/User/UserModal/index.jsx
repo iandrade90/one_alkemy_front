@@ -89,6 +89,7 @@ const DeleteModal = ({ onSubmit, data }) => {
 const EditModal = ({ onSubmit, data }) => {
   const [firstName, setFirstName] = useState(data.firstName);
   const [lastName, setLastname] = useState(data.lastName);
+  const [email, setEmail] = useState(data.email);
   const [role, setRole] = useState(data.roleId);
 
   return (
@@ -128,6 +129,17 @@ const EditModal = ({ onSubmit, data }) => {
                 }}
               />
             </div>
+            <div className='form-group mt-2'>
+              <label className='mb-1' htmlFor='email' >
+                Email
+              </label>
+              <input disabled
+                type='email'
+                value={email}
+                className='form-control'
+                id='email'
+              />
+            </div>
             <div className='form-group mt-2 mb-4'>
               <label htmlFor='rol'>Rol</label>
               <select
@@ -151,7 +163,7 @@ const EditModal = ({ onSubmit, data }) => {
         <button
           className='btn btn-confirm shadow-sm'
           onClick={() =>
-            onSubmit({ id: data.id, firstName, lastName, roleId: role })
+            onSubmit({ id: data.id, firstName, lastName,email, roleId: role })
           }>
           Guardar
         </button>

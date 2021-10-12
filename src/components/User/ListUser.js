@@ -130,7 +130,7 @@ const ListUser = () => {
             </div>
           </div>
         </>
-      };
+      }
     </>
   );
 }
