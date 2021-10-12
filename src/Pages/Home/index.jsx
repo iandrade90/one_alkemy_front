@@ -50,7 +50,7 @@ const Home = () => {
                 </div>
                 <div className="card-body">
                   <h5 className="card-title">{news.name}</h5>
-                  <p className="card-text">ReactHtmlParser({news.content})</p>
+                  <p className="card-text">{ReactHtmlParser(news.content)}</p>
                 </div>
               </div>
             </div>
