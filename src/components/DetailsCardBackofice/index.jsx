@@ -3,25 +3,33 @@ import { getAllService } from "../../services";
 import "./style.css";
 import { useParams } from "react-router-dom";
 import ReactHtmlParser from "react-html-parser";
+import { LoaderSpinner } from '../index'
+
 
 const DetailsCardBackofice = ({ section }) => {
   const { id } = useParams();
   const [detail, setDetail] = useState({});
   const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     if (id) {
+      setLoading(true)
       getAllService(`${section}/${id}`)
         .then((response) => {
           setDetail(response.data);
+          setLoading(false)
         })
         .catch((error) => {
           setMessage(error);
+          setLoading(false)
         });
     }
   }, [id]);
   return (
     <>
+    {loading ? <LoaderSpinner /> :
+        <>
       {message !== "" ? (
         <h4>Ocurrio un error! Vuelva a intertar mas tarde!</h4>
       ) : detail.message ? (
@@ -55,6 +63,8 @@ const DetailsCardBackofice = ({ section }) => {
           </div>
         </div>
       )}
+        </>
+      }
     </>
   );
 };

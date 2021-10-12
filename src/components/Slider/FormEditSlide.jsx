@@ -6,6 +6,7 @@ import { Alert } from "..";
 import "./formEditSlide.css";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import { LoaderSpinner } from '../index'
 
 const welcomeSchema = Yup.object({
   titulo: Yup.string()
@@ -45,24 +46,31 @@ function FormEditSlide() {
 
   const [slides, setSlides] = useState([]);
   const [slideFile1, setSlideFile1] = useState(null); //!importante el file
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
+    setLoading(true)
     getAllService("/slides")
       .then((response) => {
         setSlides(response.data);
+        setLoading(false)
       })
       .catch((error) => {
         console.log(error);
+        setLoading(false)
       });
   }, []);
 
   useEffect(() => {
+    setLoading(true)
     getAllService("/organizations/1/public")
       .then((response) => {
         setTitulo(response.data.welcomeText);
+        setLoading(false)
       })
       .catch((error) => {
         console.log(error);
+        setLoading(false)
       });
   }, []);
 
@@ -121,6 +129,8 @@ function FormEditSlide() {
 
   return (
     <>
+      {loading ? <LoaderSpinner /> :
+        <>
       <div className="container ">
         <div className="col ">
           <Formik
@@ -268,6 +278,8 @@ function FormEditSlide() {
           })}
         </div>
       </div>
+      </>
+      }
     </>
   );
 }

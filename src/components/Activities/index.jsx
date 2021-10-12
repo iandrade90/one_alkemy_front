@@ -11,11 +11,14 @@ import {
   updateService,
 } from "../../services";
 import { BsPencil, BsTrash } from "../../icons/index";
+import { LoaderSpinner } from '../index'
+
 
 export const Activities = () => {
   const [activities, setActivities] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
   const [activityData, setActivityData] = useState({});
+  const [loading, setLoading] = useState(false)
 
   const close = () => {
     setActivityData({});
@@ -78,11 +81,22 @@ export const Activities = () => {
   };
 
   useEffect(() => {
-    getAllService("activities").then(({ data }) => setActivities(data.data));
+    setLoading(true)
+    getAllService("activities")
+    .then(({ data }) => {
+      setActivities(data.data)
+      setLoading(false)
+    })
+    .catch((error) => {
+      console.log(error);
+      setLoading(false)
+    });
   }, []);
 
   return (
     <>
+      {loading ? <LoaderSpinner /> :
+        <>
       <table
         className="table table-hover caption-top table-striped align-middle"
         style={{ fontFamily: "Poppins" }}
@@ -150,6 +164,8 @@ export const Activities = () => {
           />
         )}
       </AnimatePresence>
+      </>
+      }
     </>
   );
 };

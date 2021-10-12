@@ -2,21 +2,26 @@ import React, { useEffect, useState } from 'react';
 import { Alert } from '..';
 import { getAllService, putService } from '../../services';
 import './index.css'
+import { LoaderSpinner } from '../index'
 
 function EditNameOrganization() {
     const [imagePreview, setImagePreview] = useState('');
     const [nameImage, setNameImage] = useState('');
     const [name, setName] = useState("");
+    const [loading, setLoading] = useState(false)
 
     useEffect(() => {
+        setLoading(true)
         if(imagePreview===""){
             getAllService('organizations/1/public')
             .then((response) => {
                 setImagePreview(response.data.image);
                 setName(response.data.name);
+                setLoading(false)
             })
             .catch((error) => {
                 console.log(error);
+                setLoading(false)
             });
         }
         
@@ -71,6 +76,8 @@ function EditNameOrganization() {
       
   return (
     <>
+      {loading ? <LoaderSpinner /> :
+        <>
     <div className="container d-flex justify-content-center ">
         <div className="col col-md-10">
 
@@ -108,6 +115,8 @@ function EditNameOrganization() {
         </form>
     </div>
     </div>
+    </>
+      }
     </>
   );
 }

@@ -1,35 +1,30 @@
 // import axios from 'axios';
 import React, {useEffect,useState} from 'react';
 import { getAllService } from '../../services';
+import { LoaderSpinner } from '../index'
 
 const ContactList = () => {
     const [data, setData] = useState([]);
-    // const endpoint = "http://localhost:3001/api/v1/contacts";
-    // const getData = async (endpoint) => {
-    //     return await axios.get(endpoint);
-    // }
-    // useEffect(() => {
-    //     const result = getData(endpoint);
-    //     setData(result.data);
-    // }, [])
+    const [loading, setLoading] = useState(false)
 
     useEffect(() => {
+        setLoading(true)
         getAllService("contacts")
         .then((res) => {
             setData(res.data);
+            setLoading(false)
         })
         .catch((error)=>{
           console.log(error)
+          setLoading(false)
         })
       }, []);
 
-    const example = [{
-        name: 'Test',
-        phone: '12345678',
-        email: 'email@email.com',
-        message: 'test'
-    }]
+
     return (
+        <>
+      {loading ? <LoaderSpinner /> :
+        <>
         <div className="container">
             <div className="card table-responsive m-3 p-2">
                 {
@@ -59,6 +54,9 @@ const ContactList = () => {
                 
             </div>
         </div>
+        </>
+      }
+    </>
     )
 }
 

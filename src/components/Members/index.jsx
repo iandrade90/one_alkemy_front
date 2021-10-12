@@ -9,12 +9,13 @@ import {
 } from "../../services";
 import { BsPencil, BsTrash } from "../../icons/index";
 import { Route } from "react-router";
-import { Link } from "react-router-dom";
+import { LoaderSpinner } from '../index'
 
 const Members = () => {
   const [modal, setModal] = useState(false);
   const [membersData, setMembersData] = useState([]);
   const [newMembersData, setNewMembersData] = useState({});
+  const [loading, setLoading] = useState(false)
 
   const close = () => {
     setNewMembersData({});
@@ -27,7 +28,16 @@ const Members = () => {
   };
 
   useEffect(() => {
-    getAllService("members").then((res) => setMembersData(res.data));
+    setLoading(true)
+    getAllService("members")
+    .then((res) => {
+      setMembersData(res.data)
+      setLoading(false)
+    })
+    .catch((error) => {
+      console.log(error);
+      setLoading(false)
+    });
   }, []);
 
   const handleSubmit = async (payload) => {
@@ -84,6 +94,8 @@ const Members = () => {
 
   return (
     <>
+    {loading ? <LoaderSpinner /> :
+        <>
       <section className="border-bottom">
         <div className="table-responsive">
           <table className="caption-top table table-striped table-sm">
@@ -150,6 +162,8 @@ const Members = () => {
           />
         )}
       </AnimatePresence>
+      </>
+      }
     </>
   );
 };

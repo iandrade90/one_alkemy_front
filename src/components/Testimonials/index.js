@@ -11,11 +11,13 @@ import {
   updateService,
 } from "../../services";
 import { BsPencil, BsTrash } from "../../icons/index";
+import { LoaderSpinner } from '../index'
 
 const Testimonials = () => {
   const [activities, setTestimonial] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
   const [activityData, setActivityData] = useState({});
+  const [loading, setLoading] = useState(false)
 
   const close = () => {
     setActivityData({});
@@ -90,78 +92,91 @@ const Testimonials = () => {
   };
 
   useEffect(() => {
-    getAllService("testimonials").then(({ data }) => setTestimonial(data.data));
+    setLoading(true)
+    getAllService("testimonials")
+      .then(({ data }) => {
+        setTestimonial(data.data)
+        setLoading(false)
+      })
+      .catch((error) => {
+        console.log(error);
+        setLoading(false)
+      });
   }, []);
 
   return (
     <>
-      <table
-        className="table table-hover caption-top table-striped align-middle"
-        style={{ fontFamily: "Poppins" }}
-      >
-        <caption>
-          <div className="d-flex justify-content-between">
-            <div>Lista de Testimonios</div>
-            <div>
-              <button className="btn btn btn-primary" onClick={() => open({})}>
-                Crear Testimonio
-              </button>
-            </div>
-          </div>
-        </caption>
-        <thead>
-          <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Nombre de Testimonio</th>
-            <th scope="col"></th>
-            <th scope="col" className="text-center">
-              Acciones
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          {activities
-            ? activities.map((act) => (
-                <tr key={act.id}>
-                  <th scope="row">{act.id}</th>
-                  <Route>
-                    <td className="link-activity" colSpan="2">
-                      <Link to={`/backoffice/testimonials/${act.id}`}>
-                        {act.name}
-                      </Link>
+      {loading ? <LoaderSpinner /> :
+        <>
+          <table
+            className="table table-hover caption-top table-striped align-middle"
+            style={{ fontFamily: "Poppins" }}
+          >
+            <caption>
+              <div className="d-flex justify-content-between">
+                <div>Lista de Testimonios</div>
+                <div>
+                  <button className="btn btn btn-primary" onClick={() => open({})}>
+                    Crear Testimonio
+                  </button>
+                </div>
+              </div>
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Nombre de Testimonio</th>
+                <th scope="col"></th>
+                <th scope="col" className="text-center">
+                  Acciones
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {activities
+                ? activities.map((act) => (
+                  <tr key={act.id}>
+                    <th scope="row">{act.id}</th>
+                    <Route>
+                      <td className="link-activity" colSpan="2">
+                        <Link to={`/backoffice/testimonials/${act.id}`}>
+                          {act.name}
+                        </Link>
+                      </td>
+                    </Route>
+                    <td>
+                      <div className="d-flex justify-content-center align-items-center">
+                        <button
+                          className="btn btn-lg btn-primary me-2"
+                          onClick={() => open(act)}
+                        >
+                          <BsPencil />
+                        </button>
+                        <button
+                          className="btn btn-lg btn-danger"
+                          onClick={() => open({ act, delete: true })}
+                        >
+                          <BsTrash />
+                        </button>
+                      </div>
                     </td>
-                  </Route>
-                  <td>
-                    <div className="d-flex justify-content-center align-items-center">
-                      <button
-                        className="btn btn-lg btn-primary me-2"
-                        onClick={() => open(act)}
-                      >
-                        <BsPencil/>
-                      </button>
-                      <button
-                        className="btn btn-lg btn-danger"
-                        onClick={() => open({ act, delete: true })}
-                      >
-                        <BsTrash/>
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-              ))
-            : null}
-        </tbody>
-      </table>
-      <AnimatePresence inital={false} exitBeforeEnter={true}>
-        {modalOpen && (
-          <Modal
-            modalOpen={modalOpen}
-            handleClose={close}
-            data={activityData}
-            onSubmit={handleSubmit}
-          />
-        )}
-      </AnimatePresence>
+                  </tr>
+                ))
+                : null}
+            </tbody>
+          </table>
+          <AnimatePresence inital={false} exitBeforeEnter={true}>
+            {modalOpen && (
+              <Modal
+                modalOpen={modalOpen}
+                handleClose={close}
+                data={activityData}
+                onSubmit={handleSubmit}
+              />
+            )}
+          </AnimatePresence>
+        </>
+      }
     </>
   );
 };
