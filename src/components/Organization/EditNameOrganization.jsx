@@ -12,7 +12,6 @@ function EditNameOrganization() {
 
     useEffect(() => {
         setLoading(true)
-        if(imagePreview===""){
             getAllService('organizations/1/public')
             .then((response) => {
                 setImagePreview(response.data.image);
@@ -23,9 +22,7 @@ function EditNameOrganization() {
                 console.log(error);
                 setLoading(false)
             });
-        }
-        
-    }, [imagePreview]);
+    }, []);
 
     const imageHandler = (e) => {
         const file  =  e.target.files[0];
@@ -109,7 +106,7 @@ function EditNameOrganization() {
             <div className="form-group">
                 <div className="row row-cols-3">
                     <button className="btn btn-sm btn-primary m-2 col-xs- col-md-3 col-xl-2 d-flex justify-content-center" type="reset" onClick={e=>handleReset(e)} >Borrar</button>
-                    <button className="btn btn-sm btn-primary  col-md-3 col-xl-2 m-2 d-flex justify-content-center align-items-center" type="submit" value="Submit" disabled={!name || !nameImage} >Guardar</button>
+                    <button className="btn btn-sm btn-primary  col-md-3 col-xl-2 m-2 d-flex justify-content-center align-items-center" type="submit" value="Submit" disabled={!name } >Guardar</button>
                 </div>
             </div>
         </form>

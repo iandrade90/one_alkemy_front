@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { deleteService, getAllService, updateService } from "../../services";
-import { AiOutlineEdit, AiOutlineDelete } from "react-icons/ai";
 import { AnimatePresence } from "framer-motion";
 import Modal from "./UserModal";
 import { BsPencil, BsTrash } from "../../icons/index";
@@ -94,20 +93,20 @@ const ListUser = () => {
                         <td>{user.email}</td>
                         <td>{user.roleId === 1 ? "ADMIN" : "STANDARD"}</td>
                         <td>
-                          <button
-                            type='button'
-                            className='btn btn-lg btn-primary me-2'
-                            onClick={() => open(user)}>
-                            {/* <AiOutlineEdit /> */}
-                            <BsPencil />
-                          </button>
-                          <button
-                            type='button'
-                            className='btn btn-lg btn-danger me-2'
-                            onClick={() => open({ user, delete: true })}>
-                            <BsTrash />
-                            {/* <AiOutlineDelete /> */}
-                          </button>
+                          <div className="d-flex">
+                            <button
+                              type='button'
+                              className='btn btn-lg btn-primary me-2'
+                              onClick={() => open(user)}>
+                              <BsPencil />
+                            </button>
+                            <button
+                              type='button'
+                              className='btn btn-lg btn-danger me-2'
+                              onClick={() => open({ user, delete: true })}>
+                              <BsTrash />
+                            </button>
+                          </div>
                         </td>
                       </tr>
                     ))

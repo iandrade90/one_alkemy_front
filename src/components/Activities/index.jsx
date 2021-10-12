@@ -124,7 +124,7 @@ export const Activities = () => {
         <tbody>
           {activities
             ? activities.map((act) => (
-                <tr key={act.id}>
+                <tr key={act.id} className='align-middle'>
                   <th scope="row">{act.id}</th>
                   <Route>
                     <td className="link-activity" colSpan="2">

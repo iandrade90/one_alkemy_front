@@ -132,18 +132,20 @@ const Members = () => {
                         </div>
                       </td>
                       <td>
-                        <button
-                          className="btn btn-lg btn-primary me-2"
-                          onClick={() => open(item)}
-                        >
-                          <BsPencil />
-                        </button>
-                        <button
-                          className="btn btn-lg btn-danger"
-                          onClick={() => open({ item, delete: true })}
-                        >
-                          <BsTrash />
-                        </button>
+                        <div className="d-flex">
+                          <button
+                            className="btn btn-lg btn-primary me-2"
+                            onClick={() => open(item)}
+                          >
+                            <BsPencil />
+                          </button>
+                          <button
+                            className="btn btn-lg btn-danger"
+                            onClick={() => open({ item, delete: true })}
+                          >
+                            <BsTrash />
+                          </button>
+                        </div>
                       </td>
                     </tr>
                   ))

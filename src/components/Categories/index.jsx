@@ -122,7 +122,8 @@ const Categories = () => {
                   <tr key={item.id} className='align-middle'>
                       <td>{item.name}</td>
                       <td>{ReactHtmlParser(item.description)}</td>
-                      <td>
+                      <td >
+                        <div className="d-flex">
                         <button
                           className="btn btn-lg btn-primary me-2"
                           onClick={() => open(item)}
@@ -135,6 +136,7 @@ const Categories = () => {
                         >
                           <BsTrash />
                         </button>
+                      </div>
                       </td>
                     </tr>
                   ))
