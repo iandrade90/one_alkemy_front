@@ -7,7 +7,7 @@ import {
   HiX,
   HiOutlineClipboardList,
 } from "../../../icons";
-import { useSelector } from 'react-redux';
+import { useSelector } from "react-redux";
 
 const dropIn = {
   hidden: {
@@ -31,7 +31,7 @@ const dropIn = {
 };
 
 const ModalModify = ({ handleClose, onSubmit }) => {
-  const { user } = useSelector((state) => state.user_auth);
+  const { user } = useSelector(state => state.user_auth);
 
   return (
     <Backdrop onClick={handleClose}>
@@ -52,7 +52,7 @@ const ModalModify = ({ handleClose, onSubmit }) => {
 };
 
 const ModalDelete = ({ handleClose, onSubmit }) => {
-  const { user } = useSelector((state) => state.user_auth);
+  const { user } = useSelector(state => state.user_auth);
 
   return (
     <Backdrop onClick={handleClose}>
@@ -72,7 +72,6 @@ const ModalDelete = ({ handleClose, onSubmit }) => {
   );
 };
 
-
 const DeleteModal = ({ onSubmit, data }) => {
   return (
     <>
@@ -84,15 +83,15 @@ const DeleteModal = ({ onSubmit, data }) => {
           <h4>Eliminar Novedad</h4>
           <p>
             Estas seguro que deseas eliminar el perfil de{" "}
-            <strong>{data.firstName}</strong> ? Toda la información relacionada sera
-            eliminada permanentemente. Esta acción no puede deshacerse.
+            <strong>{data.firstName}</strong> ? Toda la información relacionada
+            sera eliminada permanentemente. Esta acción no puede deshacerse.
           </p>
         </div>
       </div>
       <div className='d-flex justify-content-center modal-sms-footer'>
         <button
           className='btn btn-delete shadow-sm'
-          onClick={() => onSubmit({ data, type: "delete"})}>
+          onClick={() => onSubmit({ data, type: "delete" })}>
           Eliminar
         </button>
       </div>
@@ -104,6 +103,8 @@ const UpdateModal = ({ onSubmit, data }) => {
   const [id, setId] = useState(data.id);
   const [firstName, setFirstName] = useState(data.firstName);
   const [lastName, setLastName] = useState(data.lastName);
+  const [imagePreview, setImagePreview] = useState(data.image);
+  const [image, setImage] = useState()
 
   return (
     <>
@@ -123,7 +124,7 @@ const UpdateModal = ({ onSubmit, data }) => {
                 value={firstName}
                 className='form-control'
                 id='formGroupExampleInput'
-                onChange={(event) => {
+                onChange={event => {
                   setFirstName(event.target.value);
                 }}
               />
@@ -137,18 +138,46 @@ const UpdateModal = ({ onSubmit, data }) => {
                 name='category'
                 className='form-control'
                 value={lastName}
-                onChange={(event) => {
+                onChange={event => {
                   setLastName(event.target.value);
                 }}
               />
             </div>
+            <div className='mt-3'>
+              <label className='form-label' htmlFor='customFile'>
+                Imagen
+              </label>
+              <input
+                type='file'
+                name='image'
+                className='form-control'
+                onChange={e => setImage(e.target.files[0])}
+                id='customFile'
+              />
+            </div>
+            {image && (
+              <div className='d-flex justify-content-center mt-1 mb-3 bg-white rounded border'>
+                <img
+                  height='150px'
+                  src={image.size ? URL.createObjectURL(image) : image}
+                  alt={image}
+                />
+              </div>
+            )}
           </form>
         </div>
       </div>
-      <div className='d-flex justify-content-center modal-sms-footer'>
+      <div className='d-flex justify-content-center modal-sms-footer mt-3'>
         <button
           className='btn btn-confirm shadow-sm'
-          onClick={() => onSubmit({id: id, firstName: firstName, lastName: lastName})}>
+          onClick={() =>
+            onSubmit({
+              id: id,
+              firstName: firstName,
+              lastName: lastName,
+              image: image ? image : imagePreview,
+            })
+          }>
           Guardar
         </button>
       </div>
@@ -156,7 +185,4 @@ const UpdateModal = ({ onSubmit, data }) => {
   );
 };
 
-export {
-  ModalModify,
-  ModalDelete
-};
+export { ModalModify, ModalDelete };
