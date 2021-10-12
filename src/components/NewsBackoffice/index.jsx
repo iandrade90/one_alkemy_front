@@ -52,7 +52,6 @@ const NewsBackoffice = () => {
         }
 
         const { data } = await postService("news", formData, true);
-        console.log("Data:", data);
         newNewsList = newsData.concat({
           id: data.data.id,
           name: data.data.name,

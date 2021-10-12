@@ -32,7 +32,6 @@ const ListUser = () => {
     } else {
       //? Caso contrario, edita la actividad en funcion del id que me llega
       await updateService(`users/${payload.id}`, payload);
-      console.log("Contenido de payload: ", payload);
 
       newUserList = listUser.map(user => {
         if (user.id === payload.id) {
@@ -43,7 +42,6 @@ const ListUser = () => {
             lastName: payload.lastName,
             roleId: payload.roleId,
           };
-          console.log("Contenido de new user", newUser);
 
           return newUser;
         }

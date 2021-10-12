@@ -45,7 +45,6 @@ const Testimonials = () => {
         //? Creo una nueva actividad
         const formData = new FormData();
         for (let key in payload) {
-          // console.log(`${key}: ${payload[key]}`)
           formData.append(key, payload[key]);
         }
 
@@ -55,7 +54,6 @@ const Testimonials = () => {
           true
         );
 
-        console.log(testimonialCreated);
         newActivitiesList = activities.concat({
           id: testimonialCreated.data.id,
           name: testimonialCreated.data.name,
@@ -69,7 +67,11 @@ const Testimonials = () => {
           formData.append(key, payload[key]);
         }
         //? Caso contrario, edita la actividad en funcion del id que me llega
-        await updateService(`testimonials/${payload.id}`, formData, true);
+        const { data } = await updateService(
+          `testimonials/${payload.id}`,
+          formData,
+          true
+        );
 
         newActivitiesList = activities.map(activity => {
           if (activity.id === payload.id) {
@@ -77,7 +79,7 @@ const Testimonials = () => {
               id: activity.id,
               name: payload.name,
               content: payload.content,
-              image: payload.image,
+              image: data.image,
             };
           }
 
@@ -130,7 +132,13 @@ const Testimonials = () => {
                   </Route>
                   <td>
                     <div>
-                      <img src={act.image} width='90' height="90" alt={act.name} style={{objectFit: "cover"}} />
+                      <img
+                        src={act.image}
+                        width='90'
+                        height='90'
+                        alt={act.name}
+                        style={{ objectFit: "cover" }}
+                      />
                     </div>
                   </td>
                   <td>
