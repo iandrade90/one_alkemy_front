@@ -10,15 +10,13 @@ import {
 import { BsPencil, BsTrash } from "../../icons/index";
 import { Route } from "react-router";
 import { Link } from "react-router-dom";
-import { LoaderSpinner } from '../index'
+import { LoaderSpinner } from "../index";
 
 const NewsBackoffice = () => {
   const [modal, setModal] = useState(false);
   const [newsData, setNewsData] = useState([]);
   const [newsActData, setNewsActData] = useState({});
-  const [loading, setLoading] = useState(false)
-
-  console.log(newsData);
+  const [loading, setLoading] = useState(false);
 
   const close = () => {
     setNewsActData({});
@@ -31,16 +29,16 @@ const NewsBackoffice = () => {
   };
 
   useEffect(() => {
-    setLoading(true)
+    setLoading(true);
     getAllService("news")
-    .then((res) =>{
-      setNewsData(res.data)
-      setLoading(false)
-    })
-    .catch((error) => {
-      console(error);
-      setLoading(false)
-    });
+      .then(res => {
+        setNewsData(res.data);
+        setLoading(false);
+      })
+      .catch(error => {
+        console(error);
+        setLoading(false);
+      });
   }, []);
 
   const handleSubmit = async payload => {
@@ -104,83 +102,88 @@ const NewsBackoffice = () => {
 
   return (
     <>
-    {loading ? <LoaderSpinner /> :
+      {loading ? (
+        <LoaderSpinner />
+      ) : (
         <>
-      <section className="border-bottom">
-        <div className="table-responsive">
-          <table className="caption-top table table-striped table-sm">
-            <caption>
-              <div className='d-flex justify-content-between'>
-                <div>Lista de Novedades</div>
-                <div>
-                  <button
-                    className='btn btn btn-primary'
-                    onClick={() => open({})}>
-                    Crear novedad
-                  </button>
-                </div>
-              </div>
-            </caption>
-            <thead>
-              <tr>
-                <th scope='col'>Título</th>
-                <th scope='col'>Imagen</th>
-                <th scope='col'>Categoria</th>
-                <th scope='col'></th>
-                <th scope='col'>Acciones</th>
-              </tr>
-            </thead>
-            <tbody>
-              {newsData
-                ? newsData.map(item => (
-                    <tr key={item.id} className='align-middle'>
-                      <Route>
-                        <td>
-                          <div className='link-activity' colSpan='2'>
-                            <Link to={`/backoffice/news/${item.id}`}>
-                              {item.name}
-                            </Link>
-                          </div>
-                        </td>
-                      </Route>
-                      <td>
-                        <div>
-                          <img src={item.image} width='90' alt={item.name} />
-                        </div>
-                      </td>
-                      <td colSpan='2'>{item.type}</td>
-                      <td>
-                        <button
-                          className='btn btn-lg btn-primary me-2'
-                          onClick={() => open(item)}>
-                          <BsPencil />
-                        </button>
-                        <button
-                          className='btn btn-lg btn-danger'
-                          onClick={() => open({ item, delete: true })}>
-                          <BsTrash />
-                        </button>
-                      </td>
-                    </tr>
-                  ))
-                : null}
-            </tbody>
-          </table>
-        </div>
-      </section>
-      <AnimatePresence inital={false} exitBeforeEnter={true}>
-        {modal && (
-          <Modal
-            modal={modal}
-            data={newsActData}
-            handleClose={close}
-            onSubmit={handleSubmit}
-          />
-        )}
-      </AnimatePresence>
-      </>
-      }
-
+          <section className='border-bottom'>
+            <div className='table-responsive'>
+              <table className='caption-top table table-striped table-sm'>
+                <caption>
+                  <div className='d-flex justify-content-between'>
+                    <div>Lista de Novedades</div>
+                    <div>
+                      <button
+                        className='btn btn btn-primary'
+                        onClick={() => open({})}>
+                        Crear novedad
+                      </button>
+                    </div>
+                  </div>
+                </caption>
+                <thead>
+                  <tr>
+                    <th scope='col'>Título</th>
+                    <th scope='col'>Imagen</th>
+                    <th scope='col'>Categoria</th>
+                    <th scope='col'></th>
+                    <th scope='col'>Acciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {newsData
+                    ? newsData.map(item => (
+                        <tr key={item.id} className='align-middle'>
+                          <Route>
+                            <td>
+                              <div className='link-activity' colSpan='2'>
+                                <Link to={`/backoffice/news/${item.id}`}>
+                                  {item.name}
+                                </Link>
+                              </div>
+                            </td>
+                          </Route>
+                          <td>
+                            <div>
+                              <img
+                                src={item.image}
+                                width='90'
+                                alt={item.name}
+                              />
+                            </div>
+                          </td>
+                          <td colSpan='2'>{item.type}</td>
+                          <td>
+                            <button
+                              className='btn btn-lg btn-primary me-2'
+                              onClick={() => open(item)}>
+                              <BsPencil />
+                            </button>
+                            <button
+                              className='btn btn-lg btn-danger'
+                              onClick={() => open({ item, delete: true })}>
+                              <BsTrash />
+                            </button>
+                          </td>
+                        </tr>
+                      ))
+                    : null}
+                </tbody>
+              </table>
+            </div>
+          </section>
+          <AnimatePresence inital={false} exitBeforeEnter={true}>
+            {modal && (
+              <Modal
+                modal={modal}
+                data={newsActData}
+                handleClose={close}
+                onSubmit={handleSubmit}
+              />
+            )}
+          </AnimatePresence>
+        </>
+      )}
     </>
   );
 };
