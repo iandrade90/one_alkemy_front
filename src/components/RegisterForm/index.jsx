@@ -40,7 +40,7 @@ const RegisterForm = () => {
           await Alert({
             icon: "success",
             title: `Bienvenido ${userData.firstName || ""}`,
-            text: "Registro exitoso, se iniciara sesion automaticamente",
+            text: "Registro exitoso, se iniciara sesión automaticamente",
             showConfirmButton: false,
             timer: 1900,
           }).then(() => {
@@ -108,7 +108,7 @@ const RegisterForm = () => {
                 <div className='redirect'>
                   <p>
                     Ya tienes una cuenta?
-                    <Link to='/login'>Incia sesión</Link>
+                    <Link to='/login'>Inicia sesión</Link>
                   </p>
                 </div>
               </div>
