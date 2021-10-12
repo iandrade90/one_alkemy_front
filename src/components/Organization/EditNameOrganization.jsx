@@ -2,25 +2,27 @@ import React, { useEffect, useState } from 'react';
 import { Alert } from '..';
 import { getAllService, putService } from '../../services';
 import './index.css'
+import { LoaderSpinner } from '../index'
 
 function EditNameOrganization() {
     const [imagePreview, setImagePreview] = useState('');
     const [nameImage, setNameImage] = useState('');
     const [name, setName] = useState("");
+    const [loading, setLoading] = useState(false)
 
     useEffect(() => {
-        if(imagePreview===""){
+        setLoading(true)
             getAllService('organizations/1/public')
             .then((response) => {
                 setImagePreview(response.data.image);
                 setName(response.data.name);
+                setLoading(false)
             })
             .catch((error) => {
                 console.log(error);
+                setLoading(false)
             });
-        }
-        
-    }, [imagePreview]);
+    }, []);
 
     const imageHandler = (e) => {
         const file  =  e.target.files[0];
@@ -71,6 +73,8 @@ function EditNameOrganization() {
       
   return (
     <>
+      {loading ? <LoaderSpinner /> :
+        <>
     <div className="container d-flex justify-content-center ">
         <div className="col col-md-10">
 
@@ -102,12 +106,14 @@ function EditNameOrganization() {
             <div className="form-group">
                 <div className="row row-cols-3">
                     <button className="btn btn-sm btn-primary m-2 col-xs- col-md-3 col-xl-2 d-flex justify-content-center" type="reset" onClick={e=>handleReset(e)} >Borrar</button>
-                    <button className="btn btn-sm btn-primary  col-md-3 col-xl-2 m-2 d-flex justify-content-center align-items-center" type="submit" value="Submit" disabled={!name || !nameImage} >Guardar</button>
+                    <button className="btn btn-sm btn-primary  col-md-3 col-xl-2 m-2 d-flex justify-content-center align-items-center" type="submit" value="Submit" disabled={!name } >Guardar</button>
                 </div>
             </div>
         </form>
     </div>
     </div>
+    </>
+      }
     </>
   );
 }

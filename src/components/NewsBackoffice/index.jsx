@@ -10,11 +10,13 @@ import {
 import { BsPencil, BsTrash } from "../../icons/index";
 import { Route } from "react-router";
 import { Link } from "react-router-dom";
+import { LoaderSpinner } from '../index'
 
 const NewsBackoffice = () => {
   const [modal, setModal] = useState(false);
   const [newsData, setNewsData] = useState([]);
   const [newsActData, setNewsActData] = useState({});
+  const [loading, setLoading] = useState(false)
 
   console.log(newsData);
 
@@ -29,7 +31,16 @@ const NewsBackoffice = () => {
   };
 
   useEffect(() => {
-    getAllService("news").then(res => setNewsData(res.data));
+    setLoading(true)
+    getAllService("news")
+    .then((res) =>{
+      setNewsData(res.data)
+      setLoading(false)
+    })
+    .catch((error) => {
+      console(error);
+      setLoading(false)
+    });
   }, []);
 
   const handleSubmit = async payload => {
@@ -93,9 +104,11 @@ const NewsBackoffice = () => {
 
   return (
     <>
-      <section className='border-bottom'>
-        <div className='table-responsive'>
-          <table className='caption-top table table-striped table-sm'>
+    {loading ? <LoaderSpinner /> :
+        <>
+      <section className="border-bottom">
+        <div className="table-responsive">
+          <table className="caption-top table table-striped table-sm">
             <caption>
               <div className='d-flex justify-content-between'>
                 <div>Lista de Novedades</div>
@@ -165,6 +178,9 @@ const NewsBackoffice = () => {
           />
         )}
       </AnimatePresence>
+      </>
+      }
+
     </>
   );
 };

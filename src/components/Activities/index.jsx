@@ -11,12 +11,14 @@ import {
   updateService,
 } from "../../services";
 import { BsPencil, BsTrash } from "../../icons/index";
+import { LoaderSpinner } from '../index'
+
 
 export const Activities = () => {
   const [activities, setActivities] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
   const [activityData, setActivityData] = useState({});
-  console.log(activities);
+  const [loading, setLoading] = useState(false)
 
   const close = () => {
     setActivityData({});
@@ -79,11 +81,22 @@ export const Activities = () => {
   };
 
   useEffect(() => {
-    getAllService("activities").then(({ data }) => setActivities(data.data));
+    setLoading(true)
+    getAllService("activities")
+    .then(({ data }) => {
+      setActivities(data.data)
+      setLoading(false)
+    })
+    .catch((error) => {
+      console.log(error);
+      setLoading(false)
+    });
   }, []);
 
   return (
     <>
+      {loading ? <LoaderSpinner /> :
+        <>
       <table
         className='table table-hover caption-top table-striped align-middle'
         style={{ fontFamily: "Poppins" }}>
@@ -109,9 +122,9 @@ export const Activities = () => {
         </thead>
         <tbody>
           {activities
-            ? activities.map(act => (
-                <tr key={act.id}>
-                  <th scope='row'>{act.id}</th>
+            ? activities.map((act) => (
+                <tr key={act.id} className='align-middle'>
+                  <th scope="row">{act.id}</th>
                   <Route>
                     <td className='link-activity'>
                       <Link to={`/backoffice/activities/${act.id}`}>
@@ -153,6 +166,8 @@ export const Activities = () => {
           />
         )}
       </AnimatePresence>
+      </>
+      }
     </>
   );
 };

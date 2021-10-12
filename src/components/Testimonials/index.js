@@ -11,11 +11,13 @@ import {
   updateService,
 } from "../../services";
 import { BsPencil, BsTrash } from "../../icons/index";
+import { LoaderSpinner } from "../index";
 
 const Testimonials = () => {
   const [activities, setTestimonial] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
   const [activityData, setActivityData] = useState({});
+  const [loading, setLoading] = useState(false);
 
   const close = () => {
     setActivityData({});
@@ -92,7 +94,16 @@ const Testimonials = () => {
   };
 
   useEffect(() => {
-    getAllService("testimonials").then(({ data }) => setTestimonial(data.data));
+    setLoading(true);
+    getAllService("testimonials")
+      .then(({ data }) => {
+        setTestimonial(data.data);
+        setLoading(false);
+      })
+      .catch(error => {
+        console.log(error);
+        setLoading(false);
+      });
   }, []);
 
   return (

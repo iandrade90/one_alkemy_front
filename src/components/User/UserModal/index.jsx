@@ -89,6 +89,7 @@ const DeleteModal = ({ onSubmit, data }) => {
 const EditModal = ({ onSubmit, data }) => {
   const [firstName, setFirstName] = useState(data.firstName);
   const [lastName, setLastname] = useState(data.lastName);
+  const [email, setEmail] = useState(data.email);
   const [role, setRole] = useState(data.roleId);
 
   return (
@@ -126,6 +127,18 @@ const EditModal = ({ onSubmit, data }) => {
                 onChange={e => {
                   setLastname(e.target.value);
                 }}
+              />
+            </div>
+            <div className='form-group mt-2'>
+              <label className='mb-1' htmlFor='email'>
+                Email
+              </label>
+              <input
+                disabled
+                type='email'
+                value={email}
+                className='form-control'
+                id='email'
               />
             </div>
             <div className='form-group mt-2 mb-4'>

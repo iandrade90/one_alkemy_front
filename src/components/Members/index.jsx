@@ -9,12 +9,13 @@ import {
 } from "../../services";
 import { BsPencil, BsTrash } from "../../icons/index";
 import { Route } from "react-router";
-import { Link } from "react-router-dom";
+import { LoaderSpinner } from '../index'
 
 const Members = () => {
   const [modal, setModal] = useState(false);
   const [membersData, setMembersData] = useState([]);
   const [newMembersData, setNewMembersData] = useState({});
+  const [loading, setLoading] = useState(false)
 
   const close = () => {
     setNewMembersData({});
@@ -27,7 +28,16 @@ const Members = () => {
   };
 
   useEffect(() => {
-    getAllService("members").then(res => setMembersData(res.data));
+    setLoading(true)
+    getAllService("members")
+    .then((res) => {
+      setMembersData(res.data)
+      setLoading(false)
+    })
+    .catch((error) => {
+      console.log(error);
+      setLoading(false)
+    });
   }, []);
 
   const handleSubmit = async payload => {
@@ -84,9 +94,11 @@ const Members = () => {
 
   return (
     <>
-      <section className='border-bottom'>
-        <div className='table-responsive'>
-          <table className='caption-top table table-striped table-sm'>
+    {loading ? <LoaderSpinner /> :
+        <>
+      <section className="border-bottom">
+        <div className="table-responsive">
+          <table className="caption-top table table-striped table-sm">
             <caption>
               <div className='d-flex justify-content-between'>
                 <div>Lista de miembros</div>
@@ -125,16 +137,20 @@ const Members = () => {
                         </div>
                       </td>
                       <td>
-                        <button
-                          className='btn btn-lg btn-primary me-2'
-                          onClick={() => open(item)}>
-                          <BsPencil />
-                        </button>
-                        <button
-                          className='btn btn-lg btn-danger'
-                          onClick={() => open({ item, delete: true })}>
-                          <BsTrash />
-                        </button>
+                        <div className="d-flex">
+                          <button
+                            className="btn btn-lg btn-primary me-2"
+                            onClick={() => open(item)}
+                          >
+                            <BsPencil />
+                          </button>
+                          <button
+                            className="btn btn-lg btn-danger"
+                            onClick={() => open({ item, delete: true })}
+                          >
+                            <BsTrash />
+                          </button>
+                        </div>
                       </td>
                     </tr>
                   ))
@@ -153,6 +169,8 @@ const Members = () => {
           />
         )}
       </AnimatePresence>
+      </>
+      }
     </>
   );
 };

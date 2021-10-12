@@ -123,7 +123,7 @@ const LoginForm = () => {
 
             <div className="d-grid mt-4">
               <button className="btn login" type="submit">
-                Inciar sesión
+                Iniciar sesión
               </button>
             </div>
             <div className='redirect'>

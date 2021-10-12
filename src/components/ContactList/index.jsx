@@ -1,5 +1,5 @@
-// import axios from 'axios';
 import React, {useEffect,useState} from 'react';
+import { LoaderSpinner } from '../index'
 import { BsTrash } from "../../icons/index";
 import { AnimatePresence } from "framer-motion";
 import {
@@ -13,6 +13,7 @@ const ContactList = () => {
     const [contactList, setContactList] = useState([]);
     const [newContactData, setNewContactData] = useState({});
     const [modal, setModal] = useState(false);
+    const [loading, setLoading] = useState(false)
 
     const close = () => {
         setNewContactData({});
@@ -25,24 +26,31 @@ const ContactList = () => {
     };
 
     useEffect(() => {
+        setLoading(true)
         getAllService("contacts")
         .then((res) => {
             setContactList(res.data);
+            setLoading(false)
         })
         .catch((error)=>{
           console.log(error)
+          setLoading(false)
         })
       }, []);
 
     const handleSubmit = async (payload) => {
-        let contactList;
-        await deleteService(`contacts/${payload.data.id}`);
-        const newContactList = contactList.filter((contact) => contact.id !== payload.data.id);
-        setContactList(newContactList);
-        close();
+        console.log(payload.data.id)
+        let newContactList;
+        // await deleteService(`contacts/${payload.data.item.id}`);
+         newContactList = contactList.filter((contact) => contact.id !== payload.data.item.id);
+         setContactList(newContactList);
+         close();
     };
 
     return (
+        <>
+      {loading ? <LoaderSpinner /> :
+        <>
         <div className="container">
             <div className="card table-responsive m-3 p-2">
                 {
@@ -59,11 +67,11 @@ const ContactList = () => {
                     </thead>
                     <tbody>
                         {contactList.length>0 && contactList.map((item) => (
-                            <tr key={item.id}>
+                            <tr key={item.id} className='align-middle'>
                                 <td>{item.name}</td>
                                 <td>{item.email}</td>
                                 <td>{item.message}</td>
-                                {console.log(item)}
+                                {/* {console.log(item)} */}
                                 <td>
                                     <button
                                     className="btn btn-lg btn-danger"
@@ -90,6 +98,9 @@ const ContactList = () => {
                 )}
             </AnimatePresence>
         </div>
+        </>
+      }
+    </>
     )
 }
 

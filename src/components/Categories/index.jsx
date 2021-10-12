@@ -9,11 +9,13 @@ import {
 import Modal from "./Modal";
 import { AnimatePresence } from "framer-motion";
 import ReactHtmlParser from "react-html-parser";
+import { LoaderSpinner } from '../index'
 
 const Categories = () => {
   const [categories, setCategories] = useState();
   const [modalOpen, setModalOpen] = useState(false);
   const [categoriesData, setCategoriesData] = useState({});
+  const [loading, setLoading] = useState(false)
 
   const close = () => {
     setCategoriesData({});
@@ -75,11 +77,22 @@ const Categories = () => {
   };
 
   useEffect(() => {
-    getAllService(`categories`).then((res) => setCategories(res.data));
+    setLoading(true)
+    getAllService(`categories`)
+    .then((res) => {
+      setCategories(res.data)
+      setLoading(false)
+    })
+    .catch((error) => {
+      console.log(error);
+      setLoading(false)
+    });
   }, []);
 
   return (
     <>
+    {loading ? <LoaderSpinner /> :
+        <>
       <section className="border-bottom">
         <div className="table-responsive">
           <table className="caption-top table table-striped table-sm">
@@ -109,7 +122,8 @@ const Categories = () => {
                   <tr key={item.id} className='align-middle'>
                       <td>{item.name}</td>
                       <td>{ReactHtmlParser(item.description)}</td>
-                      <td>
+                      <td >
+                        <div className="d-flex">
                         <button
                           className="btn btn-lg btn-primary me-2"
                           onClick={() => open(item)}
@@ -122,6 +136,7 @@ const Categories = () => {
                         >
                           <BsTrash />
                         </button>
+                      </div>
                       </td>
                     </tr>
                   ))
@@ -141,6 +156,8 @@ const Categories = () => {
           />
         )}
       </AnimatePresence>
+      </>
+      }
     </>
   );
 };
