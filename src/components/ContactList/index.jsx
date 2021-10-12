@@ -1,17 +1,35 @@
-// import axios from 'axios';
 import React, {useEffect,useState} from 'react';
-import { getAllService } from '../../services';
 import { LoaderSpinner } from '../index'
+import { BsTrash } from "../../icons/index";
+import { AnimatePresence } from "framer-motion";
+import {
+    deleteService,
+    getAllService,
+} from "../../services";
+import Modal from "./Modal";
+
 
 const ContactList = () => {
-    const [data, setData] = useState([]);
+    const [contactList, setContactList] = useState([]);
+    const [newContactData, setNewContactData] = useState({});
+    const [modal, setModal] = useState(false);
     const [loading, setLoading] = useState(false)
+
+    const close = () => {
+        setNewContactData({});
+        setModal(false);
+    };
+    
+    const open = (data) => {
+        setNewContactData(data);
+        setModal(true);
+    };
 
     useEffect(() => {
         setLoading(true)
         getAllService("contacts")
         .then((res) => {
-            setData(res.data);
+            setContactList(res.data);
             setLoading(false)
         })
         .catch((error)=>{
@@ -20,6 +38,14 @@ const ContactList = () => {
         })
       }, []);
 
+    const handleSubmit = async (payload) => {
+        console.log(payload.data.id)
+        let newContactList;
+        // await deleteService(`contacts/${payload.data.item.id}`);
+         newContactList = contactList.filter((contact) => contact.id !== payload.data.item.id);
+         setContactList(newContactList);
+         close();
+    };
 
     return (
         <>
@@ -28,7 +54,7 @@ const ContactList = () => {
         <div className="container">
             <div className="card table-responsive m-3 p-2">
                 {
-                    data.message ? (<h5>{data.message}</h5>)
+                    contactList.message ? (<h5>{contactList.message}</h5>)
                     :
                     <table className="table table-hover table-striped my-3 ">
                     <thead>
@@ -36,23 +62,41 @@ const ContactList = () => {
                         <th scope="col">Nombre</th>
                         <th scope="col">Email</th>
                         <th scope="col">Mensaje</th>
+                        <th scope="col">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {data.length>0 && data.map((item) => (
-                            <tr key={item.id}>
+                        {contactList.length>0 && contactList.map((item) => (
+                            <tr key={item.id} className='align-middle'>
                                 <td>{item.name}</td>
                                 <td>{item.email}</td>
                                 <td>{item.message}</td>
+                                {/* {console.log(item)} */}
+                                <td>
+                                    <button
+                                    className="btn btn-lg btn-danger"
+                                    onClick={() => open({ item, delete: true })}
+                                    >
+                                        <BsTrash />
+                                    </button>
+                                </td>
                             </tr>
                         ))
-                    
                     } 
                     </tbody>
                 </table>
                 }
-                
             </div>
+            <AnimatePresence inital={false} exitBeforeEnter={true}>
+                {modal && (
+                <Modal
+                    modal={modal}
+                    data={newContactData}
+                    handleClose={close}
+                    onSubmit={handleSubmit}
+                />
+                )}
+            </AnimatePresence>
         </div>
         </>
       }
