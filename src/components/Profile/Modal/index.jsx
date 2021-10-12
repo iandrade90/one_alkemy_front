@@ -92,7 +92,7 @@ const DeleteModal = ({ onSubmit, data }) => {
       <div className='d-flex justify-content-center modal-sms-footer'>
         <button
           className='btn btn-delete shadow-sm'
-          onClick={() => onSubmit({data, type: "delete"})}>
+          onClick={() => onSubmit({ data, type: "delete"})}>
           Eliminar
         </button>
       </div>

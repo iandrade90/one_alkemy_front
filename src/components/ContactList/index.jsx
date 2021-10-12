@@ -44,11 +44,11 @@ const ContactList = () => {
 
     return (
         <div className="container">
-            <div className="card table-responsive table-striped m-3 p-2">
+            <div className="card table-responsive m-3 p-2">
                 {
                     contactList.message ? (<h5>{contactList.message}</h5>)
                     :
-                    <table className="table table-hover my-3 ">
+                    <table className="table table-hover table-striped my-3 ">
                     <thead>
                         <tr className='align-middle'>
                         <th scope="col">Nombre</th>
