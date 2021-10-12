@@ -35,7 +35,7 @@ const MercadopagoModal = () => {
         id='staticBackdrop'
         data-bs-backdrop='static'
         data-bs-keyboard='false'
-        tabindex='-1'
+        tabIndex='-1'
         aria-labelledby='staticBackdropLabel'
         aria-hidden='true'>
         <div className='modal-dialog'>
@@ -57,7 +57,7 @@ const MercadopagoModal = () => {
                   <div className='col d-flex justify-content-center'>
                     <img
                       height='100px'
-                      fluid
+                      fluid="true"
                       src='./assets/mercadopago.svg'
                       alt='Mercadopago'
                     />
@@ -73,7 +73,7 @@ const MercadopagoModal = () => {
                 <div className='row'>
                   <div className='col p-2 '>
                     <select
-                      class='form-select'
+                      className='form-select'
                       aria-label='Default select example'
                       onChange={e => setAmount(e.target.value)}
                       value={amount}>
