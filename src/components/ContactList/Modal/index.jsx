@@ -2,10 +2,7 @@ import React, { useState } from "react";
 import Backdrop from "../../Activities/Backdrop";
 import { motion } from "framer-motion";
 import "./style.css";
-import {
-  HiOutlineExclamation,
-  HiX,
-} from "../../../icons";
+import { HiOutlineExclamation, HiX } from "../../../icons";
 
 const dropIn = {
   hidden: {
@@ -29,7 +26,6 @@ const dropIn = {
 };
 
 const Modal = ({ handleClose, data, onSubmit }) => {
-
   return (
     <Backdrop onClick={handleClose}>
       <motion.div
@@ -40,8 +36,6 @@ const Modal = ({ handleClose, data, onSubmit }) => {
         animate="visible"
         exit="exit"
       >
-                {console.log(data)}
-
         <DeleteModal data={data} onSubmit={onSubmit} />
         <button className="close-button" onClick={handleClose}>
           <HiX />
@@ -64,11 +58,10 @@ const DeleteModal = ({ onSubmit, data }) => {
           <h4>Eliminar contacto</h4>
           <p>
             Estas seguro que deseas eliminar el contacto{" "}
-            <strong>{data.item.name}</strong> ? Toda la información relacionada sera
+            <strong>{data.name}</strong> ? Toda la información relacionada sera
             eliminada permanentemente. Esta acción no puede deshacerse.
           </p>
         </div>
-        {console.log(data)}
       </div>
       <div className="modal-sms-footer">
         <button

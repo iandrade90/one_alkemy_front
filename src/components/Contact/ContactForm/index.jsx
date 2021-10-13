@@ -25,19 +25,23 @@ const ContactForm = () => {
           email: values.email,
           message: values.message,
         };
-        postService('contacts', userData)
-          .then(success =>  Alert({
-            title:`Gracias por contactarte con nosotros!`,
-            text:"Hecho",
-            icon:"success",
-            showConfirmButton:false,
-            timer:1500
-          }))
-        .catch(error => Alert({
-          icon: 'error',
-          title: `${error.data?.msg || "Ops..."}`,
-          text: error.data?.msg,
-        }))
+        postService("contacts", userData)
+          .then((success) =>
+            Alert({
+              title: `Gracias por contactarte con nosotros!`,
+              text: "Hecho",
+              icon: "success",
+              showConfirmButton: false,
+              timer: 1500,
+            })
+          )
+          .catch((error) =>
+            Alert({
+              icon: "error",
+              title: `${error.data?.mesagge || "Ops..."}`,
+              text: error.data?.msg,
+            })
+          );
       }}
     >
       {({ errors }) => (

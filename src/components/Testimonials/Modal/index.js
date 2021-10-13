@@ -37,18 +37,19 @@ const Modal = ({ handleClose, data, onSubmit }) => {
   return (
     <Backdrop onClick={handleClose}>
       <motion.div
-        onClick={e => e.stopPropagation()}
-        className='modal-sms'
+        onClick={(e) => e.stopPropagation()}
+        className="modal-sms"
         variants={dropIn}
-        initial='hidden'
-        animate='visible'
-        exit='exit'>
+        initial="hidden"
+        animate="visible"
+        exit="exit"
+      >
         {isDelete ? (
           <DeleteModal data={data.act} onSubmit={onSubmit} />
         ) : (
           <CreationUpdateModal data={data} onSubmit={onSubmit} />
         )}
-        <button className='close-button' onClick={handleClose}>
+        <button className="close-button" onClick={handleClose}>
           <HiX />
         </button>
       </motion.div>
@@ -61,8 +62,8 @@ export default Modal;
 const DeleteModal = ({ onSubmit, data }) => {
   return (
     <>
-      <div className='modal-sms-body'>
-        <div className='modal-icon delete'>
+      <div className="modal-sms-body">
+        <div className="modal-icon delete">
           <HiOutlineExclamation />
         </div>
         <div>
@@ -74,13 +75,14 @@ const DeleteModal = ({ onSubmit, data }) => {
           </p>
         </div>
       </div>
-      <div className='modal-sms-footer'>
+      <div className="modal-sms-footer">
         <button
-          className='btn btn-delete shadow-sm'
-          onClick={() => onSubmit({ data, type: "delete" })}>
+          className="btn btn-delete shadow-sm"
+          onClick={() => onSubmit({ data, type: "delete" })}
+        >
           Eliminar
         </button>
-        <button className='btn btn-cancel shadow-sm'>Cancelar</button>
+        <button className="btn btn-cancel shadow-sm">Cancelar</button>
       </div>
     </>
   );
@@ -92,53 +94,52 @@ const CreationUpdateModal = ({ onSubmit, data }) => {
   const [image, setImage] = useState(isEdit ? data.image : "");
   const [description, setDescription] = useState(isEdit ? data.content : "");
 
-  console.log(data);
   return (
     <>
-      <div className='modal-sms-body '>
-        <div className='modal-icon create'>
+      <div className="modal-sms-body ">
+        <div className="modal-icon create">
           <HiOutlineClipboardList />
         </div>
-        <div className='w-100'>
+        <div className="w-100">
           <h4>{isEdit ? "Editar" : "Crear"} Testimonio</h4>
-          <form className='mt-3'>
-            <div className='form-group'>
-              <div className='mb-3'>
-                <label className='form-label' htmlFor='customFile'>
+          <form className="mt-3">
+            <div className="form-group">
+              <div className="mb-3">
+                <label className="form-label" htmlFor="customFile">
                   Imagen
                 </label>
                 <input
-                  type='file'
-                  className='form-control'
-                  onChange={e => setImage(e.target.files[0])}
-                  id='customFile'
+                  type="file"
+                  className="form-control"
+                  onChange={(e) => setImage(e.target.files[0])}
+                  id="customFile"
                 />
               </div>
               <div style={{ display: "flex", justifyContent: "center" }}>
                 {image && (
                   <img
-                    height='150px'
+                    height="150px"
                     src={image.size ? URL.createObjectURL(image) : image}
                     alt={image}
                   />
                 )}
               </div>
 
-              <label className='mb-1' htmlFor='formGroupExampleInput'>
+              <label className="mb-1" htmlFor="formGroupExampleInput">
                 Nombre
               </label>
               <input
-                type='text'
+                type="text"
                 value={title}
-                className='form-control'
-                id='formGroupExampleInput'
-                onChange={e => {
+                className="form-control"
+                id="formGroupExampleInput"
+                onChange={(e) => {
                   setTitle(e.target.value);
                 }}
               />
             </div>
-            <div className='form-group my-4'>
-              <label className='mb-1' htmlFor='formGroupExampleInput2'>
+            <div className="form-group my-4">
+              <label className="mb-1" htmlFor="formGroupExampleInput2">
                 Testimonio
               </label>
               <CKEditor
@@ -152,10 +153,10 @@ const CreationUpdateModal = ({ onSubmit, data }) => {
           </form>
         </div>
       </div>
-      <div className='modal-sms-footer'>
-        <button className='btn btn-cancel shadow-sm'>Cancelar</button>
+      <div className="modal-sms-footer">
+        <button className="btn btn-cancel shadow-sm">Cancelar</button>
         <button
-          className='btn btn-confirm shadow-sm'
+          className="btn btn-confirm shadow-sm"
           onClick={() =>
             onSubmit({
               name: title,
@@ -163,7 +164,8 @@ const CreationUpdateModal = ({ onSubmit, data }) => {
               image: image,
               id: data.id,
             })
-          }>
+          }
+        >
           Guardar
         </button>
       </div>
