@@ -1,9 +1,9 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
-import { Route, Redirect } from 'react-router-dom'
+import React from "react";
+import { useSelector } from "react-redux";
+import { Route, Redirect } from "react-router-dom";
 
 export function PrivateRouter({ component, ...rest }) {
-  const { isLogged } = useSelector((state) => state.user_auth)
+  const { isLogged } = useSelector((state) => state.user_auth);
 
   return (
     <Route
@@ -14,11 +14,11 @@ export function PrivateRouter({ component, ...rest }) {
         ) : (
           <Redirect
             to={{
-              pathname: '/',
+              pathname: "/",
             }}
           />
         )
       }
     />
-  )
+  );
 }
